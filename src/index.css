@@ -1,13 +1,166 @@
+#root {
+  position: relative;
+  min-height: 100vh;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Tenor Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: "Tenor Sans", sans-serif;
 }
+
+.App {
+  padding-bottom: 10vh;
+}
+
+/* -------------NAVBAR------------- */
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 3vh;
+  background: #c9e265;
+  color: black;
+}
+
+.nav-links {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+.navButtons {
+  padding: 8px;
+}
+button {
+  border-radius: 5px;
+  background-color: #c9e265;
+}
+
+.navImage {
+  height: 2vh;
+  padding: 6px;
+}
+.navButtons:hover,
+.navImage:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+}
+.homeImage {
+  height: 4vh;
+  margin: 0px;
+}
+/* -------------NAVBAR------------- */
+
+/* -------------FOOTER------------- */
+.Footer {
+  position: absolute;
+  min-height: 5vh;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #c9e265;
+  color: black;
+  text-align: center;
+}
+.copyright {
+  margin: 0px 0px 10px 0px;
+}
+.names {
+  margin: 10px 0px 10px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footerLinks {
+  color: black;
+  margin: 0px 5px;
+}
+/* -------------FOOTER------------- */
+
+/* -------------LANDING PAGE------------- */
+.landingPageContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.landPageDivs {
+  height: 40vh;
+  width: 220px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ff914d;
+  background-color: #ff914d;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.landingPageBottom {
+  margin: 10px;
+  padding: 10px;
+  width: 1000px;
+  border: 1px solid #ff914d;
+  background-color: #ff914d;
+  border-radius: 5px;
+}
+/* -------------LANDING PAGE------------- */
+
+/* -------------DASHBOARD------------- */
+.page {
+  margin: 3%;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dashNotes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+}
+.dashProfile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+}
+.Note {
+  display: flex;
+  align-items: center;
+  font-family: "Amatic SC", cursive;
+  font-size: 30px;
+}
+.Note button {
+  margin: 10px;
+}
+/* -------------DASHBOARD------------- */
+/* -------------NOTES------------- */
+.newNote {
+  border: 0px;
+  border-bottom: 1px solid black;
+}
+.newNote:focus {
+  outline: none;
+}
+textarea {
+  font-family: "Amatic SC", cursive;
+  font-size: 30px;
+}
+.newNoteSubmit {
+  border-radius: 5px;
+  background-color: #c9e265;
+}
+/* -------------NOTES------------- */
