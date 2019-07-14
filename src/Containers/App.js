@@ -43,16 +43,37 @@ class App extends React.Component {
       });
     }
   }
-
+  ////////////////////////////////////////////////
+  //////////////////// NOTES /////////////////////
+  ////////////////////////////////////////////////
   getNotes = () => {
     const token = localStorage.getItem("token");
-    api
-      .getNotes(token)
-      .then(notes =>
-        this.setState({ notes }, () => console.log(this.state.notes))
-      );
+    api.getNotes(token).then(notes => this.setState({ notes }));
   };
 
+  onAddNoteClick = note => {
+    api.addNoteToServer(note).then(data =>
+      this.setState({
+        notes: [...this.state.notes, data]
+      })
+    );
+  };
+
+  onDeleteNoteClick = noteId => {
+    api.deleteNoteFromServer(noteId).then(
+      this.setState({
+        notes: this.state.notes.filter(note => note.id !== noteId)
+      })
+    );
+  };
+
+  ////////////////////////////////////////////////
+  //////////////////// NOTES /////////////////////
+  ////////////////////////////////////////////////
+
+  ////////////////////////////////////////////////
+  /////////////// LOGIN & SIGNUP /////////////////
+  ////////////////////////////////////////////////
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -67,12 +88,65 @@ class App extends React.Component {
         this.setState({ username: "", password: "" });
       } else {
         localStorage.setItem("token", data.jwt);
-        this.setState({
-          logged_in: true,
-          username: data.username,
-          password: ""
+        api.getCurrentFlatmate(data.jwt).then(flatmate => {
+          this.setState({
+            logged_in: true,
+            user: {
+              username: flatmate.username,
+              id: flatmate.id,
+              first_name: flatmate.first_name,
+              last_name: flatmate.last_name,
+              move_in: flatmate.move_in,
+              rent_due: flatmate.rent_due,
+              water_due: flatmate.water_due,
+              electricity_due: flatmate.electricity_due
+            }
+          });
+          this.getNotes();
         });
-        this.getNotes();
+      }
+    });
+  };
+
+  onSignupClicked = e => {
+    e.preventDefault();
+    const flatmate = {
+      flatmate: {
+        username: this.state.username,
+        first_name: this.state.first_name,
+        last_name: this.state.last_name,
+        email: this.state.email,
+        password: this.state.password,
+        email: this.state.email
+      }
+    };
+    api.signup(flatmate).then(data => {
+      if (data.error) {
+        alert("something is wrong with your credentials");
+        this.setState({
+          username: "",
+          password: "",
+          first_name: "",
+          last_name: "",
+          email: ""
+        });
+      } else {
+        localStorage.setItem("token", data.jwt);
+        api.getCurrentFlatmate(data.jwt).then(flatmate => {
+          this.setState({
+            logged_in: true,
+            user: {
+              username: flatmate.username,
+              first_name: flatmate.first_name,
+              last_name: flatmate.last_name,
+              email: flatmate.email,
+              password: flatmate.password,
+              email: flatmate.email,
+              id: flatmate.id
+            }
+          });
+          this.getNotes();
+        });
       }
     });
   };
@@ -83,9 +157,13 @@ class App extends React.Component {
       logged_in: false,
       username: "",
       password: "",
-      notes: []
+      notes: [],
+      user: {}
     });
   };
+  ////////////////////////////////////////////////
+  /////////////// LOGIN & SIGNUP /////////////////
+  ////////////////////////////////////////////////
 
   render() {
     return (
@@ -104,6 +182,8 @@ class App extends React.Component {
                   logged_in={this.state.logged_in}
                   notes={this.state.notes}
                   user={this.state.user}
+                  onAddNoteClick={this.onAddNoteClick}
+                  onDeleteNoteClick={this.onDeleteNoteClick}
                 />
               )}
             />
@@ -122,7 +202,19 @@ class App extends React.Component {
                 />
               )}
             />
-            <Route path="/signup" exact render={() => <SignupComponent />} />
+            <Route
+              path="/signup"
+              exact
+              render={() => (
+                <SignupComponent
+                  password={this.state.password}
+                  username={this.state.username}
+                  logged_in={this.state.logged_in}
+                  handleChange={this.handleChange}
+                  onSignupClicked={this.onSignupClicked}
+                />
+              )}
+            />
           </Switch>
           <Footer />
         </div>

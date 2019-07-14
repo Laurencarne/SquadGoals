@@ -1,4 +1,4 @@
-const API_BASE_URL = `http://localhost:3000`;
+const API_BASE_URL = `http://localhost:3000/`;
 
 const headers = {
   "Content-Type": "application/json",
@@ -6,27 +6,54 @@ const headers = {
 };
 
 const login = (username, password) => {
-  return fetch(`${API_BASE_URL}/auth/create`, {
+  return fetch(`${API_BASE_URL}auth/create`, {
     method: "POST",
     headers: headers,
     body: JSON.stringify({ username, password })
   }).then(res => res.json());
 };
 
+const signup = flatmate => {
+  return fetch(`${API_BASE_URL}api/v1/flatmates`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(flatmate)
+  }).then(res => res.json());
+};
+
 const getCurrentFlatmate = token => {
-  return fetch(`${API_BASE_URL}/auth/show`, {
+  return fetch(`${API_BASE_URL}auth/show`, {
     headers: { ...headers, Authorization: token }
   }).then(res => res.json());
 };
 
 const getNotes = token => {
-  return fetch(`${API_BASE_URL}/notes`, {
+  return fetch(`${API_BASE_URL}notes`, {
     headers: { ...headers, Authorization: token }
+  }).then(res => res.json());
+};
+
+const addNoteToServer = note => {
+  return fetch(`${API_BASE_URL}notes`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(note)
+  }).then(resp => resp.json());
+};
+
+const deleteNoteFromServer = note => {
+  return fetch(`${API_BASE_URL}notes/${note}`, {
+    method: "DELETE"
   }).then(res => res.json());
 };
 
 export default {
   login,
   getCurrentFlatmate,
-  getNotes
+  getNotes,
+  signup,
+  addNoteToServer,
+  deleteNoteFromServer
 };

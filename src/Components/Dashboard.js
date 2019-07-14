@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Notes from "./Notes";
 
 class Dashboard extends Component {
+  ////////////// MONTHS DATA ///////////////////
   dateWithOrdinalIndicator = date => {
     if (date.endsWith("1") && date !== "11") {
       return date + "st";
@@ -13,8 +14,6 @@ class Dashboard extends Component {
       return date + "th";
     }
   };
-
-  ////////////// MONTHS DATA ///////////////////
   getCurrentMonth = () => {
     return [
       "January",
@@ -31,11 +30,9 @@ class Dashboard extends Component {
       "December"
     ];
   };
-
   getDueDate = date => {
     return this.dateWithOrdinalIndicator(date.toString());
   };
-
   getDueDateMonth = dueDate => {
     if (new Date().getDate() > dueDate) {
       return this.getCurrentMonth()[new Date().getMonth() + 1];
@@ -45,34 +42,61 @@ class Dashboard extends Component {
   };
   ////////////// MONTHS DATA ///////////////////
 
-  render() {
-    return (
-      <div className="page">
-        <h1>Dashboard</h1>
-        <h2> Welcome back {this.props.user.first_name}</h2>
-        <div className="container">
-          <div className="dashProfile">
-            <h3>Move in Date: {this.props.user.move_in} </h3>
-            <h3>
-              Rent Due: {this.getDueDate(this.props.user.rent_due)}{" "}
-              {this.getDueDateMonth(this.props.user.rent_due)}
-            </h3>
-            <h3>
-              Water Due: {this.getDueDate(this.props.user.water_due)}{" "}
-              {this.getDueDateMonth(this.props.user.water_due)}
-            </h3>
-            <h3>
-              Electricity Due:{" "}
-              {this.getDueDate(this.props.user.electricity_due)}{" "}
-              {this.getDueDateMonth(this.props.user.electricity_due)}
-            </h3>
-          </div>
-          <div className="dashNotes">
-            <Notes notes={this.props.notes} user={this.props.user} />
+  renderPage = () => {
+    if (this.props.user.first_name) {
+      return (
+        <div className="page">
+          <h1>Dashboard</h1>
+          <h2> Welcome back {this.props.user.first_name}</h2>
+          <div className="container">
+            <div className="dashProfile">
+              {this.props.user.move_in ? (
+                <h3>Move in Date: {this.props.user.move_in} </h3>
+              ) : (
+                <h3>Please Update you Profile to see Bill Information.</h3>
+              )}
+              {this.props.user.rent_due &&
+              this.props.user.water_due &&
+              this.props.user.electricity_due ? (
+                <>
+                  <h3>
+                    Rent Due: {this.getDueDate(this.props.user.rent_due)}{" "}
+                    {this.getDueDateMonth(this.props.user.rent_due)}
+                  </h3>
+                  <h3>
+                    Water Due: {this.getDueDate(this.props.user.water_due)}{" "}
+                    {this.getDueDateMonth(this.props.user.water_due)}
+                  </h3>
+                  <h3>
+                    Electricity Due:{" "}
+                    {this.getDueDate(this.props.user.electricity_due)}{" "}
+                    {this.getDueDateMonth(this.props.user.electricity_due)}
+                  </h3>
+                </>
+              ) : null}
+            </div>
+            <div className="dashNotes">
+              <Notes
+                notes={this.props.notes}
+                user={this.props.user}
+                onAddNoteClick={this.props.onAddNoteClick}
+                onDeleteNoteClick={this.props.onDeleteNoteClick}
+              />
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div>
+          <h1>You Must Log In</h1>
+        </div>
+      );
+    }
+  };
+
+  render() {
+    return <>{this.renderPage()}</>;
   }
 }
 

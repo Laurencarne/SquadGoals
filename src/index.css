@@ -41,6 +41,7 @@ nav {
 button {
   border-radius: 5px;
   background-color: #c9e265;
+  margin: 10px;
 }
 
 .navImage {
@@ -164,3 +165,13 @@ textarea {
   background-color: #c9e265;
 }
 /* -------------NOTES------------- */
+/* -------------SIGN UP------------- */
+
+.form {
+  margin-top: 5vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+/* -------------SIGN UP------------- */

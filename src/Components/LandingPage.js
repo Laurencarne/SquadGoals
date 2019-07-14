@@ -71,7 +71,8 @@ class LandingPage extends Component {
           <Dashboard
             user={this.props.user}
             notes={this.props.notes}
-            month={this.props.month}
+            onAddNoteClick={this.props.onAddNoteClick}
+            onDeleteNoteClick={this.props.onDeleteNoteClick}
           />
         ) : (
           <div>

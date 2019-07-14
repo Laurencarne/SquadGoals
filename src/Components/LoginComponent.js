@@ -10,7 +10,7 @@ class LoginComponent extends React.Component {
             <Redirect to="/" />;
           </div>
         ) : (
-          <form>
+          <form className="form">
             <label htmlFor="username">Username:</label>
             <input
               onChange={this.props.handleChange}
