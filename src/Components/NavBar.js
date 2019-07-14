@@ -1,52 +1,76 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from "react";
+import { Link, Redirect } from "react-router-dom";
 
-function NavBar(props) {
-  const navStyle = {
-    color: "black"
+const navStyle = {
+  color: "black"
+};
+
+class NavBar extends Component {
+  state = {
+    profile: false
   };
 
-  return (
-    <>
-      {props.logged_in ? (
-        <nav className="NavBar">
-          <Link style={navStyle} to="/">
-            <h3>
-              <img
-                className="homeImage"
-                src="https://image.flaticon.com/icons/svg/25/25694.svg"
-                alt="Home Image"
-              />
-            </h3>
-          </Link>
-          <button onClick={props.handleLogOut} className="navButtons">
-            Log Out
-          </button>
-        </nav>
-      ) : (
-        <nav className="NavBar">
-          <Link style={navStyle} to="/">
-            <h3>
-              <img
-                className="homeImage"
-                src="https://image.flaticon.com/icons/svg/25/25694.svg"
-                alt="Home Image"
-              />
-            </h3>
-          </Link>
+  handleProfile = () => {
+    this.setState({
+      profile: !this.state.profile
+    });
+  };
 
-          <ul className="nav-links">
-            <Link style={navStyle} to="/signup">
-              <li className="navButtons">Sign Up</li>
+  renderRedirect = () => {
+    if (this.state.profile) {
+      return <Redirect to={"/profile"} />;
+    }
+  };
+  render() {
+    return (
+      <>
+        {this.props.logged_in ? (
+          <nav className="NavBar">
+            <Link style={navStyle} to="/">
+              <h3>
+                <img
+                  className="homeImage"
+                  src="https://image.flaticon.com/icons/svg/25/25694.svg"
+                  alt="Home Image"
+                />
+              </h3>
             </Link>
-            <Link style={navStyle} to="/login">
-              <li className="navButtons">Log In</li>
+            <button onClick={this.handleProfile} className="navButtons">
+              Profile
+            </button>
+            {this.renderRedirect()}
+            <button onClick={this.props.handleLogOut} className="navButtons">
+              Log Out
+            </button>
+            <button onClick={this.props.handleJoinFlat} className="navButtons">
+              Join Flat
+            </button>
+          </nav>
+        ) : (
+          <nav className="NavBar">
+            <Link style={navStyle} to="/">
+              <h3>
+                <img
+                  className="homeImage"
+                  src="https://image.flaticon.com/icons/svg/25/25694.svg"
+                  alt="Home Image"
+                />
+              </h3>
             </Link>
-          </ul>
-        </nav>
-      )}
-    </>
-  );
+
+            <ul className="nav-links">
+              <Link style={navStyle} to="/signup">
+                <li className="navButtons">Sign Up</li>
+              </Link>
+              <Link style={navStyle} to="/login">
+                <li className="navButtons">Log In</li>
+              </Link>
+            </ul>
+          </nav>
+        )}
+      </>
+    );
+  }
 }
 
 export default NavBar;

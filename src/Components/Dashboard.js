@@ -49,7 +49,7 @@ class Dashboard extends Component {
           <h1>Dashboard</h1>
           <h2> Welcome back {this.props.user.first_name}</h2>
           <div className="container">
-            <div className="dashProfile">
+            <div className="pageLeft">
               {this.props.user.move_in ? (
                 <h3>Move in Date: {this.props.user.move_in} </h3>
               ) : (
@@ -75,7 +75,7 @@ class Dashboard extends Component {
                 </>
               ) : null}
             </div>
-            <div className="dashNotes">
+            <div className="pageRight">
               <Notes
                 notes={this.props.notes}
                 user={this.props.user}

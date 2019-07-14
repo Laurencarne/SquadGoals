@@ -3,7 +3,9 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect
+  Redirect,
+  withRouter,
+  Push
 } from "react-router-dom";
 import api from "../util/api";
 import NavBar from "../Components/NavBar";
@@ -12,6 +14,7 @@ import Footer from "../Components/Footer";
 import LoginComponent from "../Components/LoginComponent";
 import SignupComponent from "../Components/SignupComponent";
 import Notes from "../Components/Notes";
+import Profile from "../Components/Profile/Profile";
 
 class App extends React.Component {
   state = {
@@ -160,9 +163,20 @@ class App extends React.Component {
       notes: [],
       user: {}
     });
+    this.props.push("/");
   };
   ////////////////////////////////////////////////
   /////////////// LOGIN & SIGNUP /////////////////
+  ////////////////////////////////////////////////
+
+  ////////////////////////////////////////////////
+  ////////////////// PROFILE /////////////////////
+  ////////////////////////////////////////////////
+  updateProfile = profile => {
+    console.log(profile);
+  };
+  ////////////////////////////////////////////////
+  ////////////////// PROFILE /////////////////////
   ////////////////////////////////////////////////
 
   render() {
@@ -212,6 +226,18 @@ class App extends React.Component {
                   logged_in={this.state.logged_in}
                   handleChange={this.handleChange}
                   onSignupClicked={this.onSignupClicked}
+                />
+              )}
+            />
+            <Route
+              path="/profile"
+              exact
+              render={() => (
+                <Profile
+                  handleChange={this.handleChange}
+                  updateProfile={this.updateProfile}
+                  user={this.state.user}
+                  logged_in={this.state.logged_in}
                 />
               )}
             />
