@@ -31,7 +31,7 @@ class NavBar extends Component {
                 <img
                   className="homeImage"
                   src="https://image.flaticon.com/icons/svg/25/25694.svg"
-                  alt="Home Image"
+                  alt="Home Icon"
                 />
               </h3>
             </Link>
@@ -53,7 +53,7 @@ class NavBar extends Component {
                 <img
                   className="homeImage"
                   src="https://image.flaticon.com/icons/svg/25/25694.svg"
-                  alt="Home Image"
+                  alt="Home Icon"
                 />
               </h3>
             </Link>

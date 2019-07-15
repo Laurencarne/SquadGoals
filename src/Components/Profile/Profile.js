@@ -46,7 +46,7 @@ class Profile extends Component {
         <h1>Profile Page</h1>
         <div className="container">
           <div className="pageLeft">
-            <img src="https://i.imgur.com/xxOYSN2.png" alt="Profile Picture" />
+            <img src="https://i.imgur.com/xxOYSN2.png" alt="Profile" />
             <p>
               This image is hard coded. I would like to add an upload option to
               add a profile picture.

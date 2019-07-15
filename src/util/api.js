@@ -27,6 +27,16 @@ const getCurrentFlatmate = token => {
   }).then(res => res.json());
 };
 
+const updateFlatmateProfile = (profile, id) => {
+  return fetch(`${API_BASE_URL}api/v1/flatmates/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(profile)
+  }).then(res => res.json());
+};
+
 const getNotes = token => {
   return fetch(`${API_BASE_URL}notes`, {
     headers: { ...headers, Authorization: token }
@@ -55,5 +65,6 @@ export default {
   getNotes,
   signup,
   addNoteToServer,
-  deleteNoteFromServer
+  deleteNoteFromServer,
+  updateFlatmateProfile
 };

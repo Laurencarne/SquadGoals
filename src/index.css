@@ -196,3 +196,11 @@ textarea {
   margin: 10px;
 }
 /* -------------PROFILE------------- */
+.form input {
+  background-color: #5ce1e6;
+  border: 2px solid #5ce1e6;
+  border-radius: 2px;
+}
+.form input:focus {
+  outline: none;
+}

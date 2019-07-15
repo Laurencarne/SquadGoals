@@ -3,9 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect,
-  withRouter,
-  Push
+  withRouter
 } from "react-router-dom";
 import api from "../util/api";
 import NavBar from "../Components/NavBar";
@@ -13,7 +11,6 @@ import Home from "../Components/LandingPage";
 import Footer from "../Components/Footer";
 import LoginComponent from "../Components/LoginComponent";
 import SignupComponent from "../Components/SignupComponent";
-import Notes from "../Components/Notes";
 import Profile from "../Components/Profile/Profile";
 
 class App extends React.Component {
@@ -36,6 +33,7 @@ class App extends React.Component {
             id: flatmate.id,
             first_name: flatmate.first_name,
             last_name: flatmate.last_name,
+            birthday: flatmate.birthday,
             move_in: flatmate.move_in,
             rent_due: flatmate.rent_due,
             water_due: flatmate.water_due,
@@ -99,6 +97,7 @@ class App extends React.Component {
               id: flatmate.id,
               first_name: flatmate.first_name,
               last_name: flatmate.last_name,
+              birthday: flatmate.birthday,
               move_in: flatmate.move_in,
               rent_due: flatmate.rent_due,
               water_due: flatmate.water_due,
@@ -118,7 +117,6 @@ class App extends React.Component {
         username: this.state.username,
         first_name: this.state.first_name,
         last_name: this.state.last_name,
-        email: this.state.email,
         password: this.state.password,
         email: this.state.email
       }
@@ -142,7 +140,6 @@ class App extends React.Component {
               username: flatmate.username,
               first_name: flatmate.first_name,
               last_name: flatmate.last_name,
-              email: flatmate.email,
               password: flatmate.password,
               email: flatmate.email,
               id: flatmate.id
@@ -163,7 +160,6 @@ class App extends React.Component {
       notes: [],
       user: {}
     });
-    this.props.push("/");
   };
   ////////////////////////////////////////////////
   /////////////// LOGIN & SIGNUP /////////////////
@@ -173,7 +169,11 @@ class App extends React.Component {
   ////////////////// PROFILE /////////////////////
   ////////////////////////////////////////////////
   updateProfile = profile => {
-    console.log(profile);
+    api.updateFlatmateProfile(profile, this.state.user.id).then(data =>
+      this.setState({
+        user: data
+      })
+    );
   };
   ////////////////////////////////////////////////
   ////////////////// PROFILE /////////////////////
@@ -234,7 +234,6 @@ class App extends React.Component {
               exact
               render={() => (
                 <Profile
-                  handleChange={this.handleChange}
                   updateProfile={this.updateProfile}
                   user={this.state.user}
                   logged_in={this.state.logged_in}
