@@ -12,6 +12,7 @@ import Footer from "../Components/Footer";
 import LoginComponent from "../Components/LoginComponent";
 import SignupComponent from "../Components/SignupComponent";
 import Profile from "../Components/Profile/Profile";
+import Dnd from "../Components/Calendar/Dnd";
 
 class App extends React.Component {
   state = {
@@ -240,6 +241,7 @@ class App extends React.Component {
                 />
               )}
             />
+            <Route path="/calendar" exact render={() => <Dnd />} />
           </Switch>
           <Footer />
         </div>
