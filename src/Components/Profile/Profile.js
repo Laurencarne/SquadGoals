@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ShowProfile from "./ShowProfile";
 import EditProfile from "./EditProfile";
+import ProfilePicture from "./ProfilePicture";
 
 class Profile extends Component {
   state = {
@@ -11,6 +12,8 @@ class Profile extends Component {
     if (this.state.clicked && this.props.user.username) {
       return (
         <>
+          <h1>Profile Page</h1>
+          <ProfilePicture user={this.props.user} />
           <EditProfile
             handleChange={this.props.handleChange}
             updateProfile={this.props.updateProfile}
@@ -22,6 +25,8 @@ class Profile extends Component {
     } else if (!this.state.clicked && this.props.user.username) {
       return (
         <>
+          <h1>Profile Page</h1>
+          <ProfilePicture user={this.props.user} />
           <ShowProfile handleClick={this.handleClick} user={this.props.user} />
         </>
       );
@@ -43,17 +48,7 @@ class Profile extends Component {
   render() {
     return (
       <div className="page">
-        <h1>Profile Page</h1>
-        <div className="container">
-          <div className="pageLeft">
-            <img src="https://i.imgur.com/xxOYSN2.png" alt="Profile" />
-            <p>
-              This image is hard coded. I would like to add an upload option to
-              add a profile picture.
-            </p>
-          </div>
-          {this.renderPage()}
-        </div>
+        <div className="container">{this.renderPage()}</div>
       </div>
     );
   }

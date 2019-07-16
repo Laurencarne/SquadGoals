@@ -43,19 +43,18 @@ const getNotes = token => {
   }).then(res => res.json());
 };
 
-const addNoteToServer = note => {
+const addNoteToServer = (note, token) => {
   return fetch(`${API_BASE_URL}notes`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
+    headers: { ...headers, Authorization: token },
     body: JSON.stringify(note)
   }).then(resp => resp.json());
 };
 
-const deleteNoteFromServer = note => {
+const deleteNoteFromServer = (note, token) => {
   return fetch(`${API_BASE_URL}notes/${note}`, {
-    method: "DELETE"
+    method: "DELETE",
+    headers: { Authorization: token }
   }).then(res => res.json());
 };
 

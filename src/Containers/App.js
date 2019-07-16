@@ -14,6 +14,8 @@ import SignupComponent from "../Components/SignupComponent";
 import Profile from "../Components/Profile/Profile";
 import Dnd from "../Components/Calendar/Dnd";
 
+const token = localStorage.getItem("token");
+
 class App extends React.Component {
   state = {
     logged_in: false,
@@ -24,7 +26,6 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    const token = localStorage.getItem("token");
     if (token) {
       api.getCurrentFlatmate(token).then(flatmate => {
         this.setState({
@@ -38,23 +39,21 @@ class App extends React.Component {
             move_in: flatmate.move_in,
             rent_due: flatmate.rent_due,
             water_due: flatmate.water_due,
-            electricity_due: flatmate.electricity_due
+            electricity_due: flatmate.electricity_due,
+            avatar: flatmate.avatar
           }
         });
-        this.getNotes();
+        this.getNotes(token);
       });
     }
   }
-  ////////////////////////////////////////////////
   //////////////////// NOTES /////////////////////
-  ////////////////////////////////////////////////
-  getNotes = () => {
-    const token = localStorage.getItem("token");
+  getNotes = token => {
     api.getNotes(token).then(notes => this.setState({ notes }));
   };
 
   onAddNoteClick = note => {
-    api.addNoteToServer(note).then(data =>
+    api.addNoteToServer(note, token).then(data =>
       this.setState({
         notes: [...this.state.notes, data]
       })
@@ -62,20 +61,16 @@ class App extends React.Component {
   };
 
   onDeleteNoteClick = noteId => {
-    api.deleteNoteFromServer(noteId).then(
+    api.deleteNoteFromServer(noteId, token).then(
       this.setState({
         notes: this.state.notes.filter(note => note.id !== noteId)
       })
     );
   };
 
-  ////////////////////////////////////////////////
   //////////////////// NOTES /////////////////////
-  ////////////////////////////////////////////////
 
-  ////////////////////////////////////////////////
   /////////////// LOGIN & SIGNUP /////////////////
-  ////////////////////////////////////////////////
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -86,7 +81,7 @@ class App extends React.Component {
     e.preventDefault();
     api.login(this.state.username, this.state.password).then(data => {
       if (data.error) {
-        alert("something is wrong with your credentials");
+        alert("Something is wrong with your credentials");
         this.setState({ username: "", password: "" });
       } else {
         localStorage.setItem("token", data.jwt);
@@ -102,7 +97,8 @@ class App extends React.Component {
               move_in: flatmate.move_in,
               rent_due: flatmate.rent_due,
               water_due: flatmate.water_due,
-              electricity_due: flatmate.electricity_due
+              electricity_due: flatmate.electricity_due,
+              avatar: flatmate.avatar
             }
           });
           this.getNotes();
@@ -124,7 +120,7 @@ class App extends React.Component {
     };
     api.signup(flatmate).then(data => {
       if (data.error) {
-        alert("something is wrong with your credentials");
+        alert("Something is wrong with your credentials");
         this.setState({
           username: "",
           password: "",
@@ -162,13 +158,9 @@ class App extends React.Component {
       user: {}
     });
   };
-  ////////////////////////////////////////////////
   /////////////// LOGIN & SIGNUP /////////////////
-  ////////////////////////////////////////////////
 
-  ////////////////////////////////////////////////
   ////////////////// PROFILE /////////////////////
-  ////////////////////////////////////////////////
   updateProfile = profile => {
     api.updateFlatmateProfile(profile, this.state.user.id).then(data =>
       this.setState({
@@ -176,9 +168,7 @@ class App extends React.Component {
       })
     );
   };
-  ////////////////////////////////////////////////
   ////////////////// PROFILE /////////////////////
-  ////////////////////////////////////////////////
 
   render() {
     return (
