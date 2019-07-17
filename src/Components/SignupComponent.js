@@ -9,7 +9,7 @@ class SignupComponent extends React.Component {
             <p> You're logged in already!</p>
           </div>
         ) : (
-          <div>
+          <div className="container">
             <form className="form">
               <label htmlFor="first_name">First Name:</label>
               <input

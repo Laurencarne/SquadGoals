@@ -1,47 +1,8 @@
 import React, { Component } from "react";
 import Notes from "./Notes";
+import date from "../util/Date";
 
 class Dashboard extends Component {
-  ////////////// MONTHS DATA ///////////////////
-  dateWithOrdinalIndicator = date => {
-    if (date.endsWith("1") && date !== "11") {
-      return date + "st";
-    } else if (date.endsWith("2") && date !== "12") {
-      return date + "nd";
-    } else if (date.endsWith("3") && date !== "13") {
-      return date + "rd";
-    } else {
-      return date + "th";
-    }
-  };
-  getCurrentMonth = () => {
-    return [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ];
-  };
-  getDueDate = date => {
-    return this.dateWithOrdinalIndicator(date.toString());
-  };
-  getDueDateMonth = dueDate => {
-    if (new Date().getDate() > dueDate) {
-      return this.getCurrentMonth()[new Date().getMonth() + 1];
-    } else if (new Date().getDate() < dueDate) {
-      return this.getCurrentMonth()[new Date().getMonth()];
-    }
-  };
-  ////////////// MONTHS DATA ///////////////////
-
   renderPage = () => {
     if (this.props.user.first_name) {
       return (
@@ -55,25 +16,36 @@ class Dashboard extends Component {
               ) : (
                 <h3>Please Update you Profile to see Bill Information.</h3>
               )}
-              {this.props.user.rent_due &&
-              this.props.user.water_due &&
-              this.props.user.electricity_due ? (
-                <>
-                  <h3>
-                    Rent Due: {this.getDueDate(this.props.user.rent_due)}{" "}
-                    {this.getDueDateMonth(this.props.user.rent_due)}
-                  </h3>
-                  <h3>
-                    Water Due: {this.getDueDate(this.props.user.water_due)}{" "}
-                    {this.getDueDateMonth(this.props.user.water_due)}
-                  </h3>
-                  <h3>
-                    Electricity Due:{" "}
-                    {this.getDueDate(this.props.user.electricity_due)}{" "}
-                    {this.getDueDateMonth(this.props.user.electricity_due)}
-                  </h3>
-                </>
-              ) : null}
+              <h4>
+                Rent Due:{" "}
+                {this.props.user.rent_due
+                  ? date.getDueDate(this.props.user.rent_due) +
+                    " " +
+                    date.getDueDateMonth(this.props.user.rent_due)
+                  : " Please update your rent due date"}
+              </h4>
+              <h4>
+                Electricity Due:{" "}
+                {this.props.user.electricity_due
+                  ? date.getDueDate(this.props.user.electricity_due) +
+                    " " +
+                    date.getDueDateMonth(this.props.user.electricity_due)
+                  : " Please update your electricity bill date"}
+              </h4>
+              <h4>
+                Water Due:{" "}
+                {this.props.user.water_due
+                  ? date.getDueDate(this.props.user.water_due) +
+                    " " +
+                    date.getDueDateMonth(this.props.user.water_due)
+                  : " Please update your water bill date"}
+              </h4>
+              <h4>
+                Gas Due:{" "}
+                {this.props.user.gas_due
+                  ? this.props.user.gas_due
+                  : " Please update your gas bill date"}
+              </h4>
             </div>
             <div className="pageRight">
               <Notes

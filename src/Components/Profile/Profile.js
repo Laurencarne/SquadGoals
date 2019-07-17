@@ -12,7 +12,6 @@ class Profile extends Component {
     if (this.state.clicked && this.props.user.username) {
       return (
         <>
-          <h1>Profile Page</h1>
           <ProfilePicture user={this.props.user} />
           <EditProfile
             handleChange={this.props.handleChange}
@@ -25,7 +24,6 @@ class Profile extends Component {
     } else if (!this.state.clicked && this.props.user.username) {
       return (
         <>
-          <h1>Profile Page</h1>
           <ProfilePicture user={this.props.user} />
           <ShowProfile handleClick={this.handleClick} user={this.props.user} />
         </>
@@ -48,6 +46,7 @@ class Profile extends Component {
   render() {
     return (
       <div className="page">
+        <h1>Profile Page</h1>
         <div className="container">{this.renderPage()}</div>
       </div>
     );

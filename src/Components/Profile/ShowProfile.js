@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import date from "../../util/Date";
 
 class ShowProfile extends Component {
   render() {
@@ -23,19 +24,25 @@ class ShowProfile extends Component {
         <h4>
           Rent Due:{" "}
           {this.props.user.rent_due
-            ? this.props.user.rent_due
+            ? date.getDueDate(this.props.user.rent_due) +
+              " " +
+              date.getDueDateMonth(this.props.user.rent_due)
             : " Please update your rent due date"}
         </h4>
         <h4>
           Electricity Due:{" "}
           {this.props.user.electricity_due
-            ? this.props.user.electricity_due
+            ? date.getDueDate(this.props.user.electricity_due) +
+              " " +
+              date.getDueDateMonth(this.props.user.electricity_due)
             : " Please update your electricity bill date"}
         </h4>
         <h4>
           Water Due:{" "}
           {this.props.user.water_due
-            ? this.props.user.water_due
+            ? date.getDueDate(this.props.user.water_due) +
+              " " +
+              date.getDueDateMonth(this.props.user.water_due)
             : " Please update your water bill date"}
         </h4>
         <h4>
