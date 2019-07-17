@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import "../../CSS/EditProfile.css";
+import DatePage from "../../util/DatePage";
 
 class EditProfile extends Component {
   state = {
@@ -18,96 +20,116 @@ class EditProfile extends Component {
     });
   };
 
+  handleDateChange = (date, name) => {
+    this.setState({
+      [name]: date
+    });
+  };
+
   handleSubmit = e => {
     e.preventDefault();
     let profile = {
       flatmate: {
-        first_name: e.target[0].value,
-        last_name: e.target[1].value,
-        birthday: e.target[2].value,
-        move_in: e.target[3].value,
-        rent_due: e.target[4].value,
-        electricity_due: e.target[5].value,
-        water_due: e.target[6].value,
-        gas_due: e.target[7].value
+        first_name: this.state.first_name,
+        last_name: this.state.last_name,
+        birthday: this.state.birthday,
+        move_in: this.state.move_in,
+        rent_due: this.state.rent_due,
+        electricity_due: this.state.electricity_due,
+        water_due: this.state.water_due,
+        gas_due: this.state.gas_due
       }
     };
     this.props.updateProfile(profile);
-    e.target.reset();
     this.props.handleClick();
   };
+
   render() {
     return (
-      <div className="pageRight">
-        <button onClick={this.props.handleClick}>Back</button>
-
-        <form className="form" onSubmit={this.handleSubmit}>
-          <label htmlFor="first_name">First Name: </label>
-          <input
-            onChange={this.handleChange}
-            id="first_name"
-            type="first_name"
-            name="first_name"
-            value={this.state.first_name}
-          />
-          <label htmlFor="last_name">Last Name: </label>
-          <input
-            onChange={this.handleChange}
-            id="last_name"
-            type="last_name"
-            name="last_name"
-            value={this.state.last_name}
-          />
-          <label htmlFor="birthday">Birthday:</label>
-          <input
-            onChange={this.handleChange}
-            id="birthday"
-            type="date"
-            name="birthday"
-            value={this.state.birthday}
-          />
-          <label htmlFor="move_in">Move in Date:</label>
-          <input
-            onChange={this.handleChange}
-            id="move_in"
-            type="date"
-            name="move_in"
-            value={this.state.move_in}
-          />
-          <label htmlFor="rent_due">Rent Due Date:</label>
-          <input
-            onChange={this.handleChange}
-            id="rent_due"
-            type="number"
-            name="rent_due"
-            value={this.state.rent_due}
-          />
-          <label htmlFor="electricity_due">Electricity Bill Date:</label>
-          <input
-            onChange={this.handleChange}
-            id="electricity_due"
-            type="number"
-            name="electricity_due"
-            value={this.state.electricity_due}
-          />
-          <label htmlFor="water_due">Water Bill Date:</label>
-          <input
-            onChange={this.handleChange}
-            id="water_due"
-            type="number"
-            name="water_due"
-            value={this.state.water_due}
-          />
-          <label htmlFor="gas_due">Gas Due Date:</label>
-          <input
-            onChange={this.handleChange}
-            id="gas_due"
-            type="number"
-            name="gas_due"
-            value={this.state.gas_due}
-          />
-          <input className="submitButton" type="submit" name="submit" />
-        </form>
+      <div className="popOut">
+        <div className="popOutCenter">
+          <form className="form" onSubmit={this.handleSubmit}>
+            <button onClick={this.props.handleClick}>Back</button>
+            <p>First Name: </p>
+            <input
+              onChange={this.handleChange}
+              id="first_name"
+              type="first_name"
+              name="first_name"
+              value={this.state.first_name}
+            />
+            <p>Last Name: </p>
+            <input
+              onChange={this.handleChange}
+              id="last_name"
+              type="last_name"
+              name="last_name"
+              value={this.state.last_name}
+            />
+            <p>Birthday: </p>
+            <DatePage
+              date={new Date(this.state.birthday)}
+              handleDateChange={this.handleDateChange}
+              name={"birthday"}
+            />
+            <p>Move In Date: </p>
+            <DatePage
+              date={new Date(this.state.move_in)}
+              handleDateChange={this.handleDateChange}
+              name={"move_in"}
+            />
+            <p> Due Dates </p>
+            <div className="datesHolderOne">
+              <div className="datesOne">
+                <label htmlFor="rent_due">Rent</label>
+                <input
+                  className="numberInput"
+                  onChange={this.handleChange}
+                  id="rent_due"
+                  type="number"
+                  name="rent_due"
+                  value={this.state.rent_due}
+                />
+              </div>
+              <div className="datesTwo">
+                <label htmlFor="electricity_due">Electricity</label>
+                <input
+                  className="numberInput"
+                  onChange={this.handleChange}
+                  id="electricity_due"
+                  type="number"
+                  name="electricity_due"
+                  value={this.state.electricity_due}
+                />
+              </div>
+            </div>
+            <div className="datesHolderTwo">
+              <div className="datesThree">
+                <label htmlFor="water_due">Water</label>
+                <input
+                  className="numberInput"
+                  onChange={this.handleChange}
+                  id="water_due"
+                  type="number"
+                  name="water_due"
+                  value={this.state.water_due}
+                />
+              </div>
+              <div className="datesFour">
+                <label htmlFor="gas_due">Gas</label>
+                <input
+                  className="numberInput"
+                  onChange={this.handleChange}
+                  id="gas_due"
+                  type="number"
+                  name="gas_due"
+                  value={this.state.gas_due}
+                />
+              </div>
+            </div>
+            <input className="submitButton" type="submit" name="submit" />
+          </form>
+        </div>
       </div>
     );
   }

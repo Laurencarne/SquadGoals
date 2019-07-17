@@ -1,31 +1,17 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import "../../CSS/NavBar.css";
+import { Link } from "react-router-dom";
 
 const navStyle = {
   color: "black"
 };
 
 class NavBar extends Component {
-  state = {
-    profile: false
-  };
-
-  handleProfile = () => {
-    this.setState({
-      profile: !this.state.profile
-    });
-  };
-
-  renderRedirect = () => {
-    if (this.state.profile) {
-      return <Redirect to={"/profile"} />;
-    }
-  };
   render() {
     return (
       <>
         {this.props.logged_in ? (
-          <nav className="NavBar">
+          <nav className="nav">
             <Link style={navStyle} to="/">
               <h3>
                 <img
@@ -35,19 +21,20 @@ class NavBar extends Component {
                 />
               </h3>
             </Link>
-            <button onClick={this.handleProfile} className="navButtons">
-              Profile
-            </button>
-            {this.renderRedirect()}
-            <button onClick={this.props.handleLogOut} className="navButtons">
-              Log Out
-            </button>
+            <Link style={navStyle} to="/profile">
+              <button className="navButtons">Profile</button>
+            </Link>
+            <Link style={navStyle} to="/">
+              <button onClick={this.props.handleLogOut} className="navButtons">
+                Log Out
+              </button>
+            </Link>
             <button onClick={this.props.handleJoinFlat} className="navButtons">
               Join Flat
             </button>
           </nav>
         ) : (
-          <nav className="NavBar">
+          <nav className="nav">
             <Link style={navStyle} to="/">
               <h3>
                 <img
@@ -57,15 +44,12 @@ class NavBar extends Component {
                 />
               </h3>
             </Link>
-
-            <ul className="nav-links">
-              <Link style={navStyle} to="/signup">
-                <li className="navButtons">Sign Up</li>
-              </Link>
-              <Link style={navStyle} to="/login">
-                <li className="navButtons">Log In</li>
-              </Link>
-            </ul>
+            <Link style={navStyle} to="/signup">
+              <button className="navButtons">Sign Up</button>
+            </Link>
+            <Link style={navStyle} to="/login">
+              <button className="navButtons">Log In</button>
+            </Link>
           </nav>
         )}
       </>

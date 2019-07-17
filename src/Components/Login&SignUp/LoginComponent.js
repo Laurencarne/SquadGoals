@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 class LoginComponent extends React.Component {
   render() {
     return (
-      <div className="nav">
+      <div>
         {this.props.logged_in ? (
           <div>
             <Redirect to="/" />;
@@ -12,7 +12,7 @@ class LoginComponent extends React.Component {
         ) : (
           <div className="container">
             <form className="form">
-              <label htmlFor="username">Username:</label>
+              <p>Username:</p>
               <input
                 onChange={this.props.handleChange}
                 id="username"
@@ -20,7 +20,7 @@ class LoginComponent extends React.Component {
                 name="username"
                 value={this.props.username}
               />
-              <label htmlFor="password">Password:</label>
+              <p>Password:</p>
               <input
                 onChange={this.props.handleChange}
                 id="password"

@@ -1,4 +1,5 @@
 import React from "react";
+import "../../CSS/Note.css";
 
 export default class Notes extends React.Component {
   render() {

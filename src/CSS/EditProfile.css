@@ -1,0 +1,80 @@
+.pageRightEdit {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin-left: 10px;
+}
+.form {
+  background-color: #ff914d;
+  border-radius: 5px;
+  padding: 4%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.form input {
+  width: 75%;
+  height: 20px;
+  padding: 10px;
+  font-size: 20px;
+  margin: 10px;
+  background-color: #5ce1e6;
+  border: 2px solid #5ce1e6;
+  border-radius: 8px;
+}
+.form button:first-child {
+  align-self: flex-end;
+  height: 20px;
+  width: 50px;
+}
+.form input:focus {
+  outline: none;
+}
+.form .numberInput {
+  width: 30%;
+  text-align: center;
+}
+.form .submitButton {
+  height: 45px;
+  width: 100px;
+  background-color: #c9e265;
+  border: 2px solid #c9e265;
+}
+.form p {
+  font-size: 20px;
+  margin: 5px;
+}
+.datesHolderOne {
+  display: flex;
+}
+.datesOne {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.datesTwo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.numberInput {
+  /* None solo */
+}
+.datesHolderTwo {
+  display: flex;
+}
+.datesThree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.datesFour {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.submitButton:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+}

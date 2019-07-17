@@ -1,0 +1,21 @@
+.avatarProfilePicture {
+  height: 30vh;
+  border-radius: 15px;
+}
+.avatarInput {
+  /* nothing on its own. see the chained options below */
+}
+
+.submitButton {
+  /* none on its own, see chained options below */
+}
+.form .avatarInput {
+  height: auto;
+  font-weight: lighter;
+  background-color: #c9e265;
+  border: 2px #c9e265 solid;
+}
+.form .avatarInput:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+}

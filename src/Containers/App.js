@@ -1,16 +1,11 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  withRouter
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import api from "../util/api";
-import NavBar from "../Components/NavBar";
-import Home from "../Components/LandingPage";
-import Footer from "../Components/Footer";
-import LoginComponent from "../Components/LoginComponent";
-import SignupComponent from "../Components/SignupComponent";
+import NavBar from "../Components/Foundation/NavBar";
+import LandingPage from "../Components/Foundation/LandingPage";
+import Footer from "../Components/Foundation/Footer";
+import LoginComponent from "../Components/Login&SignUp/LoginComponent";
+import SignupComponent from "../Components/Login&SignUp/SignupComponent";
 import Profile from "../Components/Profile/Profile";
 import Dnd from "../Components/Calendar/Dnd";
 
@@ -77,6 +72,18 @@ class App extends React.Component {
     });
   };
 
+  handleDateChange = (date, name) => {
+    this.setState({
+      [name]: date
+    });
+  };
+
+  setAvatarURL = avatar => {
+    this.setState({
+      avatar: avatar
+    });
+  };
+
   onLoginClicked = e => {
     e.preventDefault();
     api.login(this.state.username, this.state.password).then(data => {
@@ -85,9 +92,11 @@ class App extends React.Component {
         this.setState({ username: "", password: "" });
       } else {
         localStorage.setItem("token", data.jwt);
+        const token = localStorage.getItem("token");
         api.getCurrentFlatmate(data.jwt).then(flatmate => {
           this.setState({
             logged_in: true,
+            password: "",
             user: {
               username: flatmate.username,
               id: flatmate.id,
@@ -101,8 +110,8 @@ class App extends React.Component {
               avatar: flatmate.avatar
             }
           });
-          this.getNotes();
         });
+        this.getNotes(token);
       }
     });
   };
@@ -115,7 +124,9 @@ class App extends React.Component {
         first_name: this.state.first_name,
         last_name: this.state.last_name,
         password: this.state.password,
-        email: this.state.email
+        birthday: this.state.birthday,
+        email: this.state.email,
+        avatar: this.state.avatar
       }
     };
     api.signup(flatmate).then(data => {
@@ -126,24 +137,32 @@ class App extends React.Component {
           password: "",
           first_name: "",
           last_name: "",
-          email: ""
+          email: "",
+          birthday: "",
+          avatar: ""
         });
       } else {
         localStorage.setItem("token", data.jwt);
+        const token = localStorage.getItem("token");
         api.getCurrentFlatmate(data.jwt).then(flatmate => {
           this.setState({
             logged_in: true,
+            password: "",
             user: {
               username: flatmate.username,
+              id: flatmate.id,
               first_name: flatmate.first_name,
               last_name: flatmate.last_name,
-              password: flatmate.password,
-              email: flatmate.email,
-              id: flatmate.id
+              birthday: flatmate.birthday,
+              move_in: flatmate.move_in,
+              rent_due: flatmate.rent_due,
+              water_due: flatmate.water_due,
+              electricity_due: flatmate.electricity_due,
+              avatar: flatmate.avatar
             }
           });
-          this.getNotes();
         });
+        this.getNotes(token);
       }
     });
   };
@@ -162,7 +181,7 @@ class App extends React.Component {
 
   ////////////////// PROFILE /////////////////////
   updateProfile = profile => {
-    api.updateFlatmateProfile(profile, this.state.user.id).then(data =>
+    api.updateFlatmateProfile(profile, this.state.user.id, token).then(data =>
       this.setState({
         user: data
       })
@@ -183,7 +202,7 @@ class App extends React.Component {
               path="/"
               exact
               render={() => (
-                <Home
+                <LandingPage
                   logged_in={this.state.logged_in}
                   notes={this.state.notes}
                   user={this.state.user}
@@ -216,6 +235,8 @@ class App extends React.Component {
                   username={this.state.username}
                   logged_in={this.state.logged_in}
                   handleChange={this.handleChange}
+                  handleDateChange={this.handleDateChange}
+                  setAvatarURL={this.setAvatarURL}
                   onSignupClicked={this.onSignupClicked}
                 />
               )}
@@ -231,7 +252,7 @@ class App extends React.Component {
                 />
               )}
             />
-            <Route path="/calendar" exact render={() => <Dnd />} />
+            <Route path="/calendar" render={() => <Dnd />} />
           </Switch>
           <Footer />
         </div>

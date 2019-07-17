@@ -1,0 +1,149 @@
+#root {
+  position: relative;
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  font-family: "Tenor Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: "Tenor Sans", sans-serif;
+}
+.nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 3vh;
+  background: #c9e265;
+  color: black;
+}
+.App {
+  padding-bottom: 10vh;
+}
+/* /////////////////// MAIN /////////////////// */
+.page {
+  /* used in dashboard */
+  /* used in profile */
+  margin: 3%;
+}
+.container {
+  /* used in dashboard */
+  /* used in profile */
+  /* used in signup */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2vh;
+}
+.pageLeft {
+  /* used in dashboard */
+  /* used in profilePicture */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  margin-right: 10px;
+}
+.popOut {
+  /* Used in Avatar */
+  /* used in editProfile */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+.popOutCenter {
+  /* used in edit Profiles */
+  /* used in avatar */
+  align-self: center;
+}
+button:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+}
+button {
+  border-radius: 5px;
+  background-color: #c9e265;
+  margin: 10px;
+}
+.pageRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  margin-left: 10px;
+}
+/* /////////////////// FORMS /////////////////// */
+.form {
+  /* used in editProfile */
+  /* used in login */
+  /* used in signup */
+  background-color: #ff914d;
+  border-radius: 5px;
+  padding: 4%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.form input {
+  /* used in editProfile */
+  /* used in login */
+  /* used in signup */
+  width: 75%;
+  height: 20px;
+  padding: 10px;
+  font-size: 20px;
+  margin: 10px;
+  background-color: #5ce1e6;
+  border: 2px solid #5ce1e6;
+  border-radius: 8px;
+}
+.form button:first-child {
+  /* maybe used in editProfile */
+  /* maybe in login */
+  /* used in signup */
+  align-self: flex-end;
+  height: 20px;
+  width: 50px;
+}
+.form input:focus {
+  /* used in editProfile */
+  /* used in login */
+  /* used in signup */
+  outline: none;
+}
+.form .submitButton {
+  /* used in editProfile */
+  /* used in login */
+  /* used in signup */
+  height: 45px;
+  width: 100px;
+  background-color: #c9e265;
+  border: 2px solid #c9e265;
+}
+.submitButton:hover {
+  /* used in editProfile */
+  /* used in signup */
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+}
+.form p {
+  /* used in editProfile */
+  /* used in login */
+  /* used in signup */
+  font-size: 20px;
+  margin: 5px;
+}
+/* /////////////////// FORMS /////////////////// */

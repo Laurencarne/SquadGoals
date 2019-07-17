@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Dashboard from "./Dashboard";
 import Home from "./Home";
+// App CSS for styling
 
 class LandingPage extends Component {
   render() {

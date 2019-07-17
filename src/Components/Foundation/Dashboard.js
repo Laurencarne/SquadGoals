@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Notes from "./Notes";
-import date from "../util/Date";
+import Notes from "../Notes/Notes";
+import date from "../../util/Date";
 
 class Dashboard extends Component {
   renderPage = () => {

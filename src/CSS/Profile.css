@@ -1,0 +1,12 @@
+.pageLeft img {
+  width: 80%;
+  background-color: yellow;
+  border-radius: 50%;
+}
+.pageLeft p {
+  font-size: 65%;
+  font-style: italic;
+}
+.profileButton {
+  align-self: flex-end;
+}

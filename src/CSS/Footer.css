@@ -1,0 +1,23 @@
+.Footer {
+  position: absolute;
+  min-height: 5vh;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #c9e265;
+  color: black;
+  text-align: center;
+}
+.names {
+  margin: 10px 0px 10px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footerLinks {
+  color: black;
+  margin: 0px 5px;
+}
+.copyright {
+  margin: 0px 0px 10px 0px;
+}

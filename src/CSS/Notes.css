@@ -1,0 +1,15 @@
+.newNote {
+  border: 0px;
+  border-bottom: 1px solid black;
+}
+.newNote:focus {
+  outline: none;
+}
+.newNoteSubmit {
+  border-radius: 5px;
+  background-color: #c9e265;
+}
+textarea {
+  font-family: "Amatic SC", cursive;
+  font-size: 30px;
+}

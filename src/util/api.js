@@ -27,12 +27,10 @@ const getCurrentFlatmate = token => {
   }).then(res => res.json());
 };
 
-const updateFlatmateProfile = (profile, id) => {
+const updateFlatmateProfile = (profile, id, token) => {
   return fetch(`${API_BASE_URL}api/v1/flatmates/${id}`, {
     method: "PATCH",
-    headers: {
-      "Content-Type": "application/json"
-    },
+    headers: { ...headers, Authorization: token },
     body: JSON.stringify(profile)
   }).then(res => res.json());
 };

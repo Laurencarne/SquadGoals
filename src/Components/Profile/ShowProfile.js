@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import date from "../../util/Date";
+import "../../CSS/Profile.css";
 
 class ShowProfile extends Component {
   render() {
     return (
       <div className="pageRight">
-        <button onClick={this.props.handleClick}>Edit</button>
+        <button className="profileButton" onClick={this.props.handleClick}>
+          Edit
+        </button>
         <h4>
           Name: {this.props.user.first_name} {this.props.user.last_name}
         </h4>
