@@ -24,6 +24,19 @@ class NavBar extends Component {
             <Link style={navStyle} to="/profile">
               <button className="navButtons">Profile</button>
             </Link>
+            {this.props.user.flat_id ? (
+              <>
+                <Link style={navStyle} to="/shopping">
+                  <button className="navButtons">Shopping List</button>
+                </Link>
+                <Link style={navStyle} to="/tasks">
+                  <button className="navButtons">Tasks</button>
+                </Link>
+                <Link style={navStyle} to="/calendar">
+                  <button className="navButtons">Calender</button>
+                </Link>
+              </>
+            ) : null}
             <Link style={navStyle} to="/">
               <button onClick={this.props.handleLogOut} className="navButtons">
                 Log Out

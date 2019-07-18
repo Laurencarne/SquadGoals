@@ -28,6 +28,7 @@ class App extends React.Component {
           user: {
             username: flatmate.username,
             id: flatmate.id,
+            flat_id: flatmate.flat_id,
             first_name: flatmate.first_name,
             last_name: flatmate.last_name,
             birthday: flatmate.birthday,
@@ -35,6 +36,7 @@ class App extends React.Component {
             rent_due: flatmate.rent_due,
             water_due: flatmate.water_due,
             electricity_due: flatmate.electricity_due,
+            gas_due: flatmate.gas_due,
             avatar: flatmate.avatar
           }
         });
@@ -100,6 +102,7 @@ class App extends React.Component {
             user: {
               username: flatmate.username,
               id: flatmate.id,
+              flat_id: flatmate.flat_id,
               first_name: flatmate.first_name,
               last_name: flatmate.last_name,
               birthday: flatmate.birthday,
@@ -107,6 +110,7 @@ class App extends React.Component {
               rent_due: flatmate.rent_due,
               water_due: flatmate.water_due,
               electricity_due: flatmate.electricity_due,
+              gas_due: flatmate.gas_due,
               avatar: flatmate.avatar
             }
           });
@@ -157,6 +161,7 @@ class App extends React.Component {
               move_in: flatmate.move_in,
               rent_due: flatmate.rent_due,
               water_due: flatmate.water_due,
+              gas_due: flatmate.gas_due,
               electricity_due: flatmate.electricity_due,
               avatar: flatmate.avatar
             }
@@ -194,6 +199,7 @@ class App extends React.Component {
       <Router>
         <div className="App">
           <NavBar
+            user={this.state.user}
             logged_in={this.state.logged_in}
             handleLogOut={this.handleLogOut}
           />

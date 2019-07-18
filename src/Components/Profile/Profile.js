@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import ShowProfile from "./ShowProfile";
 import EditProfile from "./EditProfile";
 import ProfilePicture from "./ProfilePicture";
@@ -10,11 +11,7 @@ class Profile extends Component {
 
   renderPage = () => {
     if (!this.props.user.username) {
-      return (
-        <div>
-          <h1>Please Log In</h1>
-        </div>
-      );
+      return <Redirect to="/" />;
     } else if (this.state.clicked && this.props.user.username) {
       return (
         <>
@@ -41,7 +38,10 @@ class Profile extends Component {
         <div className="page">
           <h1>Profile Page</h1>
           <div className="container">
-            <ProfilePicture user={this.props.user} />
+            <ProfilePicture
+              updateProfile={this.props.updateProfile}
+              user={this.props.user}
+            />
             <ShowProfile
               handleClick={this.handleClick}
               user={this.props.user}

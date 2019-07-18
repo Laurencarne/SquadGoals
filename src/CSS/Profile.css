@@ -1,12 +1,45 @@
-.pageLeft img {
-  width: 80%;
-  background-color: yellow;
-  border-radius: 50%;
-}
-.pageLeft p {
-  font-size: 65%;
-  font-style: italic;
-}
 .profileButton {
   align-self: flex-end;
+}
+
+.profilePictureContainer {
+  position: relative;
+  width: 80%;
+}
+
+.profilePictureImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  border-radius: 50%;
+  transition: 2s ease;
+  background-color: white;
+}
+
+.profilePictureContainer:hover .overlay {
+  opacity: 0.9;
+}
+
+.text {
+  color: black;
+  font-size: 70px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }

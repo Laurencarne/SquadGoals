@@ -1,17 +1,53 @@
 import React, { Component } from "react";
 import "../../CSS/Profile.css";
+import Avatar from "../../util/Avatar";
 
 class ProfilePicture extends Component {
+  state = {
+    clicked: false
+  };
+
+  handleAvatarClick = avatarUrl => {
+    this.setState({
+      clicked: !this.state.clicked
+    });
+    this.props.updateProfile({ avatar: avatarUrl });
+  };
+
+  toggleAvatar = () => {
+    this.setState({
+      clicked: !this.state.clicked
+    });
+  };
+
+  renderPage = () => {
+    if (this.state.clicked) {
+      return (
+        <Avatar
+          handleAvatarClick={this.handleAvatarClick}
+          handleClicked={this.toggleAvatar}
+        />
+      );
+    } else {
+      return (
+        <div className="pageLeft">
+          <div onClick={this.toggleAvatar} className="profilePictureContainer">
+            <img
+              className="profilePictureImage"
+              src={this.props.user.avatar}
+              alt="Profile"
+            />
+            <div className="overlay">
+              <div className="text">Update Picture</div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  };
+
   render() {
-    return (
-      <div className="pageLeft">
-        <img src={this.props.user.avatar} alt="Profile" />
-        <p>
-          This image is hard coded. I would like to add an upload option to add
-          a profile picture.
-        </p>
-      </div>
-    );
+    return <>{this.renderPage()}</>;
   }
 }
 

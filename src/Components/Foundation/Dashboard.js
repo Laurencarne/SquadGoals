@@ -43,7 +43,9 @@ class Dashboard extends Component {
               <h4>
                 Gas Due:{" "}
                 {this.props.user.gas_due
-                  ? this.props.user.gas_due
+                  ? date.getDueDate(this.props.user.gas_due) +
+                    " " +
+                    date.getDueDateMonth(this.props.user.gas_due)
                   : " Please update your gas bill date"}
               </h4>
             </div>
