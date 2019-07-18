@@ -20,9 +20,19 @@ class CreateFlat extends React.Component {
     e.preventDefault();
     const flat = {
       flat: {
-        flat_key: Math.random()
-          .toString(36)
-          .substr(2, 40),
+        flat_key:
+          Math.random()
+            .toString(36)
+            .substr(2, 11) +
+          Math.random()
+            .toString(36)
+            .substr(2, 11) +
+          Math.random()
+            .toString(36)
+            .substr(2, 11) +
+          Math.random()
+            .toString(36)
+            .substr(2, 11),
         name: this.state.name,
         address_one: this.state.address_one,
         address_two: this.state.address_two,
@@ -45,7 +55,9 @@ class CreateFlat extends React.Component {
           <div className="popOut">
             <div className="popOutCenter">
               <form className="form" onSubmit={this.handleSubmit}>
-                <button onClick={this.props.handleCreateFlat}>Back</button>
+                <button type="button" onClick={this.props.handleCreateFlat}>
+                  Back
+                </button>
                 <p>Flat Name: </p>
                 <input
                   type="name"
@@ -79,7 +91,9 @@ class CreateFlat extends React.Component {
                   value={this.state.postcode}
                   onChange={this.handleChange}
                 />
-                <button className="submitButton">Create Flat</button>
+                <button type="submit" className="submitButton">
+                  Create Flat
+                </button>
               </form>
             </div>
           </div>

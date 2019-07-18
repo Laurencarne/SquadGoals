@@ -31,13 +31,20 @@ class NavBar extends Component {
     } else if (this.state.joinFlat) {
       return (
         <>
-          <JoinFlat handleClick={this.handleJoinFlat} />
+          <JoinFlat
+            handleClick={this.handleJoinFlat}
+            user={this.props.user}
+            addUserToFlat={this.props.addUserToFlat}
+          />
         </>
       );
     } else if (this.state.flatCreated) {
       return (
         <>
-          <FlatCreated handleClick={this.handleFlatCreated} />
+          <FlatCreated
+            handleClick={this.handleFlatCreated}
+            flat={this.state.flat}
+          />
         </>
       );
     }
@@ -45,6 +52,7 @@ class NavBar extends Component {
 
   handleJoinFlat = () => {
     this.setState({
+      flat: this.props.flat,
       joinFlat: !this.state.joinFlat
     });
   };
@@ -59,7 +67,7 @@ class NavBar extends Component {
     this.setState({
       createFlat: false,
       joinFlat: false,
-      flat: flat,
+      flat: flat.flat,
       flatCreated: !this.state.flatCreated
     });
   };

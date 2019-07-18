@@ -14,7 +14,7 @@ class FlatCreated extends React.Component {
             <div className="popOutCenter">
               <div className="form">
                 <button onClick={this.props.handleClick}>Back</button>
-                <p>Flatname: {this.props.flat_name}</p>
+                <p>Flatname: {this.props.flat.name}</p>
                 <p>You have successfully moved in!</p>
                 <p>
                   Keep your flat key safe and secure and give this to fellow
@@ -24,7 +24,7 @@ class FlatCreated extends React.Component {
                 <input
                   type="flat_key"
                   name="flat_key"
-                  value={this.props.flat_key}
+                  value={this.props.flat.flat_key}
                 />
               </div>
             </div>

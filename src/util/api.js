@@ -57,7 +57,6 @@ const deleteNoteFromServer = (note, token) => {
 };
 ////////////////// FLAT /////////////////////
 const addFlatToServer = (flat, token) => {
-  debugger;
   return fetch(`${API_BASE_URL}flats`, {
     method: "POST",
     headers: { ...headers, Authorization: token },
@@ -70,6 +69,14 @@ const getFlat = token => {
     headers: { ...headers, Authorization: token }
   }).then(res => res.json());
 };
+
+const moveIn = (token, flatInfo) => {
+  return fetch(`${API_BASE_URL}auth/move_in`, {
+    method: "PATCH",
+    headers: { ...headers, Authorization: token },
+    body: JSON.stringify(flatInfo)
+  }).then(res => res.json());
+};
 ////////////////// EXPORT /////////////////////
 export default {
   login,
@@ -80,5 +87,6 @@ export default {
   deleteNoteFromServer,
   updateFlatmateProfile,
   addFlatToServer,
-  getFlat
+  getFlat,
+  moveIn
 };

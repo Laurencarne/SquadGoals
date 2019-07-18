@@ -127,6 +127,18 @@ class App extends React.Component {
     });
   };
 
+  addUserToFlat = flatInfo => {
+    api.moveIn(token(), flatInfo).then(user => {
+      if (!user.error) {
+        this.setState({
+          user: user
+        });
+        this.getFlatDetails(token());
+      } else {
+        alert("Sorry those details don't seem quite right...");
+      }
+    });
+  };
   ////////////////// RENDER /////////////////////
   render() {
     return (
@@ -137,6 +149,7 @@ class App extends React.Component {
             logged_in={this.state.logged_in}
             handleLogOut={this.handleLogOut}
             createNewFlat={this.createNewFlat}
+            addUserToFlat={this.addUserToFlat}
           />
           <Switch>
             <Route
