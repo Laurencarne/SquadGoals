@@ -9,48 +9,35 @@ import SignupComponent from "../Components/Login&SignUp/SignupComponent";
 import Profile from "../Components/Profile/Profile";
 import Dnd from "../Components/Calendar/Dnd";
 
-const token = localStorage.getItem("token");
+const token = () => localStorage.getItem("token");
 
 class App extends React.Component {
   state = {
     logged_in: false,
-    username: "",
-    password: "",
     user: {},
-    notes: []
+    notes: [],
+    flat: []
   };
 
   componentDidMount() {
-    if (token) {
-      api.getCurrentFlatmate(token).then(flatmate => {
+    if (token()) {
+      api.getCurrentFlatmate(token()).then(flatmate => {
         this.setState({
           logged_in: true,
-          user: {
-            username: flatmate.username,
-            id: flatmate.id,
-            flat_id: flatmate.flat_id,
-            first_name: flatmate.first_name,
-            last_name: flatmate.last_name,
-            birthday: flatmate.birthday,
-            move_in: flatmate.move_in,
-            rent_due: flatmate.rent_due,
-            water_due: flatmate.water_due,
-            electricity_due: flatmate.electricity_due,
-            gas_due: flatmate.gas_due,
-            avatar: flatmate.avatar
-          }
+          user: flatmate
         });
-        this.getNotes(token);
+        this.getNotes(token());
+        this.getFlatDetails(token());
       });
     }
   }
   //////////////////// NOTES /////////////////////
-  getNotes = token => {
-    api.getNotes(token).then(notes => this.setState({ notes }));
+  getNotes = () => {
+    api.getNotes(token()).then(notes => this.setState({ notes }));
   };
 
   onAddNoteClick = note => {
-    api.addNoteToServer(note, token).then(data =>
+    api.addNoteToServer(note, token()).then(data =>
       this.setState({
         notes: [...this.state.notes, data]
       })
@@ -58,142 +45,89 @@ class App extends React.Component {
   };
 
   onDeleteNoteClick = noteId => {
-    api.deleteNoteFromServer(noteId, token).then(
+    api.deleteNoteFromServer(noteId, token()).then(
       this.setState({
         notes: this.state.notes.filter(note => note.id !== noteId)
       })
     );
   };
-
-  //////////////////// NOTES /////////////////////
-
-  /////////////// LOGIN & SIGNUP /////////////////
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
-
-  handleDateChange = (date, name) => {
-    this.setState({
-      [name]: date
-    });
-  };
-
-  setAvatarURL = avatar => {
-    this.setState({
-      avatar: avatar
-    });
-  };
-
-  onLoginClicked = e => {
-    e.preventDefault();
-    api.login(this.state.username, this.state.password).then(data => {
+  /////////////// LOGIN /////////////////
+  onLoginClicked = user => {
+    api.login(user.username, user.password).then(data => {
       if (data.error) {
         alert("Something is wrong with your credentials");
-        this.setState({ username: "", password: "" });
       } else {
         localStorage.setItem("token", data.jwt);
-        const token = localStorage.getItem("token");
         api.getCurrentFlatmate(data.jwt).then(flatmate => {
           this.setState({
             logged_in: true,
-            password: "",
-            user: {
-              username: flatmate.username,
-              id: flatmate.id,
-              flat_id: flatmate.flat_id,
-              first_name: flatmate.first_name,
-              last_name: flatmate.last_name,
-              birthday: flatmate.birthday,
-              move_in: flatmate.move_in,
-              rent_due: flatmate.rent_due,
-              water_due: flatmate.water_due,
-              electricity_due: flatmate.electricity_due,
-              gas_due: flatmate.gas_due,
-              avatar: flatmate.avatar
-            }
+            user: flatmate
           });
         });
-        this.getNotes(token);
+        this.getNotes();
+        this.getFlatDetails(token());
       }
     });
   };
-
-  onSignupClicked = e => {
-    e.preventDefault();
-    const flatmate = {
-      flatmate: {
-        username: this.state.username,
-        first_name: this.state.first_name,
-        last_name: this.state.last_name,
-        password: this.state.password,
-        birthday: this.state.birthday,
-        email: this.state.email,
-        avatar: this.state.avatar
-      }
-    };
+  ////////////////// SIGNUP /////////////////////
+  signUpUserToServer = flatmate => {
     api.signup(flatmate).then(data => {
       if (data.error) {
         alert("Something is wrong with your credentials");
-        this.setState({
-          username: "",
-          password: "",
-          first_name: "",
-          last_name: "",
-          email: "",
-          birthday: "",
-          avatar: ""
-        });
       } else {
         localStorage.setItem("token", data.jwt);
-        const token = localStorage.getItem("token");
         api.getCurrentFlatmate(data.jwt).then(flatmate => {
           this.setState({
             logged_in: true,
-            password: "",
-            user: {
-              username: flatmate.username,
-              id: flatmate.id,
-              first_name: flatmate.first_name,
-              last_name: flatmate.last_name,
-              birthday: flatmate.birthday,
-              move_in: flatmate.move_in,
-              rent_due: flatmate.rent_due,
-              water_due: flatmate.water_due,
-              gas_due: flatmate.gas_due,
-              electricity_due: flatmate.electricity_due,
-              avatar: flatmate.avatar
-            }
+            user: flatmate
           });
         });
-        this.getNotes(token);
+        this.getNotes();
       }
     });
   };
-
+  ////////////////// LOGOUT /////////////////////
   handleLogOut = () => {
     localStorage.clear("token");
     this.setState({
       logged_in: false,
-      username: "",
-      password: "",
       notes: [],
-      user: {}
+      user: {},
+      flat: []
     });
   };
-  /////////////// LOGIN & SIGNUP /////////////////
-
   ////////////////// PROFILE /////////////////////
   updateProfile = profile => {
-    api.updateFlatmateProfile(profile, this.state.user.id, token).then(data =>
+    api.updateFlatmateProfile(profile, this.state.user.id, token()).then(data =>
       this.setState({
         user: data
       })
     );
   };
-  ////////////////// PROFILE /////////////////////
+  ////////////////// FLAT /////////////////////
+  createNewFlat = flat => {
+    api.addFlatToServer(flat, token()).then(data =>
+      this.setState({
+        user: {
+          ...this.state.user,
+          flat_id: data.id,
+          flat_key: data.flat_key,
+          flat_name: data.name
+        },
+        flat: data
+      })
+    );
+  };
 
+  getFlatDetails = () => {
+    api.getFlat(token()).then(flat => {
+      if (!flat.error) {
+        this.setState({ flat });
+      }
+    });
+  };
+
+  ////////////////// RENDER /////////////////////
   render() {
     return (
       <Router>
@@ -202,6 +136,7 @@ class App extends React.Component {
             user={this.state.user}
             logged_in={this.state.logged_in}
             handleLogOut={this.handleLogOut}
+            createNewFlat={this.createNewFlat}
           />
           <Switch>
             <Route
@@ -224,11 +159,6 @@ class App extends React.Component {
                 <LoginComponent
                   logged_in={this.state.logged_in}
                   onLoginClicked={this.onLoginClicked}
-                  handleLogOut={this.handleLogOut}
-                  username={this.state.username}
-                  handleChange={this.handleChange}
-                  getNotes={this.getNotes}
-                  password={this.state.password}
                 />
               )}
             />
@@ -237,13 +167,8 @@ class App extends React.Component {
               exact
               render={() => (
                 <SignupComponent
-                  password={this.state.password}
-                  username={this.state.username}
                   logged_in={this.state.logged_in}
-                  handleChange={this.handleChange}
-                  handleDateChange={this.handleDateChange}
-                  setAvatarURL={this.setAvatarURL}
-                  onSignupClicked={this.onSignupClicked}
+                  signUpUserToServer={this.signUpUserToServer}
                 />
               )}
             />

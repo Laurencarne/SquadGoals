@@ -1,16 +1,73 @@
 import React, { Component } from "react";
 import "../../CSS/NavBar.css";
 import { Link } from "react-router-dom";
+import CreateFlat from "../FlatForms/CreateFlat";
+import JoinFlat from "../FlatForms/JoinFlat";
+import FlatCreated from "../FlatForms/FlatCreated";
 
 const navStyle = {
   color: "black"
 };
 
 class NavBar extends Component {
+  state = {
+    createFlat: false,
+    joinFlat: false,
+    flatCreated: false,
+    flat: []
+  };
+
+  renderFlatForms = () => {
+    if (this.state.createFlat) {
+      return (
+        <>
+          <CreateFlat
+            createNewFlat={this.props.createNewFlat}
+            handleFlatCreatedClick={this.handleFlatCreated}
+            handleCreateFlat={this.handleCreateFlat}
+          />
+        </>
+      );
+    } else if (this.state.joinFlat) {
+      return (
+        <>
+          <JoinFlat handleClick={this.handleJoinFlat} />
+        </>
+      );
+    } else if (this.state.flatCreated) {
+      return (
+        <>
+          <FlatCreated handleClick={this.handleFlatCreated} />
+        </>
+      );
+    }
+  };
+
+  handleJoinFlat = () => {
+    this.setState({
+      joinFlat: !this.state.joinFlat
+    });
+  };
+
+  handleCreateFlat = () => {
+    this.setState({
+      createFlat: !this.state.createFlat
+    });
+  };
+
+  handleFlatCreated = flat => {
+    this.setState({
+      createFlat: false,
+      joinFlat: false,
+      flat: flat,
+      flatCreated: !this.state.flatCreated
+    });
+  };
+
   render() {
     return (
       <>
-        {this.props.logged_in ? (
+        {this.props.user.username && this.props.logged_in ? (
           <nav className="nav">
             <Link style={navStyle} to="/">
               <h3>
@@ -36,15 +93,21 @@ class NavBar extends Component {
                   <button className="navButtons">Calender</button>
                 </Link>
               </>
-            ) : null}
+            ) : (
+              <>
+                <button onClick={this.handleJoinFlat} className="navButtons">
+                  Join Flat
+                </button>
+                <button onClick={this.handleCreateFlat} className="navButtons">
+                  Create a Flat
+                </button>
+              </>
+            )}
             <Link style={navStyle} to="/">
               <button onClick={this.props.handleLogOut} className="navButtons">
                 Log Out
               </button>
             </Link>
-            <button onClick={this.props.handleJoinFlat} className="navButtons">
-              Join Flat
-            </button>
           </nav>
         ) : (
           <nav className="nav">
@@ -65,6 +128,7 @@ class NavBar extends Component {
             </Link>
           </nav>
         )}
+        <div>{this.renderFlatForms()}</div>
       </>
     );
   }

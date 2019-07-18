@@ -4,7 +4,7 @@ const headers = {
   "Content-Type": "application/json",
   Accepts: "application/json"
 };
-
+////////////////// FLATMATE /////////////////////
 const login = (username, password) => {
   return fetch(`${API_BASE_URL}auth/create`, {
     method: "POST",
@@ -34,7 +34,7 @@ const updateFlatmateProfile = (profile, id, token) => {
     body: JSON.stringify(profile)
   }).then(res => res.json());
 };
-
+////////////////// NOTES /////////////////////
 const getNotes = token => {
   return fetch(`${API_BASE_URL}notes`, {
     headers: { ...headers, Authorization: token }
@@ -55,7 +55,22 @@ const deleteNoteFromServer = (note, token) => {
     headers: { Authorization: token }
   }).then(res => res.json());
 };
+////////////////// FLAT /////////////////////
+const addFlatToServer = (flat, token) => {
+  debugger;
+  return fetch(`${API_BASE_URL}flats`, {
+    method: "POST",
+    headers: { ...headers, Authorization: token },
+    body: JSON.stringify(flat.flat)
+  }).then(resp => resp.json());
+};
 
+const getFlat = token => {
+  return fetch(`${API_BASE_URL}flat`, {
+    headers: { ...headers, Authorization: token }
+  }).then(res => res.json());
+};
+////////////////// EXPORT /////////////////////
 export default {
   login,
   getCurrentFlatmate,
@@ -63,5 +78,7 @@ export default {
   signup,
   addNoteToServer,
   deleteNoteFromServer,
-  updateFlatmateProfile
+  updateFlatmateProfile,
+  addFlatToServer,
+  getFlat
 };

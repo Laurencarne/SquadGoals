@@ -7,15 +7,40 @@ import { Redirect } from "react-router-dom";
 class SignupComponent extends React.Component {
   state = {
     clicked: false,
-    avatar: false
+    avatar: false,
+    avatarURL: "",
+    first_name: "First Name",
+    last_name: "Last Name",
+    email: "E-Mail",
+    birthday: new Date(),
+    username: "username",
+    password: ""
   };
 
-  renderAvatars = () => {
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  handleDateChange = (date, name) => {
+    this.setState({
+      [name]: date
+    });
+  };
+
+  setAvatarURL = avatar => {
+    this.setState({
+      avatar: avatar
+    });
+  };
+
+  renderAvatarsPage = () => {
     if (this.state.clicked) {
       return (
         <Avatar
           handleAvatarClick={this.handleAvatarClick}
-          handleClicked={this.handleClicked}
+          toggleAvatarBar={this.toggleAvatarBar}
         />
       );
     }
@@ -39,10 +64,9 @@ class SignupComponent extends React.Component {
       clicked: !this.state.clicked,
       avatar: true
     });
-    this.props.setAvatarURL(avatarUrl);
   };
 
-  handleClicked = () => {
+  toggleAvatarBar = () => {
     this.setState({
       clicked: !this.state.clicked
     });
@@ -53,7 +77,7 @@ class SignupComponent extends React.Component {
       return (
         <input
           className="avatarInput"
-          onClick={this.handleClicked}
+          onClick={this.toggleAvatarBar}
           type="button"
           name="avatar"
           value="Change Your Avatar"
@@ -63,7 +87,7 @@ class SignupComponent extends React.Component {
       return (
         <input
           className="avatarInput"
-          onClick={this.handleClicked}
+          onClick={this.toggleAvatarBar}
           type="button"
           name="avatar"
           value="Choose Your Avatar"
@@ -72,10 +96,26 @@ class SignupComponent extends React.Component {
     }
   };
 
+  handleFormSubmit = e => {
+    e.preventDefault();
+    const flatmate = {
+      flatmate: {
+        username: this.state.username,
+        first_name: this.state.first_name,
+        last_name: this.state.last_name,
+        password: this.state.password,
+        birthday: this.state.birthday,
+        email: this.state.email,
+        avatar: this.state.avatarURL
+      }
+    };
+    this.props.signUpUserToServer(flatmate);
+  };
+
   render() {
     return (
       <>
-        {this.renderAvatars()}
+        {this.renderAvatarsPage()}
         <div>
           {this.props.logged_in ? (
             <div>
@@ -83,61 +123,51 @@ class SignupComponent extends React.Component {
             </div>
           ) : (
             <div className="container">
-              <form className="form">
+              <form className="form" onSubmit={this.handleFormSubmit}>
                 <p>First Name: </p>
                 <input
-                  onChange={this.props.handleChange}
-                  id="first_name"
+                  onChange={this.handleChange}
                   type="first_name"
                   name="first_name"
-                  value={this.props.first_name}
+                  value={this.state.first_name}
                 />
                 <p>Last Name: </p>
                 <input
-                  onChange={this.props.handleChange}
-                  id="last_name"
+                  onChange={this.handleChange}
                   type="last_name"
                   name="last_name"
-                  value={this.props.last_name}
+                  value={this.state.last_name}
                 />
                 <p>E-Mail: </p>
                 <input
-                  onChange={this.props.handleChange}
-                  id="email"
+                  onChange={this.handleChange}
                   type="email"
                   name="email"
-                  value={this.props.email}
+                  value={this.state.email}
                 />
                 <p>Birthday: </p>
                 <DatePage
                   date={new Date()}
-                  handleDateChange={this.props.handleDateChange}
+                  handleDateChange={this.handleDateChange}
                   name={"birthday"}
                 />
                 <p>Username: </p>
                 <input
-                  onChange={this.props.handleChange}
-                  id="username"
-                  type="text"
+                  onChange={this.handleChange}
+                  type="username"
                   name="username"
-                  value={this.props.username}
+                  value={this.state.username}
                 />
                 <p>Password: </p>
                 <input
-                  onChange={this.props.handleChange}
-                  id="password"
+                  onChange={this.handleChange}
                   type="password"
                   name="password"
-                  value={this.props.password}
+                  value={this.state.password}
                 />
                 {this.renderChooseAvatarButton()}
                 {this.renderSelectedAvatar()}
-                <button
-                  className="submitButton"
-                  onClick={this.props.onSignupClicked}
-                >
-                  Sign Up
-                </button>
+                <button className="submitButton">Sign Up</button>
               </form>
             </div>
           )}

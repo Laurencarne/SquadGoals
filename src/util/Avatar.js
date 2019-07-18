@@ -108,7 +108,7 @@ class Avatar extends React.Component {
             </div>
             <button
               className="buttonPopOutBack"
-              onClick={this.props.handleClicked}
+              onClick={this.props.toggleAvatarBar}
             >
               Back
             </button>
