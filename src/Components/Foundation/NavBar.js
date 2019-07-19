@@ -5,6 +5,8 @@ import CreateFlat from "../FlatForms/CreateFlat";
 import JoinFlat from "../FlatForms/JoinFlat";
 import FlatCreated from "../FlatForms/FlatCreated";
 
+import TaskSelector from "../Tasks/TaskSelector";
+
 const navStyle = {
   color: "black"
 };
@@ -75,7 +77,7 @@ class NavBar extends Component {
   render() {
     return (
       <>
-        {this.props.user.username && this.props.logged_in ? (
+        {this.props.user && this.props.logged_in ? (
           <nav className="nav">
             <Link style={navStyle} to="/">
               <h3>

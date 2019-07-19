@@ -7,7 +7,7 @@ class LandingPage extends Component {
   render() {
     return (
       <>
-        {this.props.logged_in ? (
+        {this.props.logged_in && this.props.user ? (
           <Dashboard
             user={this.props.user}
             notes={this.props.notes}

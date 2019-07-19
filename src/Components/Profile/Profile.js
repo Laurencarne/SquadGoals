@@ -10,7 +10,7 @@ class Profile extends Component {
   };
 
   renderPage = () => {
-    if (!this.props.user.username) {
+    if (!this.props.logged_in && this.props.user) {
       return <Redirect to="/" />;
     } else if (this.state.clicked && this.props.user.username) {
       return (
@@ -23,18 +23,8 @@ class Profile extends Component {
           />
         </>
       );
-    }
-  };
-
-  handleClick = () => {
-    this.setState({
-      clicked: !this.state.clicked
-    });
-  };
-
-  render() {
-    return (
-      <>
+    } else if (this.props.logged_in && this.props.user) {
+      return (
         <div className="page">
           <h1>Profile Page</h1>
           <div className="container">
@@ -48,9 +38,18 @@ class Profile extends Component {
             />
           </div>
         </div>
-        {this.renderPage()}
-      </>
-    );
+      );
+    }
+  };
+
+  handleClick = () => {
+    this.setState({
+      clicked: !this.state.clicked
+    });
+  };
+
+  render() {
+    return <>{this.renderPage()}</>;
   }
 }
 

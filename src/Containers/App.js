@@ -7,6 +7,7 @@ import Footer from "../Components/Foundation/Footer";
 import LoginComponent from "../Components/Login&SignUp/LoginComponent";
 import SignupComponent from "../Components/Login&SignUp/SignupComponent";
 import Profile from "../Components/Profile/Profile";
+import Tasks from "../Components/Tasks/Tasks";
 import Dnd from "../Components/Calendar/Dnd";
 
 const token = () => localStorage.getItem("token");
@@ -14,43 +15,56 @@ const token = () => localStorage.getItem("token");
 class App extends React.Component {
   state = {
     logged_in: false,
-    user: {},
+    user: null,
+    tasks: [],
+    flat: null,
+    events: [],
     notes: [],
-    flat: []
+    items: []
   };
 
   componentDidMount() {
     if (token()) {
-      api.getCurrentFlatmate(token()).then(flatmate => {
-        this.setState({
-          logged_in: true,
-          user: flatmate
-        });
-        this.getNotes(token());
-        this.getFlatDetails(token());
-      });
+      this.getUser();
     }
   }
-  //////////////////// NOTES /////////////////////
-  getNotes = () => {
-    api.getNotes(token()).then(notes => this.setState({ notes }));
+  //////////////////// USER /////////////////////
+  getUser = () => {
+    api.getCurrentFlatmate(token()).then(flatmate => {
+      const { flat, items, events, notes, tasks, ...user } = flatmate;
+      this.setState({
+        logged_in: true,
+        user,
+        tasks,
+        flat,
+        events,
+        notes,
+        items
+      });
+    });
   };
+  //////////////////// NOTES /////////////////////
+
+  // getNotes = () => {
+  //   api.getNotes(token()).then(notes => this.setState({ notes }));
+  // };
 
   onAddNoteClick = note => {
-    api.addNoteToServer(note, token()).then(data =>
+    api.addNoteToServer(note, token()).then(data => {
       this.setState({
         notes: [...this.state.notes, data]
-      })
-    );
+      });
+    });
   };
 
   onDeleteNoteClick = noteId => {
-    api.deleteNoteFromServer(noteId, token()).then(
+    api.deleteNoteFromServer(noteId, token()).then(data => {
       this.setState({
         notes: this.state.notes.filter(note => note.id !== noteId)
-      })
-    );
+      });
+    });
   };
+
   /////////////// LOGIN /////////////////
   onLoginClicked = user => {
     api.login(user.username, user.password).then(data => {
@@ -58,14 +72,7 @@ class App extends React.Component {
         alert("Something is wrong with your credentials");
       } else {
         localStorage.setItem("token", data.jwt);
-        api.getCurrentFlatmate(data.jwt).then(flatmate => {
-          this.setState({
-            logged_in: true,
-            user: flatmate
-          });
-        });
-        this.getNotes();
-        this.getFlatDetails(token());
+        this.getUser();
       }
     });
   };
@@ -76,13 +83,7 @@ class App extends React.Component {
         alert("Something is wrong with your credentials");
       } else {
         localStorage.setItem("token", data.jwt);
-        api.getCurrentFlatmate(data.jwt).then(flatmate => {
-          this.setState({
-            logged_in: true,
-            user: flatmate
-          });
-        });
-        this.getNotes();
+        this.getUser();
       }
     });
   };
@@ -91,9 +92,12 @@ class App extends React.Component {
     localStorage.clear("token");
     this.setState({
       logged_in: false,
+      user: null,
+      tasks: [],
+      flat: null,
+      events: [],
       notes: [],
-      user: {},
-      flat: []
+      items: []
     });
   };
   ////////////////// PROFILE /////////////////////
@@ -106,34 +110,21 @@ class App extends React.Component {
   };
   ////////////////// FLAT /////////////////////
   createNewFlat = flat => {
-    api.addFlatToServer(flat, token()).then(data =>
-      this.setState({
-        user: {
-          ...this.state.user,
-          flat_id: data.id,
-          flat_key: data.flat_key,
-          flat_name: data.name
-        },
-        flat: data
-      })
-    );
+    api.addFlatToServer(flat, token()).then(data => this.getUser());
   };
 
-  getFlatDetails = () => {
-    api.getFlat(token()).then(flat => {
-      if (!flat.error) {
-        this.setState({ flat });
-      }
-    });
-  };
+  // getFlatDetails = () => {
+  //   api.getFlat(token()).then(flat => {
+  //     if (!flat.error) {
+  //       this.setState({ flat });
+  //     }
+  //   });
+  // };
 
   addUserToFlat = flatInfo => {
     api.moveIn(token(), flatInfo).then(user => {
       if (!user.error) {
-        this.setState({
-          user: user
-        });
-        this.getFlatDetails(token());
+        this.getUser();
       } else {
         alert("Sorry those details don't seem quite right...");
       }
@@ -141,15 +132,26 @@ class App extends React.Component {
   };
   ////////////////// RENDER /////////////////////
   render() {
+    const { logged_in, user, tasks, flat, events, notes, items } = this.state;
+    const {
+      handleLogOut,
+      createNewFlat,
+      addUserToFlat,
+      onAddNoteClick,
+      onDeleteNoteClick,
+      onLoginClicked,
+      signUpUserToServer,
+      updateProfile
+    } = this;
     return (
       <Router>
         <div className="App">
           <NavBar
-            user={this.state.user}
-            logged_in={this.state.logged_in}
-            handleLogOut={this.handleLogOut}
-            createNewFlat={this.createNewFlat}
-            addUserToFlat={this.addUserToFlat}
+            user={user}
+            logged_in={logged_in}
+            handleLogOut={handleLogOut}
+            createNewFlat={createNewFlat}
+            addUserToFlat={addUserToFlat}
           />
           <Switch>
             <Route
@@ -157,11 +159,11 @@ class App extends React.Component {
               exact
               render={() => (
                 <LandingPage
-                  logged_in={this.state.logged_in}
-                  notes={this.state.notes}
-                  user={this.state.user}
-                  onAddNoteClick={this.onAddNoteClick}
-                  onDeleteNoteClick={this.onDeleteNoteClick}
+                  logged_in={logged_in}
+                  onAddNoteClick={onAddNoteClick}
+                  onDeleteNoteClick={onDeleteNoteClick}
+                  user={user}
+                  notes={notes}
                 />
               )}
             />
@@ -170,8 +172,8 @@ class App extends React.Component {
               exact
               render={() => (
                 <LoginComponent
-                  logged_in={this.state.logged_in}
-                  onLoginClicked={this.onLoginClicked}
+                  logged_in={logged_in}
+                  onLoginClicked={onLoginClicked}
                 />
               )}
             />
@@ -180,8 +182,8 @@ class App extends React.Component {
               exact
               render={() => (
                 <SignupComponent
-                  logged_in={this.state.logged_in}
-                  signUpUserToServer={this.signUpUserToServer}
+                  logged_in={logged_in}
+                  signUpUserToServer={signUpUserToServer}
                 />
               )}
             />
@@ -190,10 +192,17 @@ class App extends React.Component {
               exact
               render={() => (
                 <Profile
-                  updateProfile={this.updateProfile}
-                  user={this.state.user}
-                  logged_in={this.state.logged_in}
+                  updateProfile={updateProfile}
+                  user={user}
+                  logged_in={logged_in}
                 />
+              )}
+            />
+            <Route
+              path="/tasks"
+              exact
+              render={() => (
+                <Tasks user={user} tasks={tasks} logged_in={logged_in} />
               )}
             />
             <Route path="/calendar" render={() => <Dnd />} />

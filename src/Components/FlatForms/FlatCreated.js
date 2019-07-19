@@ -13,7 +13,7 @@ class FlatCreated extends React.Component {
           <div className="popOut">
             <div className="popOutCenter">
               <div className="form">
-                <button onClick={this.props.handleClick}>Back</button>
+                <button onClick={this.props.handleClick}>Done</button>
                 <p>Flatname: {this.props.flat.name}</p>
                 <p>You have successfully moved in!</p>
                 <p>

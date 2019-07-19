@@ -35,11 +35,11 @@ const updateFlatmateProfile = (profile, id, token) => {
   }).then(res => res.json());
 };
 ////////////////// NOTES /////////////////////
-const getNotes = token => {
-  return fetch(`${API_BASE_URL}notes`, {
-    headers: { ...headers, Authorization: token }
-  }).then(res => res.json());
-};
+// const getNotes = token => {
+//   return fetch(`${API_BASE_URL}notes`, {
+//     headers: { ...headers, Authorization: token }
+//   }).then(res => res.json());
+// };
 
 const addNoteToServer = (note, token) => {
   return fetch(`${API_BASE_URL}notes`, {
@@ -81,7 +81,7 @@ const moveIn = (token, flatInfo) => {
 export default {
   login,
   getCurrentFlatmate,
-  getNotes,
+  // getNotes,
   signup,
   addNoteToServer,
   deleteNoteFromServer,
