@@ -7,7 +7,7 @@ class TaskShow extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="taskSelectPage">
         {this.props.tasks.map(task => {
           return (
             <div

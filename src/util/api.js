@@ -77,6 +77,22 @@ const moveIn = (token, flatInfo) => {
     body: JSON.stringify(flatInfo)
   }).then(res => res.json());
 };
+////////////////// TASKS /////////////////////
+const addTaskToFlatServer = (token, flat) => {
+  return fetch(`${API_BASE_URL}tasks`, {
+    method: "POST",
+    headers: { ...headers, Authorization: token },
+    body: JSON.stringify(flat)
+  }).then(res => res.json());
+};
+
+const updateTasks = (token, task) => {
+  return fetch(`${API_BASE_URL}tasks/${task.id}`, {
+    method: "PATCH",
+    headers: { ...headers, Authorization: token },
+    body: JSON.stringify(task)
+  }).then(res => res.json());
+};
 ////////////////// EXPORT /////////////////////
 export default {
   login,
@@ -88,5 +104,6 @@ export default {
   updateFlatmateProfile,
   addFlatToServer,
   getFlat,
-  moveIn
+  moveIn,
+  addTaskToFlatServer
 };

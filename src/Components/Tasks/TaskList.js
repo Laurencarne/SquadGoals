@@ -1,114 +1,114 @@
-const tasks = [
+const names = [
   {
-    task: "Hoover",
-    img: "https://i.imgur.com/L8qLD0J.png",
-    desc: "Hoover the apartment"
+    name: "Hoover",
+    avatar: "https://i.imgur.com/L8qLD0J.png",
+    description: "Hoover the apartment"
   },
   {
-    task: "Dishes",
-    img: "https://i.imgur.com/qszuCED.png",
-    desc: "Do the dishes"
+    name: "Dishes",
+    avatar: "https://i.imgur.com/qszuCED.png",
+    description: "Do the dishes"
   },
   {
-    task: "Bins",
-    img: "https://i.imgur.com/dlQWEoN.png",
-    desc: "Take out the bins"
+    name: "Bins",
+    avatar: "https://i.imgur.com/dlQWEoN.png",
+    description: "Take out the bins"
   },
   {
-    task: "Mop",
-    img: "https://i.imgur.com/q8O4OHl.png",
-    desc: "Mop the floors"
+    name: "Mop",
+    avatar: "https://i.imgur.com/q8O4OHl.png",
+    description: "Mop the floors"
   },
   {
-    task: "Windows",
-    img: "https://i.imgur.com/aIH1fKs.png",
-    desc: "Clean the windows"
+    name: "Windows",
+    avatar: "https://i.imgur.com/aIH1fKs.png",
+    description: "Clean the windows"
   },
   {
-    task: "Laundry",
-    img: "https://i.imgur.com/eU2F3f5.png",
-    desc: "Wash, dry and fold the laundry"
+    name: "Laundry",
+    avatar: "https://i.imgur.com/eU2F3f5.png",
+    description: "Wash, dry and fold the laundry"
   },
   {
-    task: "Bathrooms",
-    img: "https://i.imgur.com/Wh6GPta.png",
-    desc: "Clean the bathrooms"
+    name: "Bathrooms",
+    avatar: "https://i.imgur.com/Wh6GPta.png",
+    description: "Clean the bathrooms"
   },
   {
-    task: "Toilets",
-    img: "https://i.imgur.com/QrhW7bh.png",
-    desc: "Clean the toilet"
+    name: "Toilets",
+    avatar: "https://i.imgur.com/QrhW7bh.png",
+    description: "Clean the toilet"
   },
   {
-    task: "Polishing",
-    img: "https://i.imgur.com/cTCacLv.png",
-    desc: "Polish the surfaces"
+    name: "Polishing",
+    avatar: "https://i.imgur.com/cTCacLv.png",
+    description: "Polish the surfaces"
   },
   {
-    task: "Sweeping",
-    img: "https://i.imgur.com/BjvN33S.png",
-    desc: "Sweep the floors"
+    name: "Sweeping",
+    avatar: "https://i.imgur.com/BjvN33S.png",
+    description: "Sweep the floors"
   },
   {
-    task: "Cleaning",
-    img: "https://i.imgur.com/JAzqjJT.png",
-    desc: "General Cleaning"
+    name: "Cleaning",
+    avatar: "https://i.imgur.com/JAzqjJT.png",
+    description: "General Cleaning"
   },
   {
-    task: "Recycling",
-    img: "https://i.imgur.com/LuEoCVK.png",
-    desc: "Take out the recyling"
+    name: "Recycling",
+    avatar: "https://i.imgur.com/LuEoCVK.png",
+    description: "Take out the recyling"
   },
   {
-    task: "Microwave",
-    img: "https://i.imgur.com/Giznsgl.png",
-    desc: "Clean the microwave"
+    name: "Microwave",
+    avatar: "https://i.imgur.com/Giznsgl.png",
+    description: "Clean the microwave"
   },
   {
-    task: "Oven",
-    img: "https://i.imgur.com/UWhAiPG.png",
-    desc: "Clean the oven"
+    name: "Oven",
+    avatar: "https://i.imgur.com/UWhAiPG.png",
+    description: "Clean the oven"
   },
   {
-    task: "Fridge",
-    img: "https://i.imgur.com/HAVd0CB.png",
-    desc: "Clean the fridge"
+    name: "Fridge",
+    avatar: "https://i.imgur.com/HAVd0CB.png",
+    description: "Clean the fridge"
   },
   {
-    task: "Mow the Lawn",
-    img: "https://i.imgur.com/mQaK49p.png",
-    desc: "Cut the grass"
+    name: "Mow the Lawn",
+    avatar: "https://i.imgur.com/mQaK49p.png",
+    description: "Cut the grass"
   },
   {
-    task: "Plants",
-    img: "https://i.imgur.com/VjHas29.png",
-    desc: "Water the plants"
+    name: "Plants",
+    avatar: "https://i.imgur.com/VjHas29.png",
+    description: "Water the plants"
   },
   {
-    task: "Dinner",
-    img: "https://i.imgur.com/EYEGiNh.png",
-    desc: "Cook the dinner"
+    name: "Dinner",
+    avatar: "https://i.imgur.com/EYEGiNh.png",
+    description: "Cook the dinner"
   },
   {
-    task: "Walk the Dog",
-    img: "https://i.imgur.com/PSdRwOl.png",
-    desc: "Take the dog out for a walk"
+    name: "Walk the Dog",
+    avatar: "https://i.imgur.com/PSdRwOl.png",
+    description: "Take the dog out for a walk"
   },
   {
-    task: "Cat Litter",
-    img: "https://i.imgur.com/YydU9bg.png",
-    desc: "Clean the cat litter"
+    name: "Cat Litter",
+    avatar: "https://i.imgur.com/YydU9bg.png",
+    description: "Clean the cat litter"
   },
   {
-    task: "Feed the Pets",
-    img: "https://i.imgur.com/i7NGEBv.png",
-    desc: "Feed the pets"
+    name: "Feed the Pets",
+    avatar: "https://i.imgur.com/i7NGEBv.png",
+    description: "Feed the pets"
   },
   {
-    task: "Fish Tank",
-    img: "https://i.imgur.com/d178J4J.png",
-    desc: "Clean the Fish Tank"
+    name: "Fish Tank",
+    avatar: "https://i.imgur.com/d178J4J.png",
+    description: "Clean the Fish Tank"
   }
 ];
 
-export default tasks;
+export default names;

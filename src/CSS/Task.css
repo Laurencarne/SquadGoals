@@ -1,4 +1,4 @@
-img {
+.taskDisplayHolder img {
   width: 100px;
 }
 
@@ -28,4 +28,27 @@ img {
 }
 .taskDisplayHolder:hover {
   background-color: #5ce1e6;
+}
+
+.taskSelectDiv img {
+  width: 70px;
+}
+.taskSelectHolder p {
+  text-align: center;
+}
+.taskSelectHolder h1 {
+  text-align: center;
+}
+
+.taskSelectHolder {
+  width: 20vh;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
 }

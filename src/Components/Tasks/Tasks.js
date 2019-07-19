@@ -16,7 +16,10 @@ class Tasks extends React.Component {
       return (
         <>
           <h1>Select Your Tasks</h1>
-          <TaskSelector />
+          <TaskSelector
+            user={this.props.user}
+            addTaskToFlat={this.props.addTaskToFlat}
+          />
         </>
       );
     }

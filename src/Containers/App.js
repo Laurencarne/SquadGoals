@@ -130,6 +130,14 @@ class App extends React.Component {
       }
     });
   };
+  ////////////////// TASKS /////////////////////
+  addTaskToFlat = flat => {
+    api.addTaskToFlatServer(token(), flat).then(data => {
+      this.setState({
+        flat: data
+      });
+    });
+  };
   ////////////////// RENDER /////////////////////
   render() {
     const { logged_in, user, tasks, flat, events, notes, items } = this.state;
@@ -141,7 +149,8 @@ class App extends React.Component {
       onDeleteNoteClick,
       onLoginClicked,
       signUpUserToServer,
-      updateProfile
+      updateProfile,
+      addTaskToFlat
     } = this;
     return (
       <Router>
@@ -202,7 +211,12 @@ class App extends React.Component {
               path="/tasks"
               exact
               render={() => (
-                <Tasks user={user} tasks={tasks} logged_in={logged_in} />
+                <Tasks
+                  addTaskToFlat={addTaskToFlat}
+                  user={user}
+                  tasks={tasks}
+                  logged_in={logged_in}
+                />
               )}
             />
             <Route path="/calendar" render={() => <Dnd />} />
