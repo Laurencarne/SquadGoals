@@ -31,14 +31,14 @@ class App extends React.Component {
   //////////////////// USER /////////////////////
   getUser = () => {
     api.getCurrentFlatmate(token()).then(flatmate => {
-      const { flat, items, events, notes, tasks, ...user } = flatmate;
+      const { flat, items, events, tasks, notes, ...user } = flatmate;
       this.setState({
         logged_in: true,
         user,
-        tasks,
         flat,
         events,
         notes,
+        tasks,
         items
       });
     });
@@ -97,7 +97,8 @@ class App extends React.Component {
       flat: null,
       events: [],
       notes: [],
-      items: []
+      items: [],
+      my_tasks: []
     });
   };
   ////////////////// PROFILE /////////////////////
@@ -131,10 +132,22 @@ class App extends React.Component {
     });
   };
   ////////////////// TASKS /////////////////////
+  // getMyTasks = () => {
+  //   api.getTasks(token()).then(my_tasks => this.setState({ my_tasks }));
+  // };
+
   addTaskToFlat = flat => {
     api.addTaskToFlatServer(token(), flat).then(data => {
       this.setState({
         flat: data
+      });
+    });
+  };
+
+  updateTaskOnServer = task => {
+    api.updateTasks(token(), task).then(data => {
+      this.setState({
+        task: data
       });
     });
   };
@@ -150,7 +163,8 @@ class App extends React.Component {
       onLoginClicked,
       signUpUserToServer,
       updateProfile,
-      addTaskToFlat
+      addTaskToFlat,
+      updateTaskOnServer
     } = this;
     return (
       <Router>
@@ -212,9 +226,11 @@ class App extends React.Component {
               exact
               render={() => (
                 <Tasks
+                  updateTaskOnServer={updateTaskOnServer}
                   addTaskToFlat={addTaskToFlat}
                   user={user}
                   tasks={tasks}
+                  flat={flat}
                   logged_in={logged_in}
                 />
               )}

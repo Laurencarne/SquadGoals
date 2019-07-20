@@ -1,6 +1,7 @@
 import React from "react";
 import TaskShow from "./TaskShow";
 import TaskSelector from "./TaskSelector";
+import moment from "moment";
 import "../../CSS/Task.css";
 
 class Tasks extends React.Component {
@@ -8,16 +9,27 @@ class Tasks extends React.Component {
     if (this.props.tasks.length > 0) {
       return (
         <>
-          <h1> Your Tasks This Week </h1>
-          <TaskShow tasks={this.props.tasks} />
+          <h2>
+            Week Starting{" "}
+            {moment()
+              .day(1)
+              .format("dddd Do MMMM")}
+          </h2>
+          <TaskShow
+            updateTaskOnServer={this.props.updateTaskOnServer}
+            flat={this.props.flat}
+            tasks={this.props.tasks}
+            user={this.props.user}
+          />
         </>
       );
     } else {
       return (
         <>
-          <h1>Select Your Tasks</h1>
+          <h1>Set Up Your Apartments Weekly Tasks</h1>
           <TaskSelector
             user={this.props.user}
+            flat={this.props.flat}
             addTaskToFlat={this.props.addTaskToFlat}
           />
         </>

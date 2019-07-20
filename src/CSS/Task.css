@@ -33,10 +33,10 @@
 .taskSelectDiv img {
   width: 70px;
 }
-.taskSelectHolder p {
-  text-align: center;
-}
-.taskSelectHolder h1 {
+
+h1,
+h2,
+p {
   text-align: center;
 }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import tasks from "./TaskList";
+import moment from "moment";
 
 let taskHolder = [];
 
@@ -16,7 +17,7 @@ class TaskSelector extends React.Component {
     } else if (taskHolder.includes(x)) {
       taskHolder = taskHolder.filter(t => t.name !== x.name);
     }
-    console.log(taskHolder);
+    // console.log(taskHolder);
 
     // this.setState({
     //   clicked: !this.state.clicked,
@@ -24,10 +25,23 @@ class TaskSelector extends React.Component {
     // });
   };
 
+  getRandomFlatmate = counter => {
+    let flatmatesArray = this.props.flat.flatmates.map(mate => mate.id);
+    let index = counter;
+    let nextFlatmate = (index + 1) % flatmatesArray.length;
+    return flatmatesArray[nextFlatmate];
+  };
+
   handleSubmit = () => {
-    let pair = { flat_id: this.props.user.flat_id };
-    taskHolder.forEach(task => console.log({ ...task, ...pair }));
-    taskHolder.forEach(task => this.props.addTaskToFlat({ ...task, ...pair }));
+    let counter = 0;
+    let week = moment().day(1 + 7)._d;
+    taskHolder.forEach(task => {
+      let flatId = { flat_id: this.props.user.flat_id };
+      let flatmate_id = this.getRandomFlatmate(counter);
+      // this.props.addTaskToFlat({ ...task, ...flatId, flatmate_id, week });
+      console.log({ ...task, ...flatId, flatmate_id, week });
+      counter++;
+    });
   };
 
   render() {

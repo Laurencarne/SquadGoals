@@ -78,6 +78,13 @@ const moveIn = (token, flatInfo) => {
   }).then(res => res.json());
 };
 ////////////////// TASKS /////////////////////
+
+// const getTasks = token => {
+//   return fetch(`${API_BASE_URL}my_tasks`, {
+//     headers: { ...headers, Authorization: token }
+//   }).then(res => res.json());
+// };
+
 const addTaskToFlatServer = (token, flat) => {
   return fetch(`${API_BASE_URL}tasks`, {
     method: "POST",
@@ -105,5 +112,6 @@ export default {
   addFlatToServer,
   getFlat,
   moveIn,
-  addTaskToFlatServer
+  addTaskToFlatServer,
+  updateTasks
 };
