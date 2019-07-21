@@ -8,6 +8,7 @@ import LoginComponent from "../Components/Login&SignUp/LoginComponent";
 import SignupComponent from "../Components/Login&SignUp/SignupComponent";
 import Profile from "../Components/Profile/Profile";
 import Tasks from "../Components/Tasks/Tasks";
+import ShoppingList from "../Components/Shopping/ShoppingList";
 import Dnd from "../Components/Calendar/Dnd";
 
 const token = () => localStorage.getItem("token");
@@ -97,8 +98,7 @@ class App extends React.Component {
       flat: null,
       events: [],
       notes: [],
-      items: [],
-      my_tasks: []
+      items: []
     });
   };
   ////////////////// PROFILE /////////////////////
@@ -136,10 +136,10 @@ class App extends React.Component {
   //   api.getTasks(token()).then(my_tasks => this.setState({ my_tasks }));
   // };
 
-  addTaskToFlat = flat => {
+  addTasksToFlat = flat => {
     api.addTaskToFlatServer(token(), flat).then(data => {
       this.setState({
-        flat: data
+        tasks: [...this.state.tasks, data]
       });
     });
   };
@@ -147,13 +147,13 @@ class App extends React.Component {
   updateTaskOnServer = task => {
     api.updateTasks(token(), task).then(data => {
       this.setState({
-        task: data
+        tasks: this.state.tasks.filter(data => data.id !== task.id)
       });
     });
   };
   ////////////////// RENDER /////////////////////
   render() {
-    const { logged_in, user, tasks, flat, events, notes, items } = this.state;
+    const { logged_in, user, items, tasks, flat, events, notes } = this.state;
     const {
       handleLogOut,
       createNewFlat,
@@ -163,7 +163,7 @@ class App extends React.Component {
       onLoginClicked,
       signUpUserToServer,
       updateProfile,
-      addTaskToFlat,
+      addTasksToFlat,
       updateTaskOnServer
     } = this;
     return (
@@ -227,13 +227,17 @@ class App extends React.Component {
               render={() => (
                 <Tasks
                   updateTaskOnServer={updateTaskOnServer}
-                  addTaskToFlat={addTaskToFlat}
+                  addTasksToFlat={addTasksToFlat}
                   user={user}
                   tasks={tasks}
                   flat={flat}
                   logged_in={logged_in}
                 />
               )}
+            />
+            <Route
+              path="/shopping"
+              render={() => <ShoppingList items={items} />}
             />
             <Route path="/calendar" render={() => <Dnd />} />
           </Switch>

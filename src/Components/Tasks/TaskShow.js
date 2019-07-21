@@ -2,19 +2,6 @@ import React from "react";
 import moment from "moment";
 
 class TaskShow extends React.Component {
-  // setNextWeeksDate = () => {
-  //   const dayINeed = 1; // for Thursday
-  //   const today = moment().isoWeekday();
-  //   if (today <= dayINeed) {
-  //     console.log(moment().isoWeekday(dayINeed));
-  //   } else {
-  //     let date = moment()
-  //       .add(1, "weeks")
-  //       .isoWeekday(dayINeed);
-  //     console.log(date._d);
-  //   }
-  // };
-
   handleClick = task => {
     let nextWeek = moment().day(1 + 7);
     task = {
@@ -22,12 +9,8 @@ class TaskShow extends React.Component {
       week: moment().day(1 + 7)._d,
       id: task.id
     };
-
     this.props.updateTaskOnServer(task);
   };
-  // clickme = task => {
-  //   console.log(task.week);
-  // };
 
   getNextFlatmate = () => {
     let flatmatesArray = this.props.flat.flatmates.map(mate => mate.id);
@@ -36,50 +19,46 @@ class TaskShow extends React.Component {
     return flatmatesArray[nextFlatmate];
   };
 
+  hasTasks = () =>
+    this.props.tasks.filter(
+      singleTask => singleTask.flatmate_id === this.props.user.id
+    );
+
+  hasTasksDue = () =>
+    this.hasTasks().filter(
+      usersTasks => moment(usersTasks.week).isoWeek() <= moment().isoWeek()
+    );
+
   renderPage = () => {
-    if (
-      this.props.tasks.filter(
-        singleTask => singleTask.flatmate_id === this.props.user.id
-      ).length > 0
-    ) {
+    if (this.hasTasks().length > 0 && this.hasTasksDue().length > 0) {
       return (
         <>
-          {this.props.tasks
-            .filter(singleTask => singleTask.flatmate_id === this.props.user.id)
-            .filter(
-              usersTask =>
-                //   console.log(
-                //     moment(usersTask.week).format("dddd Do MMMM YYYY"),
-                //     moment()
-                //       .day(1)
-                //       .format("dddd Do MMMM YYYY")
-                //   )
-
-                moment(usersTask.week).format("dddd Do MMMM YYYY") ===
-                moment()
-                  .day(1)
-                  .format("dddd Do MMMM YYYY")
-            )
-            .map(task => {
-              return (
-                <div
-                  onClick={() => this.handleClick(task)}
-                  className="taskDisplayPage"
-                >
-                  <div className="taskDisplayHolder">
-                    <h1>{task.name}</h1>
-                    <img src={task.avatar} alt="icon" />
-                    <p>{task.description}</p>
-                  </div>
+          {this.hasTasksDue().map(task => {
+            return (
+              <div
+                onClick={() => this.handleClick(task)}
+                className="taskDisplayPage"
+              >
+                <div className="taskDisplayHolder">
+                  <h1>{task.name}</h1>
+                  <img src={task.avatar} alt="icon" />
+                  <p>{task.description}</p>
                 </div>
-              );
-            })}
+              </div>
+            );
+          })}
+        </>
+      );
+    } else if (this.hasTasks().length > 0 && this.hasTasksDue().length === 0) {
+      return (
+        <>
+          <h4>All Your Tasks are COMPLETE!!</h4>
         </>
       );
     } else {
       return (
         <>
-          <h4>All Your Tasks are COMPLETE!!</h4>
+          <h4>You Don't have any tasks this week. Take a break!</h4>
         </>
       );
     }

@@ -11,14 +11,12 @@ class TaskSelector extends React.Component {
     selected: []
   };
 
-  handleClick = x => {
-    if (!taskHolder.includes(x)) {
-      taskHolder.push(x);
-    } else if (taskHolder.includes(x)) {
-      taskHolder = taskHolder.filter(t => t.name !== x.name);
+  handleClick = task => {
+    if (!taskHolder.includes(task)) {
+      taskHolder.push(task);
+    } else if (taskHolder.includes(task)) {
+      taskHolder = taskHolder.filter(t => t.name !== task.name);
     }
-    // console.log(taskHolder);
-
     // this.setState({
     //   clicked: !this.state.clicked,
     //   color: this.state.clicked ? null : "#5ce1e6"
@@ -34,12 +32,12 @@ class TaskSelector extends React.Component {
 
   handleSubmit = () => {
     let counter = 0;
-    let week = moment().day(1 + 7)._d;
+    let week = moment().isoWeekday(1)._d;
     taskHolder.forEach(task => {
       let flatId = { flat_id: this.props.user.flat_id };
       let flatmate_id = this.getRandomFlatmate(counter);
-      // this.props.addTaskToFlat({ ...task, ...flatId, flatmate_id, week });
-      console.log({ ...task, ...flatId, flatmate_id, week });
+      this.props.addTasksToFlat({ ...task, ...flatId, flatmate_id, week });
+      // console.log({ ...task, ...flatId, flatmate_id, week });
       counter++;
     });
   };

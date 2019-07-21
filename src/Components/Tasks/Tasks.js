@@ -12,7 +12,7 @@ class Tasks extends React.Component {
           <h2>
             Week Starting{" "}
             {moment()
-              .day(1)
+              .isoWeekday(1)
               .format("dddd Do MMMM")}
           </h2>
           <TaskShow
@@ -30,7 +30,7 @@ class Tasks extends React.Component {
           <TaskSelector
             user={this.props.user}
             flat={this.props.flat}
-            addTaskToFlat={this.props.addTaskToFlat}
+            addTasksToFlat={this.props.addTasksToFlat}
           />
         </>
       );
