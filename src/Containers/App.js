@@ -151,6 +151,14 @@ class App extends React.Component {
       });
     });
   };
+
+  deleteTask = taskId => {
+    api.deleteTaskFromServer(taskId, token()).then(data => {
+      this.setState({
+        tasks: this.state.tasks.filter(task => task.id !== taskId)
+      });
+    });
+  };
   ////////////////// SHOPPING LIST /////////////////////
   addShoppingItemToFlat = item => {
     api.addShoppingItemToServer(token(), item).then(data => {
@@ -181,7 +189,8 @@ class App extends React.Component {
       addTasksToFlat,
       updateTaskOnServer,
       addShoppingItemToFlat,
-      deleteItemFromShoppingList
+      deleteItemFromShoppingList,
+      deleteTask
     } = this;
     return (
       <Router>
@@ -249,6 +258,7 @@ class App extends React.Component {
                   tasks={tasks}
                   flat={flat}
                   logged_in={logged_in}
+                  deleteTask={deleteTask}
                 />
               )}
             />

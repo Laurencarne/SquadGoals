@@ -115,6 +115,13 @@ const deleteItemFromServer = (item, token) => {
     headers: { Authorization: token }
   }).then(res => res.json());
 };
+
+const deleteTaskFromServer = (task, token) => {
+  return fetch(`${API_BASE_URL}tasks/${task}`, {
+    method: "DELETE",
+    headers: { Authorization: token }
+  }).then(res => res.json());
+};
 ////////////////// EXPORT /////////////////////
 export default {
   login,
@@ -130,5 +137,6 @@ export default {
   addTaskToFlatServer,
   updateTasks,
   addShoppingItemToServer,
-  deleteItemFromServer
+  deleteItemFromServer,
+  deleteTaskFromServer
 };

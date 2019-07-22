@@ -6,7 +6,6 @@ let taskHolder = [];
 
 class TaskSelector extends React.Component {
   state = {
-    color: null,
     clicked: false,
     selected: []
   };
@@ -17,10 +16,18 @@ class TaskSelector extends React.Component {
     } else if (taskHolder.includes(task)) {
       taskHolder = taskHolder.filter(t => t.name !== task.name);
     }
-    // this.setState({
-    //   clicked: !this.state.clicked,
-    //   color: this.state.clicked ? null : "#5ce1e6"
-    // });
+    this.renderStyle(task.avatar);
+  };
+
+  renderStyle = avatar => {
+    this.setState({
+      tasks: tasks.map(task => {
+        if (task.avatar === avatar) {
+          task.checked = !task.checked;
+        }
+        return task;
+      })
+    });
   };
 
   getRandomFlatmate = counter => {
@@ -47,26 +54,59 @@ class TaskSelector extends React.Component {
       <>
         <button onClick={this.handleSubmit}>Update</button>
         <div className="taskSelectPage">
-          {tasks.map(task => {
-            return (
-              <div
-                onClick={() => this.handleClick(task)}
-                className="taskSelectDiv"
-              >
+          {tasks
+            .filter(
+              task => !this.props.myTasks.find(a => a.avatar == task.avatar)
+            )
+            .map(taskToShow => {
+              return (
                 <div
-                  style={{ backgroundColor: this.state.color }}
-                  className="taskSelectHolder"
+                  onClick={() => this.handleClick(taskToShow)}
+                  className="taskSelectDiv"
                 >
-                  <h1>{task.name}</h1>
-                  <img src={task.avatar} alt="icon" />
-                  <p>{task.description}</p>
+                  <div
+                    style={{
+                      backgroundColor: taskToShow.checked ? "#5ce1e6" : null
+                    }}
+                    className="taskSelectHolder"
+                  >
+                    <h1>{taskToShow.name}</h1>
+                    <img src={taskToShow.avatar} alt="icon" />
+                    <p>{taskToShow.description}</p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </>
     );
   }
 }
 export default TaskSelector;
+
+// render() {
+//   return (
+//     <>
+//       <button onClick={this.handleSubmit}>Update</button>
+//       <div className="taskSelectPage">
+//         {tasks.map(task => {
+//           return (
+//             <div
+//               onClick={() => this.handleClick(task)}
+//               className="taskSelectDiv"
+//             >
+//               <div
+//                 style={{ backgroundColor: task.checked ? "#5ce1e6" : null }}
+//                 className="taskSelectHolder"
+//               >
+//                 <h1>{task.name}</h1>
+//                 <img src={task.avatar} alt="icon" />
+//                 <p>{task.description}</p>
+//               </div>
+//             </div>
+//           );
+//         })}
+//       </div>
+//     </>
+//   );
+// }
