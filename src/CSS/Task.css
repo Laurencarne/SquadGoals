@@ -29,6 +29,9 @@
 .taskDisplayHolder:hover {
   background-color: #5ce1e6;
 }
+.taskSelectHolder:hover {
+  background-color: #5ce1e6;
+}
 
 .taskSelectDiv img {
   width: 70px;

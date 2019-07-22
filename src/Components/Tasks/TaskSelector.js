@@ -1,5 +1,6 @@
 import React from "react";
 import tasks from "./TaskList";
+import AddMyOwnTask from "./AddMyOwnTask";
 import moment from "moment";
 
 let taskHolder = [];
@@ -49,6 +50,18 @@ class TaskSelector extends React.Component {
     });
   };
 
+  toggleAddMyOwn = () => {
+    this.setState({
+      clicked: !this.state.clicked
+    });
+  };
+
+  addMyOwn = () => {
+    if (this.state.clicked) {
+      return <AddMyOwnTask toggleAddMyOwn={this.toggleAddMyOwn} />;
+    }
+  };
+
   render() {
     return (
       <>
@@ -78,35 +91,10 @@ class TaskSelector extends React.Component {
               );
             })}
         </div>
+        {this.addMyOwn()}
+        <button onClick={this.toggleAddMyOwn}>Create My Own</button>
       </>
     );
   }
 }
 export default TaskSelector;
-
-// render() {
-//   return (
-//     <>
-//       <button onClick={this.handleSubmit}>Update</button>
-//       <div className="taskSelectPage">
-//         {tasks.map(task => {
-//           return (
-//             <div
-//               onClick={() => this.handleClick(task)}
-//               className="taskSelectDiv"
-//             >
-//               <div
-//                 style={{ backgroundColor: task.checked ? "#5ce1e6" : null }}
-//                 className="taskSelectHolder"
-//               >
-//                 <h1>{task.name}</h1>
-//                 <img src={task.avatar} alt="icon" />
-//                 <p>{task.description}</p>
-//               </div>
-//             </div>
-//           );
-//         })}
-//       </div>
-//     </>
-//   );
-// }

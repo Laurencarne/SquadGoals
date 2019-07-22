@@ -28,6 +28,7 @@ class Tasks extends React.Component {
               flat={this.props.flat}
               addTasksToFlat={this.props.addTasksToFlat}
               deleteTask={this.props.deleteTask}
+              handleClick={this.handleClick}
             />
           </>
           <>

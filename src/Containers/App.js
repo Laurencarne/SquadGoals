@@ -31,7 +31,7 @@ class App extends React.Component {
   }
   //////////////////// USER /////////////////////
   getUser = () => {
-    api.getCurrentFlatmate(token()).then(flatmate => {
+    api.getCurrentFlatmate().then(flatmate => {
       const { flat, items, events, tasks, notes, ...user } = flatmate;
       this.setState({
         logged_in: true,
@@ -47,11 +47,11 @@ class App extends React.Component {
   //////////////////// NOTES /////////////////////
 
   // getNotes = () => {
-  //   api.getNotes(token()).then(notes => this.setState({ notes }));
+  //   api.getNotes().then(notes => this.setState({ notes }));
   // };
 
   onAddNoteClick = note => {
-    api.addNoteToServer(note, token()).then(data => {
+    api.addNoteToServer(note).then(data => {
       this.setState({
         notes: [...this.state.notes, data]
       });
@@ -59,7 +59,7 @@ class App extends React.Component {
   };
 
   onDeleteNoteClick = noteId => {
-    api.deleteNoteFromServer(noteId, token()).then(data => {
+    api.deleteNoteFromServer(noteId).then(data => {
       this.setState({
         notes: this.state.notes.filter(note => note.id !== noteId)
       });
@@ -103,7 +103,7 @@ class App extends React.Component {
   };
   ////////////////// PROFILE /////////////////////
   updateProfile = profile => {
-    api.updateFlatmateProfile(profile, this.state.user.id, token()).then(data =>
+    api.updateFlatmateProfile(profile, this.state.user.id).then(data =>
       this.setState({
         user: data
       })
@@ -111,11 +111,11 @@ class App extends React.Component {
   };
   ////////////////// FLAT /////////////////////
   createNewFlat = flat => {
-    api.addFlatToServer(flat, token()).then(data => this.getUser());
+    api.addFlatToServer(flat).then(data => this.getUser());
   };
 
   // getFlatDetails = () => {
-  //   api.getFlat(token()).then(flat => {
+  //   api.getFlat().then(flat => {
   //     if (!flat.error) {
   //       this.setState({ flat });
   //     }
@@ -123,7 +123,7 @@ class App extends React.Component {
   // };
 
   addUserToFlat = flatInfo => {
-    api.moveIn(token(), flatInfo).then(user => {
+    api.moveIn(flatInfo).then(user => {
       if (!user.error) {
         this.getUser();
       } else {
@@ -133,11 +133,11 @@ class App extends React.Component {
   };
   ////////////////// TASKS /////////////////////
   // getMyTasks = () => {
-  //   api.getTasks(token()).then(my_tasks => this.setState({ my_tasks }));
+  //   api.getTasks().then(my_tasks => this.setState({ my_tasks }));
   // };
 
   addTasksToFlat = flat => {
-    api.addTaskToFlatServer(token(), flat).then(data => {
+    api.addTaskToFlatServer(flat).then(data => {
       this.setState({
         tasks: [...this.state.tasks, data]
       });
@@ -145,7 +145,7 @@ class App extends React.Component {
   };
 
   updateTaskOnServer = task => {
-    api.updateTasks(token(), task).then(data => {
+    api.updateTasks(task).then(data => {
       this.setState({
         tasks: this.state.tasks.filter(data => data.id !== task.id)
       });
@@ -153,7 +153,7 @@ class App extends React.Component {
   };
 
   deleteTask = taskId => {
-    api.deleteTaskFromServer(taskId, token()).then(data => {
+    api.deleteTaskFromServer(taskId).then(data => {
       this.setState({
         tasks: this.state.tasks.filter(task => task.id !== taskId)
       });
@@ -161,14 +161,14 @@ class App extends React.Component {
   };
   ////////////////// SHOPPING LIST /////////////////////
   addShoppingItemToFlat = item => {
-    api.addShoppingItemToServer(token(), item).then(data => {
+    api.addShoppingItemToServer(item).then(data => {
       this.setState({
         items: [...this.state.items, data]
       });
     });
   };
   deleteItemFromShoppingList = itemId => {
-    api.deleteItemFromServer(itemId, token()).then(data => {
+    api.deleteItemFromServer(itemId).then(data => {
       this.setState({
         items: this.state.items.filter(item => item.id !== itemId)
       });

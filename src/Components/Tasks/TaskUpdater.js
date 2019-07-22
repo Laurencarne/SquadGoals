@@ -17,6 +17,7 @@ class TaskUpdater extends React.Component {
   render() {
     return (
       <>
+        <button onClick={this.props.handleClick}>Back</button>
         <div className="taskSelectPage">
           {this.props.tasks.map(task => {
             return (

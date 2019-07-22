@@ -1,5 +1,7 @@
 const API_BASE_URL = `http://localhost:3000/`;
 
+const token = () => localStorage.getItem("token");
+
 const headers = {
   "Content-Type": "application/json",
   Accepts: "application/json"
@@ -21,112 +23,111 @@ const signup = flatmate => {
   }).then(res => res.json());
 };
 
-const getCurrentFlatmate = token => {
+const getCurrentFlatmate = () => {
   return fetch(`${API_BASE_URL}auth/show`, {
-    headers: { ...headers, Authorization: token }
+    headers: { ...headers, Authorization: token() }
   }).then(res => res.json());
 };
 
-const updateFlatmateProfile = (profile, id, token) => {
+const updateFlatmateProfile = (profile, id) => {
   return fetch(`${API_BASE_URL}api/v1/flatmates/${id}`, {
     method: "PATCH",
-    headers: { ...headers, Authorization: token },
+    headers: { ...headers, Authorization: token() },
     body: JSON.stringify(profile)
   }).then(res => res.json());
 };
 ////////////////// NOTES /////////////////////
-// const getNotes = token => {
+// const getNotes = () => {
 //   return fetch(`${API_BASE_URL}notes`, {
-//     headers: { ...headers, Authorization: token }
+//     headers: { ...headers, Authorization: token() }
 //   }).then(res => res.json());
 // };
 
-const addNoteToServer = (note, token) => {
+const addNoteToServer = note => {
   return fetch(`${API_BASE_URL}notes`, {
     method: "POST",
-    headers: { ...headers, Authorization: token },
+    headers: { ...headers, Authorization: token() },
     body: JSON.stringify(note)
   }).then(resp => resp.json());
 };
 
-const deleteNoteFromServer = (note, token) => {
+const deleteNoteFromServer = note => {
   return fetch(`${API_BASE_URL}notes/${note}`, {
     method: "DELETE",
-    headers: { Authorization: token }
+    headers: { Authorization: token() }
   }).then(res => res.json());
 };
 ////////////////// FLAT /////////////////////
-const addFlatToServer = (flat, token) => {
+const addFlatToServer = flat => {
   return fetch(`${API_BASE_URL}flats`, {
     method: "POST",
-    headers: { ...headers, Authorization: token },
+    headers: { ...headers, Authorization: token() },
     body: JSON.stringify(flat.flat)
   }).then(resp => resp.json());
 };
 
-const getFlat = token => {
+const getFlat = () => {
   return fetch(`${API_BASE_URL}flat`, {
-    headers: { ...headers, Authorization: token }
+    headers: { ...headers, Authorization: token() }
   }).then(res => res.json());
 };
 
-const moveIn = (token, flatInfo) => {
+const moveIn = flatInfo => {
   return fetch(`${API_BASE_URL}auth/move_in`, {
     method: "PATCH",
-    headers: { ...headers, Authorization: token },
+    headers: { ...headers, Authorization: token() },
     body: JSON.stringify(flatInfo)
   }).then(res => res.json());
 };
 ////////////////// TASKS /////////////////////
 
-// const getTasks = token => {
+// const getTasks = () => {
 //   return fetch(`${API_BASE_URL}my_tasks`, {
-//     headers: { ...headers, Authorization: token }
+//     headers: { ...headers, Authorization: token() }
 //   }).then(res => res.json());
 // };
 
-const addTaskToFlatServer = (token, flat) => {
+const addTaskToFlatServer = flat => {
   return fetch(`${API_BASE_URL}tasks`, {
     method: "POST",
-    headers: { ...headers, Authorization: token },
+    headers: { ...headers, Authorization: token() },
     body: JSON.stringify(flat)
   }).then(res => res.json());
 };
 
-const updateTasks = (token, task) => {
+const updateTasks = task => {
   return fetch(`${API_BASE_URL}tasks/${task.id}`, {
     method: "PATCH",
-    headers: { ...headers, Authorization: token },
+    headers: { ...headers, Authorization: token() },
     body: JSON.stringify(task)
   }).then(res => res.json());
 };
 ////////////////// SHOPPING LIST /////////////////////
-const addShoppingItemToServer = (token, item) => {
+const addShoppingItemToServer = item => {
   return fetch(`${API_BASE_URL}items`, {
     method: "POST",
-    headers: { ...headers, Authorization: token },
+    headers: { ...headers, Authorization: token() },
     body: JSON.stringify(item)
   }).then(res => res.json());
 };
 
-const deleteItemFromServer = (item, token) => {
+const deleteItemFromServer = item => {
   return fetch(`${API_BASE_URL}items/${item}`, {
     method: "DELETE",
-    headers: { Authorization: token }
+    headers: { Authorization: token() }
   }).then(res => res.json());
 };
 
-const deleteTaskFromServer = (task, token) => {
+const deleteTaskFromServer = task => {
   return fetch(`${API_BASE_URL}tasks/${task}`, {
     method: "DELETE",
-    headers: { Authorization: token }
+    headers: { Authorization: token() }
   }).then(res => res.json());
 };
 ////////////////// EXPORT /////////////////////
 export default {
   login,
   getCurrentFlatmate,
-  // getNotes,
   signup,
   addNoteToServer,
   deleteNoteFromServer,
