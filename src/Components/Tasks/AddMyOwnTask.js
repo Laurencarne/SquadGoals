@@ -1,8 +1,8 @@
 import React from "react";
 import "../../CSS/Signup.css";
-import DatePage from "../../util/DatePage";
 import Icons from "../../util/Icons";
 import { Redirect } from "react-router-dom";
+import moment from "moment";
 
 class SignupComponent extends React.Component {
   state = {
@@ -93,7 +93,17 @@ class SignupComponent extends React.Component {
       description: this.state.description,
       avatar: this.state.avatarURL
     };
-    this.props.signUpUserToServer(task);
+    this.handleSubmit(task);
+  };
+
+  handleSubmit = task => {
+    let counter = Math.floor(Math.random() * 3);
+    let week = moment().isoWeekday(1)._d;
+    let flatId = { flat_id: this.props.user.flat_id };
+    let flatmate_id = this.props.getRandomFlatmate(counter);
+    this.props.addTasksToFlat({ ...task, ...flatId, flatmate_id, week });
+    // console.log({ ...task, ...flatId, flatmate_id, week });
+    this.props.toggleAddMyOwn();
   };
 
   render() {

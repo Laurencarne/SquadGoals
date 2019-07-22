@@ -58,7 +58,16 @@ class TaskSelector extends React.Component {
 
   addMyOwn = () => {
     if (this.state.clicked) {
-      return <AddMyOwnTask toggleAddMyOwn={this.toggleAddMyOwn} />;
+      return (
+        <AddMyOwnTask
+          handleClick={this.handleClick}
+          toggleAddMyOwn={this.toggleAddMyOwn}
+          getRandomFlatmate={this.props.getRandomFlatmate}
+          user={this.props.user}
+          getRandomFlatmate={this.getRandomFlatmate}
+          addTasksToFlat={this.props.addTasksToFlat}
+        />
+      );
     }
   };
 
