@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../../CSS/EditProfile.css";
 import DatePage from "../../util/DatePage";
+import moment from "moment";
 
 class EditProfile extends Component {
   state = {
@@ -44,6 +45,14 @@ class EditProfile extends Component {
     this.props.handleClick();
   };
 
+  setDateAsCurrentMonth = date => {
+    let currentMonth = moment().month();
+    let currentYear = moment().year();
+    return moment(date)
+      .months(currentMonth)
+      .years(currentYear)._d;
+  };
+
   render() {
     return (
       <div className="popOut">
@@ -66,64 +75,46 @@ class EditProfile extends Component {
               name="last_name"
               value={this.state.last_name}
             />
-            <p>Birthday: </p>
-            <DatePage
-              date={new Date(this.state.birthday)}
-              handleDateChange={this.handleDateChange}
-              name={"birthday"}
-            />
-            <p>Move In Date: </p>
-            <DatePage
-              date={new Date(this.state.move_in)}
-              handleDateChange={this.handleDateChange}
-              name={"move_in"}
-            />
-            <p> Due Dates </p>
             <div className="datesHolderOne">
               <div className="datesOne">
-                <label htmlFor="rent_due">Rent</label>
-                <input
-                  className="numberInput"
-                  onChange={this.handleChange}
-                  id="rent_due"
-                  type="number"
-                  name="rent_due"
-                  value={this.state.rent_due}
+                <p>Birthday: </p>
+                <DatePage
+                  date={new Date(this.state.birthday)}
+                  handleDateChange={this.handleDateChange}
+                  name={"birthday"}
+                />
+                <p>Move In Date: </p>
+                <DatePage
+                  date={new Date(this.state.move_in)}
+                  handleDateChange={this.handleDateChange}
+                  name={"move_in"}
+                />
+                <p>Electricity Date: </p>
+                <DatePage
+                  date={this.setDateAsCurrentMonth(this.state.electricity_due)}
+                  handleDateChange={this.handleDateChange}
+                  name={"electricity_due"}
                 />
               </div>
-              <div className="datesTwo">
-                <label htmlFor="electricity_due">Electricity</label>
-                <input
-                  className="numberInput"
-                  onChange={this.handleChange}
-                  id="electricity_due"
-                  type="number"
-                  name="electricity_due"
-                  value={this.state.electricity_due}
+              <div className="datesOne">
+                <p>Rent Date: </p>
+                <DatePage
+                  date={this.setDateAsCurrentMonth(this.state.rent_due)}
+                  handleDateChange={this.handleDateChange}
+                  name={"rent_due"}
                 />
-              </div>
-            </div>
-            <div className="datesHolderTwo">
-              <div className="datesThree">
-                <label htmlFor="water_due">Water</label>
-                <input
-                  className="numberInput"
-                  onChange={this.handleChange}
-                  id="water_due"
-                  type="number"
-                  name="water_due"
-                  value={this.state.water_due}
+
+                <p>Water Date: </p>
+                <DatePage
+                  date={this.setDateAsCurrentMonth(this.state.water_due)}
+                  handleDateChange={this.handleDateChange}
+                  name={"water_due"}
                 />
-              </div>
-              <div className="datesFour">
-                <label htmlFor="gas_due">Gas</label>
-                <input
-                  className="numberInput"
-                  onChange={this.handleChange}
-                  id="gas_due"
-                  type="number"
-                  name="gas_due"
-                  value={this.state.gas_due}
+                <p>Gas Date: </p>
+                <DatePage
+                  date={this.setDateAsCurrentMonth(this.state.gas_due)}
+                  handleDateChange={this.handleDateChange}
+                  name={"gas_due"}
                 />
               </div>
             </div>
@@ -136,3 +127,48 @@ class EditProfile extends Component {
 }
 
 export default EditProfile;
+
+// <label htmlFor="rent_due">Rent</label>
+// <input
+//   className="numberInput"
+//   onChange={this.handleChange}
+//   id="rent_due"
+//   type="number"
+//   name="rent_due"
+//   value={this.state.rent_due}
+// />
+// </div>
+// <div className="datesTwo">
+// <label htmlFor="electricity_due">Electricity</label>
+// <input
+//   className="numberInput"
+//   onChange={this.handleChange}
+//   id="electricity_due"
+//   type="number"
+//   name="electricity_due"
+//   value={this.state.electricity_due}
+// />
+// </div>
+// </div>
+// <div className="datesHolderTwo">
+// <div className="datesThree">
+// <label htmlFor="water_due">Water</label>
+// <input
+//   className="numberInput"
+//   onChange={this.handleChange}
+//   id="water_due"
+//   type="number"
+//   name="water_due"
+//   value={this.state.water_due}
+// />
+// </div>
+// <div className="datesFour">
+// <label htmlFor="gas_due">Gas</label>
+// <input
+//   className="numberInput"
+//   onChange={this.handleChange}
+//   id="gas_due"
+//   type="number"
+//   name="gas_due"
+//   value={this.state.gas_due}
+// />

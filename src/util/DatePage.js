@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import DatePicker from "react-date-picker";
+import moment from "moment";
 
 class DatePage extends Component {
   state = {
@@ -8,12 +9,15 @@ class DatePage extends Component {
 
   onChange = date => {
     this.setState({ date });
-    this.props.handleDateChange(date, this.props.name);
+    this.props.handleDateChange(
+      moment(date).format("dddd Do MMMM YYYY"),
+      this.props.name
+    );
   };
 
   render() {
     return (
-      <div>
+      <div className="calenderPicker">
         <DatePicker onChange={this.onChange} value={this.state.date} />
       </div>
     );
