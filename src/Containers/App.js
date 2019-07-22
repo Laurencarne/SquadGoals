@@ -65,7 +65,22 @@ class App extends React.Component {
       });
     });
   };
+  //////////////////// EVENTS /////////////////////
+  onAddEventClick = event => {
+    api.addEventToServer(event).then(data => {
+      this.setState({
+        events: [...this.state.events, data]
+      });
+    });
+  };
 
+  onDeleteEventClick = eventId => {
+    api.deleteEventFromServer(eventId).then(data => {
+      this.setState({
+        events: this.state.events.filter(event => event.id !== eventId)
+      });
+    });
+  };
   /////////////// LOGIN /////////////////
   onLoginClicked = user => {
     api.login(user.username, user.password).then(data => {
@@ -190,7 +205,10 @@ class App extends React.Component {
       updateTaskOnServer,
       addShoppingItemToFlat,
       deleteItemFromShoppingList,
-      deleteTask
+      deleteTask,
+      getUser,
+      onAddEventClick,
+      onDeleteEventClick
     } = this;
     return (
       <Router>
@@ -208,11 +226,14 @@ class App extends React.Component {
               exact
               render={() => (
                 <LandingPage
+                  events={events}
                   logged_in={logged_in}
                   onAddNoteClick={onAddNoteClick}
                   onDeleteNoteClick={onDeleteNoteClick}
                   user={user}
                   notes={notes}
+                  onAddEventClick={onAddEventClick}
+                  onDeleteEventClick={onDeleteEventClick}
                 />
               )}
             />
@@ -252,6 +273,7 @@ class App extends React.Component {
               exact
               render={() => (
                 <Tasks
+                  getUser={getUser}
                   updateTaskOnServer={updateTaskOnServer}
                   addTasksToFlat={addTasksToFlat}
                   user={user}
@@ -273,7 +295,7 @@ class App extends React.Component {
                 />
               )}
             />
-            <Route path="/calendar" render={() => <Dnd />} />
+            <Route path="/calendar" render={() => <Dnd events={events} />} />
           </Switch>
           <Footer />
         </div>

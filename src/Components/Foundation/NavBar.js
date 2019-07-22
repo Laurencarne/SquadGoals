@@ -6,7 +6,8 @@ import JoinFlat from "../FlatForms/JoinFlat";
 import FlatCreated from "../FlatForms/FlatCreated";
 
 const navStyle = {
-  color: "black"
+  color: "black",
+  textDecoration: "none"
 };
 
 class NavBar extends Component {
@@ -87,34 +88,34 @@ class NavBar extends Component {
               </h3>
             </Link>
             <Link style={navStyle} to="/profile">
-              <button className="navButtons">Profile</button>
+              <p className="navButtons">Profile</p>
             </Link>
             {this.props.user.flat_id ? (
               <>
                 <Link style={navStyle} to="/shopping">
-                  <button className="navButtons">Shopping List</button>
+                  <p className="navButtons">Shopping List</p>
                 </Link>
                 <Link style={navStyle} to="/tasks">
-                  <button className="navButtons">Tasks</button>
+                  <p className="navButtons">Tasks</p>
                 </Link>
                 <Link style={navStyle} to="/calendar">
-                  <button className="navButtons">Calender</button>
+                  <p className="navButtons">Calender</p>
                 </Link>
               </>
             ) : (
               <>
-                <button onClick={this.handleJoinFlat} className="navButtons">
+                <p onClick={this.handleJoinFlat} className="navButtons">
                   Join Flat
-                </button>
-                <button onClick={this.handleCreateFlat} className="navButtons">
+                </p>
+                <p onClick={this.handleCreateFlat} className="navButtons">
                   Create a Flat
-                </button>
+                </p>
               </>
             )}
             <Link style={navStyle} to="/">
-              <button onClick={this.props.handleLogOut} className="navButtons">
+              <p onClick={this.props.handleLogOut} className="navButtons">
                 Log Out
-              </button>
+              </p>
             </Link>
           </nav>
         ) : (
@@ -129,10 +130,10 @@ class NavBar extends Component {
               </h3>
             </Link>
             <Link style={navStyle} to="/signup">
-              <button className="navButtons">Sign Up</button>
+              <p className="navButtons">Sign Up</p>
             </Link>
             <Link style={navStyle} to="/login">
-              <button className="navButtons">Log In</button>
+              <p className="navButtons">Log In</p>
             </Link>
           </nav>
         )}

@@ -1,11 +1,11 @@
-.newNote {
+.newEventOrNote {
   border: 0px;
   border-bottom: 1px solid black;
 }
-.newNote:focus {
+.newEventOrNote:focus {
   outline: none;
 }
-.newNoteSubmit {
+.newEventOrNoteSubmit {
   border-radius: 5px;
   background-color: #c9e265;
 }

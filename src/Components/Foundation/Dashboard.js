@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Notes from "../Notes/Notes";
-import date from "../../util/Date";
+import Events from "../Events/Events";
+// import date from "../../util/Date";
 import moment from "moment";
 
 class Dashboard extends Component {
@@ -29,50 +30,66 @@ class Dashboard extends Component {
       water_due,
       gas_due
     } = this.props.user;
+    const {
+      onAddNoteClick,
+      onAddEventClick,
+      user,
+      events,
+      notes,
+      onDeleteNoteClick,
+      onDeleteEventClick
+    } = this.props;
 
     if (first_name) {
       return (
         <div className="page">
-          <h1>Dashboard</h1>
-          <h2> Welcome back {first_name}</h2>
           <div className="container">
-            <div className="pageLeft">
+            <div className="pageLeft dashboard">
               {move_in ? (
-                <h3>Move in Date: {moment(move_in).format("Do MMMM YYYY")} </h3>
+                <>
+                  <div className="dates">Move in Date</div>
+                  <h4>{moment(move_in).format("Do MMMM YYYY")}</h4>
+                </>
               ) : (
-                <h3>Please Update you Profile to see Bill Information.</h3>
+                <h4>Please Update you Profile to see Bill Information.</h4>
               )}
-              <h4>
-                Rent Due:{" "}
-                {rent_due
-                  ? this.getDueDateMonth(rent_due)
-                  : " Please update your rent due date"}
-              </h4>
-              <h4>
-                Electricity Due:{" "}
-                {electricity_due
-                  ? this.getDueDateMonth(electricity_due)
-                  : " Please update your electricity bill date"}
-              </h4>
-              <h4>
-                Water Due:{" "}
-                {water_due
-                  ? this.getDueDateMonth(water_due)
-                  : " Please update your water bill date"}
-              </h4>
-              <h4>
-                Gas Due:{" "}
-                {gas_due
-                  ? this.getDueDateMonth(gas_due)
-                  : " Please update your gas bill date"}
-              </h4>
+              <div className="dates">Rent Due</div>
+              {rent_due ? (
+                <h4>{this.getDueDateMonth(rent_due)}</h4>
+              ) : (
+                <h4>" Please update your rent due date"</h4>
+              )}
+              <div className="dates">Electricity Due</div>
+              {electricity_due ? (
+                <h4>{this.getDueDateMonth(electricity_due)}</h4>
+              ) : (
+                <h4>" Please update your electricity bill date"</h4>
+              )}
+              <div className="dates">Water Due</div>
+              {water_due ? (
+                <h4>{this.getDueDateMonth(water_due)}</h4>
+              ) : (
+                <h4>" Please update your water bill date"</h4>
+              )}
+              <div className="dates">Gas Due</div>
+              {gas_due ? (
+                <h4>{this.getDueDateMonth(gas_due)}</h4>
+              ) : (
+                <h4>" Please update your gas bill date"</h4>
+              )}
             </div>
             <div className="pageRight">
+              <Events
+                onAddEventClick={onAddEventClick}
+                user={user}
+                events={events}
+                onDeleteEventClick={onDeleteEventClick}
+              />
               <Notes
-                user={this.props.user}
-                notes={this.props.notes}
-                onAddNoteClick={this.props.onAddNoteClick}
-                onDeleteNoteClick={this.props.onDeleteNoteClick}
+                user={user}
+                notes={notes}
+                onAddNoteClick={onAddNoteClick}
+                onDeleteNoteClick={onDeleteNoteClick}
               />
             </div>
           </div>

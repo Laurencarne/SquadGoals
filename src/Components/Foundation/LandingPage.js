@@ -5,14 +5,27 @@ import Home from "./Home";
 
 class LandingPage extends Component {
   render() {
+    const {
+      onAddEventClick,
+      events,
+      user,
+      notes,
+      onAddNoteClick,
+      onDeleteNoteClick,
+      logged_in,
+      onDeleteEventClick
+    } = this.props;
     return (
       <>
-        {this.props.logged_in && this.props.user ? (
+        {logged_in && user ? (
           <Dashboard
-            user={this.props.user}
-            notes={this.props.notes}
-            onAddNoteClick={this.props.onAddNoteClick}
-            onDeleteNoteClick={this.props.onDeleteNoteClick}
+            onAddEventClick={onAddEventClick}
+            onDeleteEventClick={onDeleteEventClick}
+            events={events}
+            user={user}
+            notes={notes}
+            onAddNoteClick={onAddNoteClick}
+            onDeleteNoteClick={onDeleteNoteClick}
           />
         ) : (
           <>

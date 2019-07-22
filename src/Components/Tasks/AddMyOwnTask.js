@@ -119,6 +119,7 @@ class SignupComponent extends React.Component {
               <div className="popOutCenter">
                 {this.renderAvatarsPage()}
                 <form className="form" onSubmit={this.handleFormSubmit}>
+                  <button onClick={this.props.toggleAddMyOwn}>Back</button>
                   <p>Task Name: </p>
                   <input
                     onChange={this.handleChange}

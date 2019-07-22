@@ -26,7 +26,6 @@ class Profile extends Component {
     } else if (this.props.logged_in && this.props.user) {
       return (
         <div className="page">
-          <h1>Profile Page</h1>
           <div className="container">
             <ProfilePicture
               updateProfile={this.props.updateProfile}

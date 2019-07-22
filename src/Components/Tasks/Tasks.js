@@ -11,6 +11,7 @@ class Tasks extends React.Component {
   };
 
   handleClick = () => {
+    this.props.getUser();
     this.setState({
       clicked: !this.state.clicked
     });

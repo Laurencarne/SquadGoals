@@ -93,7 +93,7 @@ class Icon extends React.Component {
             </div>
             <button
               className="buttonPopOutBack"
-              onClick={this.props.toggleIconBar}
+              onClick={this.props.toggleAvatarBar}
             >
               Back
             </button>

@@ -124,6 +124,20 @@ const deleteTaskFromServer = task => {
     headers: { Authorization: token() }
   }).then(res => res.json());
 };
+////////////////// EVENTS /////////////////////
+const addEventToServer = event => {
+  return fetch(`${API_BASE_URL}events`, {
+    method: "POST",
+    headers: { ...headers, Authorization: token() },
+    body: JSON.stringify(event)
+  }).then(resp => resp.json());
+};
+const deleteEventFromServer = event => {
+  return fetch(`${API_BASE_URL}events/${event}`, {
+    method: "DELETE",
+    headers: { Authorization: token() }
+  }).then(res => res.json());
+};
 ////////////////// EXPORT /////////////////////
 export default {
   login,
@@ -139,5 +153,7 @@ export default {
   updateTasks,
   addShoppingItemToServer,
   deleteItemFromServer,
-  deleteTaskFromServer
+  deleteTaskFromServer,
+  addEventToServer,
+  deleteEventFromServer
 };
