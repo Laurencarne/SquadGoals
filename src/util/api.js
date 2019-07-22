@@ -100,6 +100,21 @@ const updateTasks = (token, task) => {
     body: JSON.stringify(task)
   }).then(res => res.json());
 };
+////////////////// SHOPPING LIST /////////////////////
+const addShoppingItemToServer = (token, item) => {
+  return fetch(`${API_BASE_URL}items`, {
+    method: "POST",
+    headers: { ...headers, Authorization: token },
+    body: JSON.stringify(item)
+  }).then(res => res.json());
+};
+
+const deleteItemFromServer = (item, token) => {
+  return fetch(`${API_BASE_URL}items/${item}`, {
+    method: "DELETE",
+    headers: { Authorization: token }
+  }).then(res => res.json());
+};
 ////////////////// EXPORT /////////////////////
 export default {
   login,
@@ -113,5 +128,7 @@ export default {
   getFlat,
   moveIn,
   addTaskToFlatServer,
-  updateTasks
+  updateTasks,
+  addShoppingItemToServer,
+  deleteItemFromServer
 };

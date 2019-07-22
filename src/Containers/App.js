@@ -151,6 +151,21 @@ class App extends React.Component {
       });
     });
   };
+  ////////////////// SHOPPING LIST /////////////////////
+  addShoppingItemToFlat = item => {
+    api.addShoppingItemToServer(token(), item).then(data => {
+      this.setState({
+        items: [...this.state.items, data]
+      });
+    });
+  };
+  deleteItemFromShoppingList = itemId => {
+    api.deleteItemFromServer(itemId, token()).then(data => {
+      this.setState({
+        items: this.state.items.filter(item => item.id !== itemId)
+      });
+    });
+  };
   ////////////////// RENDER /////////////////////
   render() {
     const { logged_in, user, items, tasks, flat, events, notes } = this.state;
@@ -164,7 +179,9 @@ class App extends React.Component {
       signUpUserToServer,
       updateProfile,
       addTasksToFlat,
-      updateTaskOnServer
+      updateTaskOnServer,
+      addShoppingItemToFlat,
+      deleteItemFromShoppingList
     } = this;
     return (
       <Router>
@@ -237,7 +254,14 @@ class App extends React.Component {
             />
             <Route
               path="/shopping"
-              render={() => <ShoppingList items={items} />}
+              render={() => (
+                <ShoppingList
+                  items={items}
+                  user={user}
+                  addShoppingItemToFlat={addShoppingItemToFlat}
+                  deleteItemFromShoppingList={deleteItemFromShoppingList}
+                />
+              )}
             />
             <Route path="/calendar" render={() => <Dnd />} />
           </Switch>

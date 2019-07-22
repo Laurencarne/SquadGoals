@@ -13,7 +13,8 @@
 }
 .list {
   color: #555;
-  font-size: 22px;
+  font-size: 28px;
+  font-family: "Amatic SC", cursive;
   padding: 0 !important;
   border: 1px solid #dedede;
   border-radius: 10px;
@@ -23,7 +24,7 @@
   list-style: none;
   border-bottom: 1px dotted #ccc;
   text-indent: 35px;
-  padding: 10px;
+  padding: 12px;
   text-transform: capitalize;
 }
 li:first-child {
@@ -35,4 +36,38 @@ li:first-child {
   -moz-transition: all 0.2s;
   -ms-transition: all 0.2s;
   -o-transition: all 0.2s;
+}
+
+.newItem {
+  border: 0px;
+  background-color: #fefff2;
+  font-family: "Amatic SC", cursive;
+  font-size: 28px;
+  color: #555;
+  height: 2vh;
+  width: 80%;
+  padding: 5px;
+  margin-left: 30px;
+  display: flex;
+}
+.newItem:focus {
+  outline: none;
+}
+.newItemSubmit {
+  display: flex;
+  border-radius: 5px;
+  height: 3vh;
+}
+.shoppingForm {
+  display: flex;
+  justify-content: space-between;
+}
+.shoppingButton {
+  background-color: #fefff2;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.list .formLi:hover {
+  background-color: #fefff2;
 }
