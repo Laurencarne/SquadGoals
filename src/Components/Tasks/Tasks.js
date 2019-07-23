@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import TaskShow from "./TaskShow";
 import TaskSelector from "./TaskSelector";
 import TaskUpdater from "./TaskUpdater";
@@ -18,10 +19,15 @@ class Tasks extends React.Component {
   };
 
   renderPage = () => {
-    if (this.state.clicked) {
+    if (!this.props.logged_in && this.props.user) {
+      return <Redirect to="/" />;
+    } else if (this.state.clicked && this.props.user.username) {
       return (
         <>
           <>
+            <button className="taskBackButton" onClick={this.handleClick}>
+              <img src="https://i.imgur.com/sW5hYLx.png" />
+            </button>
             <h1>Remove Exsisting Tasks From Your Apartment</h1>
             <TaskUpdater
               tasks={this.props.tasks}
@@ -44,10 +50,12 @@ class Tasks extends React.Component {
         </>
       );
     }
-    if (this.props.tasks.length > 0) {
+    if (this.props.tasks.length > 0 && this.props.user.username) {
       return (
         <>
-          <button onClick={this.handleClick}> Update Flat's Tasks </button>
+          <button className="taskButtonEdit" onClick={this.handleClick}>
+            Update Flat's Tasks
+          </button>
           <h2>
             Week Starting{" "}
             {moment()
@@ -62,7 +70,7 @@ class Tasks extends React.Component {
           />
         </>
       );
-    } else {
+    } else if (!this.props.logged_in && this.props.user) {
       return (
         <>
           <h1>Set Up Your Apartments Weekly Tasks</h1>

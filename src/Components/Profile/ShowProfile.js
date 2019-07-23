@@ -21,53 +21,91 @@ class ShowProfile extends Component {
   };
 
   render() {
+    const {
+      birthday,
+      move_in,
+      rent_due,
+      electricity_due,
+      water_due,
+      gas_due
+    } = this.props.user;
     return (
       <>
         {this.props.user ? (
-          <div className="pageRight">
-            <button className="profileButton" onClick={this.props.handleClick}>
+          <>
+            <div className="profileSection">
+              <span className="dates">Name: </span>
+              <span className="profileText">
+                {this.props.user.first_name} {this.props.user.last_name}
+              </span>
+            </div>
+            {birthday ? (
+              <div className="profileSection">
+                <span className="dates">Birthday: </span>
+                <span className="profileText">
+                  {moment(this.props.user.birthday).format("dddd Do MMMM YYYY")}
+                </span>
+              </div>
+            ) : (
+              <h4>Please update your birthday</h4>
+            )}
+            {move_in ? (
+              <div className="profileSection">
+                <span className="dates">Move in Date: </span>
+                <span className="profileText">
+                  {moment(move_in).format("Do MMMM YYYY")}
+                </span>
+              </div>
+            ) : (
+              <h4>Please Update you Profile to see Bill Information.</h4>
+            )}
+            {rent_due ? (
+              <div className="profileSection">
+                <span className="dates">Rent Due: </span>
+                <span className="profileText">
+                  {this.getDueDateMonth(rent_due)}
+                </span>
+              </div>
+            ) : (
+              <h4>" Please update your rent due date"</h4>
+            )}
+            {electricity_due ? (
+              <div className="profileSection">
+                <span className="dates">Electricity Due: </span>
+                <span className="profileText">
+                  {this.getDueDateMonth(electricity_due)}
+                </span>
+              </div>
+            ) : (
+              <h4>" Please update your electricity bill date"</h4>
+            )}
+            {water_due ? (
+              <div className="profileSection">
+                <span className="dates">Water Due: </span>
+                <span className="profileText">
+                  {this.getDueDateMonth(water_due)}
+                </span>
+              </div>
+            ) : (
+              <h4>" Please update your water bill date"</h4>
+            )}
+            {gas_due ? (
+              <div className="profileSection">
+                <span className="dates">Gas Due: </span>
+                <span className="profileText">
+                  {this.getDueDateMonth(gas_due)}
+                </span>
+              </div>
+            ) : (
+              <h4>" Please update your gas bill date"</h4>
+            )}
+            <button
+              className="profileEditButton"
+              onClick={this.props.handleClick}
+            >
               Edit
             </button>
-            <h4>
-              Name: {this.props.user.first_name} {this.props.user.last_name}
-            </h4>
-            <h4>
-              Birthday:{" "}
-              {this.props.user.birthday
-                ? moment(this.props.user.birthday).format("dddd Do MMMM YYYY")
-                : "Please update your birthday"}
-            </h4>
-            <h4>
-              Move In Date:{" "}
-              {this.props.user.move_in
-                ? moment(this.props.user.move_in).format("Do MMMM YYYY")
-                : " Please update your move in date"}
-            </h4>
-            <h4>
-              Rent Due:{" "}
-              {this.props.user.rent_due
-                ? this.getDueDateMonth(this.props.user.rent_due)
-                : " Please update your rent due date"}
-            </h4>
-            <h4>
-              Electricity Due:{" "}
-              {this.props.user.electricity_due
-                ? this.getDueDateMonth(this.props.user.electricity_due)
-                : " Please update your electricity bill date"}
-            </h4>
-            <h4>
-              Water Due:{" "}
-              {this.props.user.water_due
-                ? this.getDueDateMonth(this.props.user.water_due)
-                : " Please update your water bill date"}
-            </h4>
-            <h4>
-              Gas Due:{" "}
-              {this.props.user.gas_due
-                ? this.getDueDateMonth(this.props.user.gas_due)
-                : " Please update your gas bill date"}
-            </h4>
-          </div>
+          </>
         ) : null}
       </>
     );

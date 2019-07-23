@@ -2,6 +2,12 @@
   align-self: center;
   border-radius: 10px;
   background-color: #c9e265;
+  padding: 10px;
+  border: 2px solid #c9e265;
+}
+.buttonPopOut:hover {
+  background-color: rgba(201, 226, 101, 0.8);
+  border: 2px solid rgba(201, 226, 101, 0);
 }
 .avatarPopOut {
   align-self: center;
@@ -33,5 +39,10 @@
 .buttonPopOutBack {
   align-self: center;
   border-radius: 10px;
-  background-color: #c9e265;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0);
+}
+.buttonPopOutBack:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 2px solid rgba(255, 226, 101, 0);
 }

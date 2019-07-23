@@ -58,7 +58,12 @@ class EditProfile extends Component {
       <div className="popOut">
         <div className="popOutCenter">
           <form className="form" onSubmit={this.handleSubmit}>
-            <button onClick={this.props.handleClick}>Back</button>
+            <button
+              className="profileBackButton"
+              onClick={this.props.handleClick}
+            >
+              Back
+            </button>
             <p>First Name: </p>
             <input
               onChange={this.handleChange}
@@ -127,48 +132,3 @@ class EditProfile extends Component {
 }
 
 export default EditProfile;
-
-// <label htmlFor="rent_due">Rent</label>
-// <input
-//   className="numberInput"
-//   onChange={this.handleChange}
-//   id="rent_due"
-//   type="number"
-//   name="rent_due"
-//   value={this.state.rent_due}
-// />
-// </div>
-// <div className="datesTwo">
-// <label htmlFor="electricity_due">Electricity</label>
-// <input
-//   className="numberInput"
-//   onChange={this.handleChange}
-//   id="electricity_due"
-//   type="number"
-//   name="electricity_due"
-//   value={this.state.electricity_due}
-// />
-// </div>
-// </div>
-// <div className="datesHolderTwo">
-// <div className="datesThree">
-// <label htmlFor="water_due">Water</label>
-// <input
-//   className="numberInput"
-//   onChange={this.handleChange}
-//   id="water_due"
-//   type="number"
-//   name="water_due"
-//   value={this.state.water_due}
-// />
-// </div>
-// <div className="datesFour">
-// <label htmlFor="gas_due">Gas</label>
-// <input
-//   className="numberInput"
-//   onChange={this.handleChange}
-//   id="gas_due"
-//   type="number"
-//   name="gas_due"
-//   value={this.state.gas_due}
-// />

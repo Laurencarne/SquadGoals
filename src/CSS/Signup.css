@@ -1,14 +1,9 @@
 .avatarProfilePicture {
   height: 30vh;
   border-radius: 15px;
-}
-.avatarInput {
-  /* nothing on its own. see the chained options below */
+  margin-bottom: 10px;
 }
 
-.submitButton {
-  /* none on its own, see chained options below */
-}
 .form .avatarInput {
   height: auto;
   font-weight: lighter;

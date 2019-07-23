@@ -52,7 +52,7 @@ class LoginComponent extends React.Component {
                 name="password"
                 value={this.state.password}
               />
-              <button>Log in</button>
+              <button className="submitButton">Log in</button>
             </form>
           </div>
         )}

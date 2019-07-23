@@ -31,10 +31,12 @@ class Profile extends Component {
               updateProfile={this.props.updateProfile}
               user={this.props.user}
             />
-            <ShowProfile
-              handleClick={this.handleClick}
-              user={this.props.user}
-            />
+            <div className="pageRight">
+              <ShowProfile
+                handleClick={this.handleClick}
+                user={this.props.user}
+              />
+            </div>
           </div>
         </div>
       );

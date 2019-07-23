@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import "../../CSS/NotesAndEvents.css";
 
 export default class Event extends React.Component {
   state = {

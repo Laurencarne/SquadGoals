@@ -1,5 +1,5 @@
 import React from "react";
-// import "../../CSS/Events.css";
+import "../../CSS/NotesAndEvents.css";
 import Event from "./Event";
 import DatePage from "../../util/DatePage";
 import moment from "moment";
@@ -44,7 +44,9 @@ export default class Events extends React.Component {
         <div className="popOut">
           <div className="popOutCenter">
             <form className="form" onSubmit={this.handleSubmit}>
-              <button onClick={this.handleClick}>Back</button>
+              <button className="newEventButton" onClick={this.handleClick}>
+                Back
+              </button>
               <p>Event Name: </p>
               <input
                 onChange={this.handleChange}

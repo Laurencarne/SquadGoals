@@ -1,5 +1,6 @@
 .flatmate img {
   width: 80px;
+  border-radius: 50%;
 }
 .flatmate {
   align-self: center;
@@ -29,4 +30,9 @@
   justify-content: space-between;
   /* align-items: center; */
   margin: 10px 10px 0px 0px;
+}
+.dates {
+  color: #ff5757;
+  font-size: 35px;
+  text-align: center;
 }

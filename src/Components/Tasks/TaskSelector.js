@@ -74,7 +74,14 @@ class TaskSelector extends React.Component {
   render() {
     return (
       <>
-        <button onClick={this.handleSubmit}>Update</button>
+        <div className="taskButtonsDiv">
+          <button className="taskButton" onClick={this.toggleAddMyOwn}>
+            Create My Own
+          </button>
+          <button className="taskButton" onClick={this.handleSubmit}>
+            Update
+          </button>
+        </div>
         <div className="taskSelectPage">
           {tasks
             .filter(
@@ -101,7 +108,6 @@ class TaskSelector extends React.Component {
             })}
         </div>
         {this.addMyOwn()}
-        <button onClick={this.toggleAddMyOwn}>Create My Own</button>
       </>
     );
   }

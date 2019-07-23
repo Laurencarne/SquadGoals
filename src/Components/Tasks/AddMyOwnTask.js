@@ -119,7 +119,12 @@ class SignupComponent extends React.Component {
               <div className="popOutCenter">
                 {this.renderAvatarsPage()}
                 <form className="form" onSubmit={this.handleFormSubmit}>
-                  <button onClick={this.props.toggleAddMyOwn}>Back</button>
+                  <button
+                    className="taskBackButton"
+                    onClick={this.props.toggleAddMyOwn}
+                  >
+                    <img src="https://i.imgur.com/sW5hYLx.png" />
+                  </button>
                   <p>Task Name: </p>
                   <input
                     onChange={this.handleChange}
@@ -136,7 +141,9 @@ class SignupComponent extends React.Component {
                   />
                   {this.renderChooseAvatarButton()}
                   {this.renderSelectedAvatar()}
-                  <button className="submitButton">Create</button>
+                  <button className="taskButton" className="submitButton">
+                    Create
+                  </button>
                 </form>
               </div>
             </div>

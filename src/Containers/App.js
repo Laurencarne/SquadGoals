@@ -291,6 +291,7 @@ class App extends React.Component {
                 <ShoppingList
                   items={items}
                   user={user}
+                  logged_in={logged_in}
                   addShoppingItemToFlat={addShoppingItemToFlat}
                   deleteItemFromShoppingList={deleteItemFromShoppingList}
                 />
