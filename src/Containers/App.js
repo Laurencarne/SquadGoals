@@ -96,7 +96,7 @@ class App extends React.Component {
   signUpUserToServer = flatmate => {
     api.signup(flatmate).then(data => {
       if (data.error) {
-        alert("Something is wrong with your credentials");
+        alert(data.error);
       } else {
         localStorage.setItem("token", data.jwt);
         this.getUser();
@@ -266,6 +266,7 @@ class App extends React.Component {
                   updateProfile={updateProfile}
                   user={user}
                   logged_in={logged_in}
+                  flat={flat}
                 />
               )}
             />

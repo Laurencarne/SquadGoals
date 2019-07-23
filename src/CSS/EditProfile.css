@@ -4,6 +4,7 @@
   background-color: #c9e265;
   padding: 1.5vh;
   border: 2px solid #c9e265;
+  box-shadow: 2.5px 2.5px rgba(120, 120, 120, 0.7);
 }
 .profileBackButton:hover {
   border: 2px solid #c9e265;

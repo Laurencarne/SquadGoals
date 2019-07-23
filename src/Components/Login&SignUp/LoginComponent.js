@@ -35,7 +35,7 @@ class LoginComponent extends React.Component {
           </div>
         ) : (
           <div className="container">
-            <form className="form" onSubmit={this.handleSubmit}>
+            <form className="form LoginSignup" onSubmit={this.handleSubmit}>
               <p>Username:</p>
               <input
                 onChange={this.handleChange}

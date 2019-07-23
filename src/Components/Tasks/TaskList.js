@@ -76,7 +76,7 @@ const names = [
   },
   {
     name: "Mow the Lawn",
-    avatar: "https://i.imgur.com/mQaK49p.png",
+    avatar: "https://i.imgur.com/adLnDlS.png",
     description: "Cut the grass"
   },
   {

@@ -21,7 +21,7 @@ class Tasks extends React.Component {
   renderPage = () => {
     if (!this.props.logged_in && this.props.user) {
       return <Redirect to="/" />;
-    } else if (this.state.clicked && this.props.user.username) {
+    } else if (this.props.logged_in && this.state.clicked && this.props.user) {
       return (
         <>
           <>
@@ -49,8 +49,7 @@ class Tasks extends React.Component {
           </>
         </>
       );
-    }
-    if (this.props.tasks.length > 0 && this.props.user.username) {
+    } else if (this.props.tasks.length > 0 && this.props.user.username) {
       return (
         <>
           <button className="taskButtonEdit" onClick={this.handleClick}>
@@ -70,7 +69,7 @@ class Tasks extends React.Component {
           />
         </>
       );
-    } else if (!this.props.logged_in && this.props.user) {
+    } else if (this.props.logged_in && this.props.user) {
       return (
         <>
           <h1>Set Up Your Apartments Weekly Tasks</h1>
@@ -84,6 +83,7 @@ class Tasks extends React.Component {
       );
     }
   };
+
   render() {
     return (
       <div className="page">

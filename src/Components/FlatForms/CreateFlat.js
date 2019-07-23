@@ -3,11 +3,11 @@ import { Redirect } from "react-router-dom";
 
 class CreateFlat extends React.Component {
   state = {
-    name: "Flat Nickname",
-    address_one: "Line One",
-    address_two: "Line Two",
-    city: "City",
-    postcode: "Post Code"
+    name: "",
+    address_one: "",
+    address_two: "",
+    city: "",
+    postcode: ""
   };
 
   handleChange = e => {
@@ -55,7 +55,11 @@ class CreateFlat extends React.Component {
           <div className="popOut">
             <div className="popOutCenter">
               <form className="form" onSubmit={this.handleSubmit}>
-                <button type="button" onClick={this.props.handleCreateFlat}>
+                <button
+                  className="joinFlatButton"
+                  type="button"
+                  onClick={this.props.handleCreateFlat}
+                >
                   Back
                 </button>
                 <p>Flat Name: </p>

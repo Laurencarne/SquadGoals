@@ -67,7 +67,7 @@ class ShowProfile extends Component {
                 </span>
               </div>
             ) : (
-              <h4>" Please update your rent due date"</h4>
+              <h4>Please update your rent due date</h4>
             )}
             {electricity_due ? (
               <div className="profileSection">
@@ -77,7 +77,7 @@ class ShowProfile extends Component {
                 </span>
               </div>
             ) : (
-              <h4>" Please update your electricity bill date"</h4>
+              <h4>Please update your electricity bill date</h4>
             )}
             {water_due ? (
               <div className="profileSection">
@@ -87,7 +87,7 @@ class ShowProfile extends Component {
                 </span>
               </div>
             ) : (
-              <h4>" Please update your water bill date"</h4>
+              <h4>Please update your water bill date</h4>
             )}
             {gas_due ? (
               <div className="profileSection">
@@ -97,7 +97,7 @@ class ShowProfile extends Component {
                 </span>
               </div>
             ) : (
-              <h4>" Please update your gas bill date"</h4>
+              <h4>Please update your gas bill date</h4>
             )}
             <button
               className="profileEditButton"

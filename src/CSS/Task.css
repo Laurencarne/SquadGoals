@@ -34,7 +34,13 @@
 }
 
 .taskSelectDiv img {
-  width: 70px;
+  width: 30%;
+}
+.taskSelectDiv,
+p,
+h1 {
+  padding: 0;
+  margin: 0;
 }
 
 .taskSelectHolder {

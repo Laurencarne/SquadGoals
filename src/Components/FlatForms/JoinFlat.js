@@ -39,7 +39,11 @@ class JoinFlat extends React.Component {
           <div className="popOut">
             <div className="popOutCenter">
               <form className="form" onSubmit={this.handleSubmit}>
-                <button type="button" onClick={this.props.handleClick}>
+                <button
+                  className="joinFlatButton"
+                  type="button"
+                  onClick={this.props.handleClick}
+                >
                   Back
                 </button>
                 <p>Flatname: </p>
@@ -56,7 +60,9 @@ class JoinFlat extends React.Component {
                   name="flat_key"
                   value={this.state.flat_key}
                 />
-                <button type="submit">Log in</button>
+                <button className="joinFlatButton" type="submit">
+                  Log in
+                </button>
               </form>
             </div>
           </div>

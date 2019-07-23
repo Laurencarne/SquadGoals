@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Notes from "../Notes/Notes";
 import Events from "../Events/Events";
+import Housemates from "./Housemates";
 import "../../CSS/Dashboard.css";
 // import date from "../../util/Date";
 import moment from "moment";
@@ -33,14 +34,6 @@ class Dashboard extends Component {
       flat_id
     } = this.props.user;
     const {
-      name,
-      address_one,
-      address_two,
-      city,
-      postcode,
-      flatmates
-    } = this.props.flat;
-    const {
       onAddNoteClick,
       onAddEventClick,
       user,
@@ -68,48 +61,32 @@ class Dashboard extends Component {
                 {rent_due ? (
                   <h4>{this.getDueDateMonth(rent_due)}</h4>
                 ) : (
-                  <h4>" Please update your rent due date"</h4>
+                  <h4>Please update your rent due date</h4>
                 )}
                 <div className="dates">Electricity Due</div>
                 {electricity_due ? (
                   <h4>{this.getDueDateMonth(electricity_due)}</h4>
                 ) : (
-                  <h4>" Please update your electricity bill date"</h4>
+                  <h4>Please update your electricity bill date</h4>
                 )}
                 <div className="dates">Water Due</div>
                 {water_due ? (
                   <h4>{this.getDueDateMonth(water_due)}</h4>
                 ) : (
-                  <h4>" Please update your water bill date"</h4>
+                  <h4>Please update your water bill date</h4>
                 )}
                 <div className="dates">Gas Due</div>
                 {gas_due ? (
                   <h4>{this.getDueDateMonth(gas_due)}</h4>
                 ) : (
-                  <h4>" Please update your gas bill date"</h4>
+                  <h4>Please update your gas bill date</h4>
                 )}
               </div>
-              <div className="flatDashbaord">
-                {flat_id ? (
-                  <>
-                    <span className="address">
-                      <p>{name}</p>
-                      <p>{address_one}</p>
-                      <p>{address_two}</p>
-                      <p>{city}</p> <p>{postcode}</p>
-                    </span>
-
-                    {flatmates.map(flatmate => (
-                      <span className="flatmate">
-                        <p>{flatmate.first_name}</p>
-                        <img src={flatmate.avatar} alt="flatmates avatar" />
-                      </span>
-                    ))}
-                  </>
-                ) : (
-                  <h4> No Flat </h4>
-                )}
-              </div>
+              {flat_id ? (
+                <div className="flatDashboard">
+                  <Housemates flat={this.props.flat} />
+                </div>
+              ) : null}
             </div>
             <div className="pageRight">
               <Events

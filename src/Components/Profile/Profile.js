@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import ShowProfile from "./ShowProfile";
 import EditProfile from "./EditProfile";
 import ProfilePicture from "./ProfilePicture";
+import Flat from "../Foundation/Flat";
 
 class Profile extends Component {
   state = {
@@ -10,35 +11,39 @@ class Profile extends Component {
   };
 
   renderPage = () => {
-    if (!this.props.logged_in && this.props.user) {
+    const { logged_in, handleChange, updateProfile, flat, user } = this.props;
+    if (!logged_in && user) {
       return <Redirect to="/" />;
-    } else if (this.state.clicked && this.props.user.username) {
+    } else if (this.state.clicked && user.username) {
       return (
         <>
           <EditProfile
-            handleChange={this.props.handleChange}
-            updateProfile={this.props.updateProfile}
+            handleChange={handleChange}
+            updateProfile={updateProfile}
             handleClick={this.handleClick}
-            user={this.props.user}
+            user={user}
           />
         </>
       );
-    } else if (this.props.logged_in && this.props.user) {
+    } else if (logged_in && user) {
       return (
-        <div className="page">
-          <div className="container">
-            <ProfilePicture
-              updateProfile={this.props.updateProfile}
-              user={this.props.user}
-            />
-            <div className="pageRight">
-              <ShowProfile
-                handleClick={this.handleClick}
-                user={this.props.user}
-              />
+        <>
+          <div className="page">
+            <div className="container">
+              <div className="pageLeft">
+                <ProfilePicture updateProfile={updateProfile} user={user} />
+                {user.flat_id ? (
+                  <div className="flatDashboard">
+                    <Flat flat={flat} />
+                  </div>
+                ) : null}
+              </div>
+              <div className="pageRight">
+                <ShowProfile handleClick={this.handleClick} user={user} />
+              </div>
             </div>
           </div>
-        </div>
+        </>
       );
     }
   };

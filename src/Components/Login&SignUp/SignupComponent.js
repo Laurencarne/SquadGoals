@@ -123,7 +123,10 @@ class SignupComponent extends React.Component {
             </div>
           ) : (
             <div className="container">
-              <form className="form" onSubmit={this.handleFormSubmit}>
+              <form
+                className="form LoginSignup"
+                onSubmit={this.handleFormSubmit}
+              >
                 <p>First Name: </p>
                 <input
                   onChange={this.handleChange}
