@@ -14,10 +14,10 @@ export default class Events extends React.Component {
   };
   ////////////////// CONDITIONAL RENDERING //////////////////
   renderEvents = () => {
-    if (this.props.events) {
+    if (this.props.events.length > 0) {
       return (
         <>
-          <h4>Upcoming Events</h4>
+          <h3>Upcoming Events</h3>
           {this.props.events
             .filter(events => moment(events.start) > moment())
             .map(event => (
@@ -31,7 +31,8 @@ export default class Events extends React.Component {
     } else {
       return (
         <>
-          <h3>You don't have any events yet....Get Planning Now!</h3>
+          <h3>You don't have any events yet....</h3>
+          <h4>Get Planning Now!</h4>
         </>
       );
     }
@@ -124,9 +125,11 @@ export default class Events extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="Events">
         {this.renderEvents()}
-        <button onClick={this.handleClick}>Make Plans</button>
+        <button className="notesAndEventsButton" onClick={this.handleClick}>
+          Make Plans
+        </button>
         {this.renderNewForm()}
       </div>
     );

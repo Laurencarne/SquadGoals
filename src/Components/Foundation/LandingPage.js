@@ -13,12 +13,14 @@ class LandingPage extends Component {
       onAddNoteClick,
       onDeleteNoteClick,
       logged_in,
-      onDeleteEventClick
+      onDeleteEventClick,
+      flat
     } = this.props;
     return (
       <>
         {logged_in && user ? (
           <Dashboard
+            flat={flat}
             onAddEventClick={onAddEventClick}
             onDeleteEventClick={onDeleteEventClick}
             events={events}

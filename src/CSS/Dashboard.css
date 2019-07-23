@@ -1,0 +1,32 @@
+.flatmate img {
+  width: 80px;
+}
+.flatmate {
+  align-self: center;
+}
+.address {
+  display: flex;
+  flex-direction: column;
+}
+.dashboard {
+  width: 75%;
+  padding: 15px 15px;
+  border-radius: 5px;
+  background-color: rgba(82, 113, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 10px 10px 0px;
+}
+.flatDashbaord {
+  width: 75%;
+  padding: 15px 15px;
+  border-radius: 5px;
+  background-color: rgba(92, 225, 230, 0.5);
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  /* align-items: center; */
+  margin: 10px 10px 0px 0px;
+}

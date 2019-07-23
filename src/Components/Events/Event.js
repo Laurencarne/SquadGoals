@@ -40,12 +40,13 @@ export default class Event extends React.Component {
   render() {
     const { id, title, start, end, description } = this.props.event;
     return (
-      <div className="Event">
+      <div className="oneEvent">
         <div onClick={() => this.handleClick(id)}>
           <p key={id}>
             {title}, on {moment(start).format("dddd Do MMMM")}
           </p>
           <p>{description}</p>
+          <hr />
           {this.renderDeleteWindow(id)}
         </div>
       </div>

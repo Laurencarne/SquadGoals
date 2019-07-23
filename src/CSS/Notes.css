@@ -8,8 +8,58 @@
 .newEventOrNoteSubmit {
   border-radius: 5px;
   background-color: #c9e265;
+  height: 35px;
+  font-size: 20px;
+}
+.notesAndEventsButton {
+  width: 35%;
+  align-self: center;
+  font-size: 100%;
+  position: absolute;
+  bottom: 0;
 }
 textarea {
   font-family: "Amatic SC", cursive;
   font-size: 30px;
+  width: 95%;
+  background-color: #ff5757;
+  border: 0px;
+}
+.Note {
+  padding-left: 10px;
+  font-family: "Amatic SC", cursive;
+  font-size: 30px;
+}
+.Note p {
+  margin: 5px;
+  text-align: left;
+}
+.Note:nth-child(even) {
+  color: whitesmoke;
+}
+.Events,
+.Notes {
+  position: relative;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 5px 15px 10vh 15px;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+.Events {
+  background-color: #ffde59;
+}
+.Notes {
+  background-color: #ff5757;
+}
+.oneEvent p {
+  font-size: 20px;
+  margin: 5px;
+}
+.oneEvent hr {
+  border-top: 5px dotted rgba(0, 0, 0, 0.3);
+  border-bottom: 0;
+  width: 65%;
 }

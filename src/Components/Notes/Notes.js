@@ -11,6 +11,7 @@ export default class Notes extends React.Component {
     if (this.props.notes) {
       return (
         <>
+          <h3>Notes...</h3>
           {this.props.notes.map(note => (
             <Note
               note={note}
@@ -30,9 +31,17 @@ export default class Notes extends React.Component {
 
   renderButton = () => {
     if (this.state.clicked) {
-      return <button onClick={this.handleClick}>Cancel</button>;
+      return (
+        <button className="notesAndEventsButton" onClick={this.handleClick}>
+          Cancel
+        </button>
+      );
     } else {
-      return <button onClick={this.handleClick}>New</button>;
+      return (
+        <button className="notesAndEventsButton" onClick={this.handleClick}>
+          New
+        </button>
+      );
     }
   };
 
@@ -41,13 +50,13 @@ export default class Notes extends React.Component {
       return (
         <form onSubmit={this.handleSubmit} id="newNoteForm">
           <textarea
-            className="newNote"
+            className="newEventOrNote"
             rows="2"
             cols="50"
             name="comment"
             form="newNoteForm"
           />
-          <input type="submit" className="newNoteSubmit" />
+          <input type="submit" className="newEventOrNoteSubmit" />
         </form>
       );
     }
@@ -74,11 +83,12 @@ export default class Notes extends React.Component {
 
     e.target.reset();
   };
+
   ////////////////////// HANDLE CLICKS //////////////////////
 
   render() {
     return (
-      <div>
+      <div className="Notes">
         {this.renderNotes()}
         {this.renderButton()}
         {this.renderNewForm()}

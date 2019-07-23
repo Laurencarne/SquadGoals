@@ -14,7 +14,7 @@
 .list {
   color: #555;
   font-size: 28px;
-  font-family: "Amatic SC", cursive;
+  font-family: "Reenie Beanie", cursive;
   padding: 0 !important;
   border: 1px solid #dedede;
   border-radius: 10px;
@@ -41,7 +41,7 @@ li:first-child {
 .newItem {
   border: 0px;
   background-color: #fefff2;
-  font-family: "Amatic SC", cursive;
+  font-family: "Reenie Beanie", cursive;
   font-size: 28px;
   color: #555;
   height: 2vh;

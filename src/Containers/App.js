@@ -226,6 +226,7 @@ class App extends React.Component {
               exact
               render={() => (
                 <LandingPage
+                  flat={flat}
                   events={events}
                   logged_in={logged_in}
                   onAddNoteClick={onAddNoteClick}

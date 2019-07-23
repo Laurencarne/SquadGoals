@@ -5,13 +5,13 @@
 
 body {
   margin: 0;
-  font-family: "Tenor Sans", sans-serif;
+  font-family: "Poiret One", cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: "Tenor Sans", sans-serif;
+  font-family: "Poiret One", cursive;
 }
 .nav {
   display: flex;
@@ -46,8 +46,16 @@ code {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50%;
+  width: 80%;
   margin-right: 10px;
+}
+.pageRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin-left: 10px;
 }
 .pageLeft h4 {
   /* used in dashboard */
@@ -87,14 +95,7 @@ button {
   padding: 1.5vh;
   text-align: center;
 }
-.pageRight {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  margin-left: 10px;
-}
+
 /* /////////////////// FORMS /////////////////// */
 .form {
   /* used in editProfile */

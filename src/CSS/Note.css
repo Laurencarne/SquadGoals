@@ -1,9 +1,0 @@
-.Note {
-  display: flex;
-  align-items: center;
-  font-family: "Amatic SC", cursive;
-  font-size: 30px;
-}
-.Note button {
-  margin: 10px;
-}
