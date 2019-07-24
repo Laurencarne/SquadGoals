@@ -17,6 +17,7 @@ class TaskSelector extends React.Component {
     } else if (taskHolder.includes(task)) {
       taskHolder = taskHolder.filter(t => t.name !== task.name);
     }
+    console.log(taskHolder);
     this.renderStyle(task.avatar);
   };
 
@@ -47,6 +48,12 @@ class TaskSelector extends React.Component {
       this.props.addTasksToFlat({ ...task, ...flatId, flatmate_id, week });
       // console.log({ ...task, ...flatId, flatmate_id, week });
       counter++;
+    });
+    taskHolder = [];
+    this.setState({
+      tasks: tasks.map(task => {
+        task.checked = false;
+      })
     });
   };
 
@@ -95,7 +102,10 @@ class TaskSelector extends React.Component {
                 >
                   <div
                     style={{
-                      backgroundColor: taskToShow.checked ? "#5ce1e6" : null
+                      backgroundColor:
+                        taskToShow.checked && taskHolder.includes(taskToShow)
+                          ? "#5ce1e6"
+                          : null
                     }}
                     className="taskSelectHolder"
                   >

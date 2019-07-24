@@ -1,20 +1,22 @@
 import React, { Component } from "react";
-// import events from "./Events";
+import api from "../../util/api";
+import Events from "./Events";
 import { Calendar, Views, momentLocalizer } from "react-big-calendar";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
-
 import moment from "moment";
-
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 const localizer = momentLocalizer(moment);
 
 class Dnd extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      events: this.props.events
+      events: []
     };
+  }
+  componentDidMount() {
+    api.getEvents().then(events => this.setState({ events }));
   }
 
   render() {
@@ -24,7 +26,7 @@ class Dnd extends React.Component {
           localizer={localizer}
           defaultDate={new Date()}
           defaultView="month"
-          events={this.props.events}
+          events={this.state.events}
           style={{ height: "100vh" }}
         />
       </div>

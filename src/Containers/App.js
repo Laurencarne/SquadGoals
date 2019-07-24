@@ -45,11 +45,6 @@ class App extends React.Component {
     });
   };
   //////////////////// NOTES /////////////////////
-
-  // getNotes = () => {
-  //   api.getNotes().then(notes => this.setState({ notes }));
-  // };
-
   onAddNoteClick = note => {
     api.addNoteToServer(note).then(data => {
       this.setState({
@@ -128,15 +123,6 @@ class App extends React.Component {
   createNewFlat = flat => {
     api.addFlatToServer(flat).then(data => this.getUser());
   };
-
-  // getFlatDetails = () => {
-  //   api.getFlat().then(flat => {
-  //     if (!flat.error) {
-  //       this.setState({ flat });
-  //     }
-  //   });
-  // };
-
   addUserToFlat = flatInfo => {
     api.moveIn(flatInfo).then(user => {
       if (!user.error) {
@@ -151,14 +137,9 @@ class App extends React.Component {
       this.setState({
         flat: data
       });
-      // console.log(data);
     });
   };
   ////////////////// TASKS /////////////////////
-  // getMyTasks = () => {
-  //   api.getTasks().then(my_tasks => this.setState({ my_tasks }));
-  // };
-
   addTasksToFlat = flat => {
     api.addTaskToFlatServer(flat).then(data => {
       this.setState({
@@ -308,7 +289,7 @@ class App extends React.Component {
                 />
               )}
             />
-            <Route path="/calendar" render={() => <Dnd events={events} />} />
+            <Route path="/calendar" render={() => <Dnd />} />
           </Switch>
           <Footer />
         </div>

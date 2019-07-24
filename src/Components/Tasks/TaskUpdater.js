@@ -5,11 +5,6 @@ import moment from "moment";
 let taskHolder = [];
 
 class TaskUpdater extends React.Component {
-  state = {
-    clicked: false,
-    selected: []
-  };
-
   handleDeleteClick = task => {
     this.props.deleteTask(task.id);
   };
@@ -24,10 +19,7 @@ class TaskUpdater extends React.Component {
                 onClick={() => this.handleDeleteClick(task)}
                 className="taskSelectDiv"
               >
-                <div
-                  style={{ backgroundColor: task.checked ? "#5ce1e6" : null }}
-                  className="taskSelectHolder"
-                >
+                <div className="taskSelectHolder">
                   <h1>{task.name}</h1>
                   <img src={task.avatar} alt="icon" />
                   <p>{task.description}</p>

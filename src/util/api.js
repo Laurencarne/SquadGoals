@@ -37,12 +37,6 @@ const updateFlatmateProfile = (profile, id) => {
   }).then(res => res.json());
 };
 ////////////////// NOTES /////////////////////
-// const getNotes = () => {
-//   return fetch(`${API_BASE_URL}notes`, {
-//     headers: { ...headers, Authorization: token() }
-//   }).then(res => res.json());
-// };
-
 const addNoteToServer = note => {
   return fetch(`${API_BASE_URL}notes`, {
     method: "POST",
@@ -87,13 +81,6 @@ const moveIn = flatInfo => {
   }).then(res => res.json());
 };
 ////////////////// TASKS /////////////////////
-
-// const getTasks = () => {
-//   return fetch(`${API_BASE_URL}my_tasks`, {
-//     headers: { ...headers, Authorization: token() }
-//   }).then(res => res.json());
-// };
-
 const addTaskToFlatServer = flat => {
   return fetch(`${API_BASE_URL}tasks`, {
     method: "POST",
@@ -145,6 +132,11 @@ const deleteEventFromServer = event => {
     headers: { Authorization: token() }
   }).then(res => res.json());
 };
+const getEvents = () => {
+  return fetch(`${API_BASE_URL}events`, {
+    headers: { ...headers, Authorization: token() }
+  }).then(res => res.json());
+};
 ////////////////// EXPORT /////////////////////
 export default {
   login,
@@ -163,5 +155,6 @@ export default {
   deleteItemFromServer,
   deleteTaskFromServer,
   addEventToServer,
-  deleteEventFromServer
+  deleteEventFromServer,
+  getEvents
 };
