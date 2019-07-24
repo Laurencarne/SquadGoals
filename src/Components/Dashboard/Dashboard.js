@@ -3,7 +3,6 @@ import Notes from "../Notes/Notes";
 import Events from "../Events/Events";
 import Housemates from "./Housemates";
 import "../../CSS/Dashboard.css";
-// import date from "../../util/Date";
 import moment from "moment";
 
 class Dashboard extends Component {
@@ -84,7 +83,11 @@ class Dashboard extends Component {
               </div>
               {flat_id ? (
                 <div className="flatDashboard">
-                  <Housemates flat={this.props.flat} />
+                  <Housemates
+                    logged_in={this.props.logged_in}
+                    flat={this.props.flat}
+                    user={user}
+                  />
                 </div>
               ) : null}
             </div>

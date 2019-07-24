@@ -12,7 +12,7 @@
   align-items: center;
 }
 .address input {
-  border: 0.5px black solid;
+  border: 0.5px solid #5ce1e6;
   border-radius: 2px;
   padding: 2%;
   margin: 2px;
@@ -51,5 +51,17 @@
 .dates {
   color: #ff5757;
   font-size: 35px;
+  text-align: center;
+}
+.flatKeyButton {
+  background-color: #ffde59;
+  border: 0;
+  border-radius: 3px;
+  font-family: "Poiret One", cursive;
+  font-size: 100%;
+  width: 20%;
+  align-self: center;
+}
+.flatKey {
   text-align: center;
 }

@@ -62,13 +62,20 @@ const addFlatToServer = flat => {
   return fetch(`${API_BASE_URL}flats`, {
     method: "POST",
     headers: { ...headers, Authorization: token() },
-    body: JSON.stringify(flat.flat)
+    body: JSON.stringify(flat)
   }).then(resp => resp.json());
 };
 
 const getFlat = () => {
   return fetch(`${API_BASE_URL}flat`, {
     headers: { ...headers, Authorization: token() }
+  }).then(res => res.json());
+};
+const updateFlatOnServer = flat => {
+  return fetch(`${API_BASE_URL}flats/${flat.id}`, {
+    method: "PATCH",
+    headers: { ...headers, Authorization: token() },
+    body: JSON.stringify(flat)
   }).then(res => res.json());
 };
 
@@ -148,6 +155,7 @@ export default {
   updateFlatmateProfile,
   addFlatToServer,
   getFlat,
+  updateFlatOnServer,
   moveIn,
   addTaskToFlatServer,
   updateTasks,

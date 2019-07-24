@@ -50,6 +50,7 @@ export default class Notes extends React.Component {
       return (
         <form onSubmit={this.handleSubmit} id="newNoteForm">
           <textarea
+            required
             className="newEventOrNote"
             rows="2"
             cols="50"

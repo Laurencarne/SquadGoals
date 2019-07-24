@@ -12,16 +12,19 @@ export default class Notes extends React.Component {
         <div className="popOut">
           <div className="popOutCenter">
             <div className="form">
-              <h4 className="centerMe">
+              <h4 className="centerMe largeText">
                 Are you sure you want to delete this note?
               </h4>
               <p>{this.props.note.note}</p>
               <button
+                className="newEventButton"
                 onClick={() => this.props.onDeleteNoteClick(this.props.note.id)}
               >
                 Yes
               </button>
-              <button onClick={this.handleClick}>No! Go Back!!</button>
+              <button className="newEventButton" onClick={this.handleClick}>
+                No! Go Back!!
+              </button>
             </div>
           </div>
         </div>
@@ -37,10 +40,12 @@ export default class Notes extends React.Component {
 
   render() {
     return (
-      <div className="Note" onClick={this.handleClick}>
+      <>
         {this.renderDeleteWindow()}
-        <p>{this.props.note.note}</p>
-      </div>
+        <div className="Note" onClick={this.handleClick}>
+          <p>{this.props.note.note}</p>
+        </div>
+      </>
     );
   }
 }

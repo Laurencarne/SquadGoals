@@ -14,8 +14,10 @@ class ShoppingList extends React.Component {
       shopping_list_id: this.props.user.flat_id,
       name: e.target[0].value
     };
-    this.props.addShoppingItemToFlat(item);
-    e.target.reset();
+    if (e.target[0].value) {
+      this.props.addShoppingItemToFlat(item);
+      e.target.reset();
+    }
   };
 
   handleClick = item => {
@@ -40,7 +42,9 @@ class ShoppingList extends React.Component {
   };
 
   render() {
-    if (this.props.logged_in && this.props.user) {
+    if (!this.props.logged_in && this.props.user) {
+      return <Redirect to="/" />;
+    } else if (this.props.logged_in && this.props.user) {
       return (
         <div className="ShoppingList">
           <h4>Shopping List</h4>
@@ -81,7 +85,7 @@ class ShoppingList extends React.Component {
         </div>
       );
     } else {
-      return <Redirect to="/" />;
+      return null;
     }
   }
 }

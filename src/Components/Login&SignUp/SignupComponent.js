@@ -9,11 +9,11 @@ class SignupComponent extends React.Component {
     clicked: false,
     avatar: false,
     avatarURL: "",
-    first_name: "First Name",
-    last_name: "Last Name",
-    email: "E-Mail",
+    first_name: "",
+    last_name: "",
+    email: "",
     birthday: new Date(),
-    username: "username",
+    username: "",
     password: ""
   };
 
@@ -97,19 +97,34 @@ class SignupComponent extends React.Component {
   };
 
   handleFormSubmit = e => {
+    const {
+      username,
+      first_name,
+      last_name,
+      password,
+      birthday,
+      email,
+      avatarURL
+    } = this.state;
     e.preventDefault();
     const flatmate = {
       flatmate: {
-        username: this.state.username,
-        first_name: this.state.first_name,
-        last_name: this.state.last_name,
-        password: this.state.password,
-        birthday: this.state.birthday,
-        email: this.state.email,
-        avatar: this.state.avatarURL
+        username: username,
+        first_name: first_name,
+        last_name: last_name,
+        password: password,
+        birthday: birthday,
+        email: email,
+        avatar: avatarURL
+          ? avatarURL
+          : "http://www.agromarketday.com/images/profile-holder.png"
       }
     };
-    this.props.signUpUserToServer(flatmate);
+    if (username && first_name && last_name && password && birthday && email) {
+      this.props.signUpUserToServer(flatmate);
+    } else {
+      alert("Please fill in your details to Sign Up");
+    }
   };
 
   render() {
@@ -133,6 +148,7 @@ class SignupComponent extends React.Component {
                   type="first_name"
                   name="first_name"
                   value={this.state.first_name}
+                  required
                 />
                 <p>Last Name: </p>
                 <input
@@ -140,6 +156,7 @@ class SignupComponent extends React.Component {
                   type="last_name"
                   name="last_name"
                   value={this.state.last_name}
+                  required
                 />
                 <p>E-Mail: </p>
                 <input
@@ -147,6 +164,7 @@ class SignupComponent extends React.Component {
                   type="email"
                   name="email"
                   value={this.state.email}
+                  required
                 />
                 <p>Birthday: </p>
                 <DatePage
@@ -160,6 +178,7 @@ class SignupComponent extends React.Component {
                   type="username"
                   name="username"
                   value={this.state.username}
+                  required
                 />
                 <p>Password: </p>
                 <input
@@ -167,6 +186,7 @@ class SignupComponent extends React.Component {
                   type="password"
                   name="password"
                   value={this.state.password}
+                  required
                 />
                 {this.renderChooseAvatarButton()}
                 {this.renderSelectedAvatar()}

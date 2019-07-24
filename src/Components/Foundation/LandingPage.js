@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import Dashboard from "./Dashboard";
+import Dashboard from "../Dashboard/Dashboard";
 import Home from "./Home";
-// App CSS for styling
 
 class LandingPage extends Component {
   render() {
@@ -20,6 +19,7 @@ class LandingPage extends Component {
       <>
         {logged_in && user ? (
           <Dashboard
+            logged_in={logged_in}
             flat={flat}
             onAddEventClick={onAddEventClick}
             onDeleteEventClick={onDeleteEventClick}

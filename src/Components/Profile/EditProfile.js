@@ -7,12 +7,16 @@ class EditProfile extends Component {
   state = {
     first_name: this.props.user.first_name,
     last_name: this.props.user.last_name,
-    move_in: this.props.user.move_in,
-    birthday: this.props.user.birthday,
-    rent_due: this.props.user.rent_due,
-    electricity_due: this.props.user.electricity_due,
-    water_due: this.props.user.water_due,
-    gas_due: this.props.user.gas_due
+    move_in: this.props.user.move_in ? this.props.user.move_in : new Date(),
+    birthday: this.props.user.birthday ? this.props.user.birthday : new Date(),
+    rent_due: this.props.user.rent_due ? this.props.user.rent_due : new Date(),
+    electricity_due: this.props.user.electricity_due
+      ? this.props.user.electricity_due
+      : new Date(),
+    water_due: this.props.user.water_due
+      ? this.props.user.water_due
+      : new Date(),
+    gas_due: this.props.user.gas_due ? this.props.user.gas_due : new Date()
   };
 
   handleChange = e => {
@@ -59,6 +63,7 @@ class EditProfile extends Component {
         <div className="popOutCenter">
           <form className="form" onSubmit={this.handleSubmit}>
             <button
+              type="button"
               className="profileBackButton"
               onClick={this.props.handleClick}
             >
@@ -70,7 +75,7 @@ class EditProfile extends Component {
               id="first_name"
               type="first_name"
               name="first_name"
-              value={this.state.first_name}
+              placeholder={this.state.first_name}
             />
             <p>Last Name: </p>
             <input
@@ -78,7 +83,7 @@ class EditProfile extends Component {
               id="last_name"
               type="last_name"
               name="last_name"
-              value={this.state.last_name}
+              placeholder={this.state.last_name}
             />
             <div className="datesHolderOne">
               <div className="datesOne">

@@ -146,6 +146,14 @@ class App extends React.Component {
       }
     });
   };
+  updateFlat = flat => {
+    api.updateFlatOnServer(flat).then(data => {
+      this.setState({
+        flat: data
+      });
+      // console.log(data);
+    });
+  };
   ////////////////// TASKS /////////////////////
   // getMyTasks = () => {
   //   api.getTasks().then(my_tasks => this.setState({ my_tasks }));
@@ -208,7 +216,8 @@ class App extends React.Component {
       deleteTask,
       getUser,
       onAddEventClick,
-      onDeleteEventClick
+      onDeleteEventClick,
+      updateFlat
     } = this;
     return (
       <Router>
@@ -267,6 +276,7 @@ class App extends React.Component {
                   user={user}
                   logged_in={logged_in}
                   flat={flat}
+                  updateFlat={updateFlat}
                 />
               )}
             />

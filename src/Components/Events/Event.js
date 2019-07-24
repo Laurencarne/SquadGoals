@@ -21,10 +21,15 @@ export default class Event extends React.Component {
                 {title}, on {moment(start).format("dddd Do MMMM")}
               </p>
               <p>{description}</p>
-              <button onClick={() => this.props.onDeleteEventClick(id)}>
+              <button
+                className="newEventButton"
+                onClick={() => this.props.onDeleteEventClick(id)}
+              >
                 Yes
               </button>
-              <button onClick={this.handleClick}>No! Go Back!!</button>
+              <button className="newEventButton" onClick={this.handleClick}>
+                No! Go Back!!
+              </button>
             </div>
           </div>
         </div>

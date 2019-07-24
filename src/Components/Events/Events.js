@@ -54,6 +54,7 @@ export default class Events extends React.Component {
                 type="title"
                 name="title"
                 value={this.state.title}
+                required
               />
               <p>Tell Me More: </p>
               <input
@@ -106,14 +107,15 @@ export default class Events extends React.Component {
   };
 
   handleSubmit = e => {
+    const { title, description, start, end } = this.state;
     e.preventDefault();
     const event = {
       event: {
         flatmate_id: this.props.user.id,
-        title: this.state.title,
-        description: this.state.description,
-        start: this.state.start,
-        end: this.state.end
+        title: title,
+        description: description ? description : "...",
+        start: start,
+        end: end ? end : start
       }
     };
     this.props.onAddEventClick(event);
@@ -122,6 +124,13 @@ export default class Events extends React.Component {
     });
 
     e.target.reset();
+    this.setState({
+      clicked: false,
+      title: "",
+      description: "",
+      start: "",
+      end: ""
+    });
   };
   ////////////////////// HANDLE CLICKS //////////////////////
 

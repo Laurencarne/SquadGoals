@@ -19,11 +19,15 @@ class LoginComponent extends React.Component {
       username: this.state.username,
       password: this.state.password
     };
-    this.props.onLoginClicked(user);
-    this.setState({
-      username: "",
-      password: ""
-    });
+    if (this.state.username && this.state.password) {
+      this.props.onLoginClicked(user);
+      this.setState({
+        username: "",
+        password: ""
+      });
+    } else {
+      alert("Please enter your username and password.");
+    }
   };
 
   render() {
@@ -43,6 +47,7 @@ class LoginComponent extends React.Component {
                 type="text"
                 name="username"
                 value={this.state.username}
+                required
               />
               <p>Password:</p>
               <input
@@ -51,6 +56,7 @@ class LoginComponent extends React.Component {
                 type="password"
                 name="password"
                 value={this.state.password}
+                required
               />
               <button className="submitButton">Log in</button>
             </form>

@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import ShowProfile from "./ShowProfile";
 import EditProfile from "./EditProfile";
 import ProfilePicture from "./ProfilePicture";
-import Flat from "../Foundation/Flat";
+import Flat from "./Flat";
 
 class Profile extends Component {
   state = {
@@ -11,7 +11,14 @@ class Profile extends Component {
   };
 
   renderPage = () => {
-    const { logged_in, handleChange, updateProfile, flat, user } = this.props;
+    const {
+      logged_in,
+      handleChange,
+      updateProfile,
+      flat,
+      user,
+      updateFlat
+    } = this.props;
     if (!logged_in && user) {
       return <Redirect to="/" />;
     } else if (this.state.clicked && user.username) {
@@ -34,7 +41,7 @@ class Profile extends Component {
                 <ProfilePicture updateProfile={updateProfile} user={user} />
                 {user.flat_id ? (
                   <div className="flatDashboard">
-                    <Flat flat={flat} />
+                    <Flat updateFlat={updateFlat} flat={flat} />
                   </div>
                 ) : null}
               </div>
