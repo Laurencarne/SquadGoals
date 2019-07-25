@@ -8,7 +8,7 @@ export default class Events extends React.Component {
   state = {
     clicked: false,
     title: "",
-    description: "",
+    desc: "",
     start: "",
     end: ""
   };
@@ -59,10 +59,10 @@ export default class Events extends React.Component {
               <p>Tell Me More: </p>
               <input
                 onChange={this.handleChange}
-                id="description"
-                type="description"
-                name="description"
-                value={this.state.description}
+                id="desc"
+                type="desc"
+                name="desc"
+                value={this.state.desc}
               />
               <div className="datesHolderOne">
                 <div className="datesOne">
@@ -107,13 +107,13 @@ export default class Events extends React.Component {
   };
 
   handleSubmit = e => {
-    const { title, description, start, end } = this.state;
+    const { title, desc, start, end } = this.state;
     e.preventDefault();
     const event = {
       event: {
         flatmate_id: this.props.user.id,
         title: title,
-        description: description ? description : "...",
+        desc: desc ? desc : "...",
         start: start,
         end: end ? end : start
       }
@@ -127,7 +127,7 @@ export default class Events extends React.Component {
     this.setState({
       clicked: false,
       title: "",
-      description: "",
+      desc: "",
       start: "",
       end: ""
     });

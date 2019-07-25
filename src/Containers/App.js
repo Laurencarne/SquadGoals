@@ -10,6 +10,7 @@ import Profile from "../Components/Profile/Profile";
 import Tasks from "../Components/Tasks/Tasks";
 import ShoppingList from "../Components/Shopping/ShoppingList";
 import Dnd from "../Components/Calendar/Dnd";
+import BillsLandingPage from "../Components/Bills/BillsLandingPage";
 
 const token = () => localStorage.getItem("token");
 
@@ -21,7 +22,10 @@ class App extends React.Component {
     flat: null,
     events: [],
     notes: [],
-    items: []
+    items: [],
+    bills: [],
+    flatmates: [],
+    bill_splits: []
   };
 
   componentDidMount() {
@@ -32,7 +36,16 @@ class App extends React.Component {
   //////////////////// USER /////////////////////
   getUser = () => {
     api.getCurrentFlatmate().then(flatmate => {
-      const { flat, items, events, tasks, notes, ...user } = flatmate;
+      const {
+        flat,
+        bills,
+        bill_splits,
+        items,
+        events,
+        tasks,
+        notes,
+        ...user
+      } = flatmate;
       this.setState({
         logged_in: true,
         user,
@@ -40,7 +53,10 @@ class App extends React.Component {
         events,
         notes,
         tasks,
-        items
+        items,
+        bills,
+        flatmates: flat.flatmates,
+        bill_splits
       });
     });
   };
@@ -178,9 +194,29 @@ class App extends React.Component {
       });
     });
   };
+
+  addBill = bill => {
+    return api.addBillToServer(bill);
+    // .then(data => {
+    //   this.setState({
+    //     bills: [...this.state.bills, data]
+    //   });
+    // });
+  };
+
   ////////////////// RENDER /////////////////////
   render() {
-    const { logged_in, user, items, tasks, flat, events, notes } = this.state;
+    const {
+      logged_in,
+      user,
+      items,
+      tasks,
+      flat,
+      events,
+      notes,
+      bills,
+      flatmates
+    } = this.state;
     const {
       handleLogOut,
       createNewFlat,
@@ -198,7 +234,8 @@ class App extends React.Component {
       getUser,
       onAddEventClick,
       onDeleteEventClick,
-      updateFlat
+      updateFlat,
+      addBill
     } = this;
     return (
       <Router>
@@ -279,6 +316,7 @@ class App extends React.Component {
             />
             <Route
               path="/shopping"
+              exact
               render={() => (
                 <ShoppingList
                   items={items}
@@ -289,7 +327,20 @@ class App extends React.Component {
                 />
               )}
             />
-            <Route path="/calendar" render={() => <Dnd />} />
+            <Route
+              path="/bills"
+              exact
+              render={() => (
+                <BillsLandingPage
+                  bills={bills}
+                  logged_in={logged_in}
+                  flatmates={flatmates}
+                  user={user}
+                  addBill={addBill}
+                />
+              )}
+            />
+            <Route path="/calendar" exact render={() => <Dnd />} />
           </Switch>
           <Footer />
         </div>

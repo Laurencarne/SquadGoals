@@ -8,7 +8,7 @@ export default class Event extends React.Component {
   };
 
   renderDeleteWindow = id => {
-    const { title, start, end, description } = this.props.event;
+    const { title, start, end, desc } = this.props.event;
     if (this.state.clicked) {
       return (
         <div className="popOut">
@@ -20,7 +20,7 @@ export default class Event extends React.Component {
               <p key={id}>
                 {title}, on {moment(start).format("dddd Do MMMM")}
               </p>
-              <p>{description}</p>
+              <p>{desc}</p>
               <button
                 className="newEventButton"
                 onClick={() => this.props.onDeleteEventClick(id)}

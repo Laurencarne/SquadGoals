@@ -137,6 +137,14 @@ const getEvents = () => {
     headers: { ...headers, Authorization: token() }
   }).then(res => res.json());
 };
+////////////////// BILLS /////////////////////
+const addBillToServer = bill => {
+  return fetch(`${API_BASE_URL}bills`, {
+    method: "POST",
+    headers: { ...headers, Authorization: token() },
+    body: JSON.stringify(bill)
+  }).then(resp => resp.json());
+};
 ////////////////// EXPORT /////////////////////
 export default {
   login,
@@ -156,5 +164,6 @@ export default {
   deleteTaskFromServer,
   addEventToServer,
   deleteEventFromServer,
-  getEvents
+  getEvents,
+  addBillToServer
 };

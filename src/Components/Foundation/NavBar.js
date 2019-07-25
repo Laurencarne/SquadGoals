@@ -98,6 +98,9 @@ class NavBar extends Component {
                 <Link style={navStyle} to="/tasks">
                   <p className="navButtons">Tasks</p>
                 </Link>
+                <Link style={navStyle} to="/bills">
+                  <p className="navButtons">Bills</p>
+                </Link>
                 <Link style={navStyle} to="/calendar">
                   <p className="navButtons">Calender</p>
                 </Link>
