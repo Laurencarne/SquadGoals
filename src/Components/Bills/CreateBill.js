@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import "../../CSS/Bills.css";
 
 let flatmateHolder = [];
 
@@ -21,7 +22,7 @@ class CreateBill extends React.Component {
     if (!flatmateHolder.includes(flatmate)) {
       flatmateHolder.push(flatmate);
     } else if (flatmateHolder.includes(flatmate)) {
-      flatmateHolder = flatmateHolder.filter(t => t !== flatmate);
+      flatmateHolder = flatmateHolder.filter(t => t.id !== flatmate.id);
     }
     console.log(flatmateHolder);
   };
@@ -29,11 +30,30 @@ class CreateBill extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
 
+    let flatmate_ids = [];
+
+    flatmateHolder.map(flatmate =>
+      flatmate_ids.push(
+        {
+          flatmate_id: flatmate.id,
+          total_owed: this.state.total / flatmateHolder.length + 1,
+          paid: false
+        },
+        {
+          flatmate_id: this.props.user.id,
+          total_owed: this.state.total / flatmateHolder.length + 1,
+          paid: true
+        }
+      )
+    );
     let bill = {
-      name: this.state.name,
-      total: this.state.total,
-      desc: this.state.desc,
-      flatmate_id: this.props.user.id
+      bill: {
+        name: this.state.name,
+        total: this.state.total,
+        desc: this.state.desc,
+        flatmate_id: this.props.user.id,
+        flatmate_ids: flatmate_ids
+      }
     };
 
     this.props.addBill(bill).then(data =>
@@ -41,19 +61,6 @@ class CreateBill extends React.Component {
         bill_id: data.id
       })
     );
-
-    let bill_split = {};
-
-    flatmateHolder.map(
-      flatmate =>
-        (bill_split = {
-          flatmate_id: flatmate,
-          bill_id: "",
-          total_owed: this.state.total
-        })
-    );
-
-    // console.log(bill);
   };
 
   render() {
@@ -65,13 +72,44 @@ class CreateBill extends React.Component {
           </div>
         ) : (
           <div>
-            <form onSubmit={this.handleSubmit}>
-              <span
-                onClick={e => this.handleAvatarClick(parseInt(e.target.id))}
-                className="flatmate"
-              >
-                {this.props.flatmates.map(flatmate => (
-                  <>
+            <div className="billFormDiv">
+              <form onSubmit={this.handleSubmit} className="billForm">
+                <input
+                  required
+                  value={this.state.name}
+                  placeholder="Bill Title"
+                  name="name"
+                  onChange={this.handleChange}
+                  type="text"
+                ></input>
+                <input
+                  required
+                  value={this.state.desc}
+                  placeholder="Description"
+                  name="desc"
+                  onChange={this.handleChange}
+                  type="text"
+                ></input>
+                <input
+                  required
+                  value={this.state.total}
+                  placeholder="0.00"
+                  name="total"
+                  onChange={this.handleChange}
+                  type="number"
+                  step="0.01"
+                ></input>
+                <input type="submit"></input>
+              </form>
+            </div>
+            <div className="flatmatePicker">
+              {this.props.flatmates
+                .filter(flatmate => flatmate.id !== this.props.user.id)
+                .map(flatmate => (
+                  <div
+                    className="flatmatePickerInner"
+                    onClick={e => this.handleAvatarClick(flatmate)}
+                  >
                     <img
                       className="avatar"
                       src={flatmate.avatar}
@@ -79,33 +117,9 @@ class CreateBill extends React.Component {
                       id={flatmate.id}
                     />
                     <p id={flatmate.id}>{flatmate.first_name}</p>
-                  </>
+                  </div>
                 ))}
-              </span>
-              <input
-                value={this.state.name}
-                placeholder="Bill Title"
-                name="name"
-                onChange={this.handleChange}
-                type="text"
-              ></input>
-              <input
-                value={this.state.desc}
-                placeholder="Description"
-                name="desc"
-                onChange={this.handleChange}
-                type="text"
-              ></input>
-              <input
-                value={this.state.total}
-                placeholder="0.00"
-                name="total"
-                onChange={this.handleChange}
-                type="number"
-                step="0.01"
-              ></input>
-              <input type="submit"></input>
-            </form>
+            </div>
           </div>
         )}
       </>

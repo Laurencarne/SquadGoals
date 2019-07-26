@@ -1,0 +1,35 @@
+.flatmatePicker img {
+  height: 8vh;
+}
+.flatmatePickerInner {
+  border: 1px solid black;
+  width: auto;
+  padding: 1vh;
+  border-radius: 5%;
+  margin: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.flatmatePicker {
+  display: flex;
+  justify-content: center;
+}
+.billForm {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.billForm input {
+  height: 5vh;
+  margin: 1vh;
+  padding: 0.5vh;
+  border-radius: 5px;
+  border: 0.5px solid black;
+}
+.billFormDiv {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+}
