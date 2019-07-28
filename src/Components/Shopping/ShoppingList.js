@@ -69,6 +69,7 @@ class ShoppingList extends React.Component {
                   ></input>
                   <button className="shoppingButton">
                     <img
+                      alt="Basket"
                       className="newItemSubmit"
                       src="https://i.imgur.com/rEEAC42.png"
                     />

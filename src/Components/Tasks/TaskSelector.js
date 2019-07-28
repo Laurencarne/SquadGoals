@@ -51,9 +51,7 @@ class TaskSelector extends React.Component {
     });
     taskHolder = [];
     this.setState({
-      tasks: tasks.map(task => {
-        task.checked = false;
-      })
+      tasks: tasks.map(task => (task.checked = false))
     });
   };
 
@@ -69,7 +67,6 @@ class TaskSelector extends React.Component {
         <AddMyOwnTask
           handleClick={this.handleClick}
           toggleAddMyOwn={this.toggleAddMyOwn}
-          getRandomFlatmate={this.props.getRandomFlatmate}
           user={this.props.user}
           getRandomFlatmate={this.getRandomFlatmate}
           addTasksToFlat={this.props.addTasksToFlat}
@@ -92,7 +89,7 @@ class TaskSelector extends React.Component {
         <div className="taskSelectPage">
           {tasks
             .filter(
-              task => !this.props.myTasks.find(a => a.avatar == task.avatar)
+              task => !this.props.myTasks.find(a => a.avatar === task.avatar)
             )
             .map(taskToShow => {
               return (

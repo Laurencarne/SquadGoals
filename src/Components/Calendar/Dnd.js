@@ -9,7 +9,7 @@ moment.locale("en-GB");
 
 let eventsArray = [];
 
-class Dnd extends React.Component {
+class Dnd extends Component {
   constructor() {
     super();
     this.state = {
@@ -30,11 +30,8 @@ class Dnd extends React.Component {
       desc: event.desc,
       title: event.title,
       allDay: true,
-      id: event.flatmate_id
+      flatmateId: event.flatmate_id
     }));
-    {
-      console.log(eventsArray);
-    }
   };
 
   render() {

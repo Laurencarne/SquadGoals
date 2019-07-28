@@ -1,5 +1,4 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import "../../CSS/Bills.css";
 
 let flatmateHolder = [];
@@ -9,7 +8,8 @@ class CreateBill extends React.Component {
     name: "",
     total: "",
     desc: "",
-    flatmate_id: ""
+    flatmate_id: "",
+    alert: false
   };
 
   handleChange = e => {
@@ -27,25 +27,41 @@ class CreateBill extends React.Component {
     console.log(flatmateHolder);
   };
 
+  validateSubmit = e => {
+    e.preventDefault();
+    console.log(flatmateHolder);
+
+    if (!flatmateHolder.length > 0) {
+      this.setState({
+        alert: true
+      });
+    } else {
+      this.setState({
+        alert: false
+      });
+      this.handleSubmit(e);
+    }
+  };
+
   handleSubmit = e => {
     e.preventDefault();
 
     let flatmate_ids = [];
 
     flatmateHolder.map(flatmate =>
-      flatmate_ids.push(
-        {
-          flatmate_id: flatmate.id,
-          total_owed: this.state.total / (flatmateHolder.length + 1),
-          paid: false
-        },
-        {
-          flatmate_id: this.props.user.id,
-          total_owed: this.state.total / (flatmateHolder.length + 1),
-          paid: true
-        }
-      )
+      flatmate_ids.push({
+        flatmate_id: flatmate.id,
+        total_owed: this.state.total / (flatmateHolder.length + 1),
+        paid: false
+      })
     );
+
+    flatmate_ids.push({
+      flatmate_id: this.props.user.id,
+      total_owed: this.state.total / (flatmateHolder.length + 1),
+      paid: true
+    });
+
     let bill = {
       bill: {
         name: this.state.name,
@@ -56,73 +72,85 @@ class CreateBill extends React.Component {
       }
     };
 
-    this.props.addBill(bill).then(data =>
-      this.setState({
-        bill_id: data.id
-      })
-    );
+    this.props.addBill(bill);
+
+    this.setState({
+      name: "",
+      total: "",
+      desc: "",
+      flatmate_id: "",
+      alert: false
+    });
+
+    flatmateHolder = [];
+    this.props.toggleCreateBill();
   };
 
   render() {
     return (
-      <>
-        {!this.props.logged_in && this.props.user ? (
-          <div>
-            <Redirect to="/" />
+      <div className="popOut">
+        <div className="popOutCenter billBackgroundColor">
+          <div className="billFormDiv">
+            <form onSubmit={this.validateSubmit} className="billForm">
+              <button
+                type="button"
+                className="taskBackButton"
+                onClick={this.props.toggleCreateBill}
+              >
+                <img src="https://i.imgur.com/sW5hYLx.png" alt="Task Logo" />
+              </button>
+              <input
+                required
+                value={this.state.name}
+                placeholder="Bill Title"
+                name="name"
+                onChange={this.handleChange}
+                type="text"
+              ></input>
+              <input
+                required
+                value={this.state.desc}
+                placeholder="Description"
+                name="desc"
+                onChange={this.handleChange}
+                type="text"
+              ></input>
+              <input
+                required
+                value={this.state.total}
+                placeholder="0.00"
+                name="total"
+                onChange={this.handleChange}
+                type="number"
+                step="0.01"
+              ></input>
+              <input className="submit" type="submit"></input>
+              {this.state.alert ? (
+                <p>Please select housemates to split the bill with.</p>
+              ) : null}
+            </form>
           </div>
-        ) : (
-          <div>
-            <div className="billFormDiv">
-              <form onSubmit={this.handleSubmit} className="billForm">
-                <input
-                  required
-                  value={this.state.name}
-                  placeholder="Bill Title"
-                  name="name"
-                  onChange={this.handleChange}
-                  type="text"
-                ></input>
-                <input
-                  required
-                  value={this.state.desc}
-                  placeholder="Description"
-                  name="desc"
-                  onChange={this.handleChange}
-                  type="text"
-                ></input>
-                <input
-                  required
-                  value={this.state.total}
-                  placeholder="0.00"
-                  name="total"
-                  onChange={this.handleChange}
-                  type="number"
-                  step="0.01"
-                ></input>
-                <input type="submit"></input>
-              </form>
-            </div>
-            <div className="flatmatePicker">
-              {this.props.flatmates
-                .filter(flatmate => flatmate.id !== this.props.user.id)
-                .map(flatmate => (
-                  <div
-                    className="flatmatePickerInner"
-                    onClick={e => this.handleAvatarClick(flatmate)}
-                  >
-                    <img
-                      className="avatar"
-                      src={flatmate.avatar}
-                      alt="flatmates avatar"
-                      id={flatmate.id}
-                    />
-                    <p id={flatmate.id}>{flatmate.first_name}</p>
-                  </div>
-                ))}
-            </div>
+          <div className="flatmatePicker">
+            {this.props.flatmates
+              .filter(flatmate => flatmate.id !== this.props.user.id)
+              .map(flatmate => (
+                <div
+                  key={flatmate.id}
+                  className="flatmatePickerInner"
+                  onClick={e => this.handleAvatarClick(flatmate)}
+                >
+                  <img
+                    className="avatar"
+                    src={flatmate.avatar}
+                    alt="flatmates avatar"
+                    id={flatmate.id}
+                  />
+                  <p id={flatmate.id}>{flatmate.first_name}</p>
+                </div>
+              ))}
           </div>
-        )}
-      </>
+        </div>
+      </div>
     );
   }
 }

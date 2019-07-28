@@ -100,6 +100,7 @@ class Avatar extends React.Component {
             <div>
               {this.state.avatars.map(avatar => (
                 <img
+                  alt="Avatar"
                   onClick={() => this.props.handleAvatarClick(avatar)}
                   className="avatarTiles"
                   src={avatar}

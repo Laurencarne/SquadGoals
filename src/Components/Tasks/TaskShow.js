@@ -3,7 +3,6 @@ import moment from "moment";
 
 class TaskShow extends React.Component {
   handleClick = task => {
-    let nextWeek = moment().day(1 + 7);
     task = {
       flatmate_id: this.getNextFlatmate(),
       week: moment().day(1 + 7)._d,

@@ -40,14 +40,7 @@ class Flat extends Component {
   };
 
   render() {
-    const {
-      name,
-      address_one,
-      address_two,
-      city,
-      postcode,
-      flatmates
-    } = this.props.flat;
+    const { name, address_one, address_two, city, postcode } = this.props.flat;
 
     return (
       <div className="flipCard">

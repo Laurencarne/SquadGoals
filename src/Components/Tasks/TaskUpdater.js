@@ -1,8 +1,4 @@
 import React from "react";
-import tasks from "./TaskList";
-import moment from "moment";
-
-let taskHolder = [];
 
 class TaskUpdater extends React.Component {
   handleDeleteClick = task => {

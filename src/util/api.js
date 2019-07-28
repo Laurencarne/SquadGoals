@@ -145,6 +145,13 @@ const addBillToServer = bill => {
     body: JSON.stringify(bill)
   }).then(resp => resp.json());
 };
+const updateBillSplit = billSplit => {
+  return fetch(`${API_BASE_URL}bill_splits/${billSplit.id}`, {
+    method: "PATCH",
+    headers: { ...headers, Authorization: token() },
+    body: JSON.stringify(billSplit)
+  }).then(res => res.json());
+};
 ////////////////// EXPORT /////////////////////
 export default {
   login,
@@ -165,5 +172,6 @@ export default {
   addEventToServer,
   deleteEventFromServer,
   getEvents,
-  addBillToServer
+  addBillToServer,
+  updateBillSplit
 };

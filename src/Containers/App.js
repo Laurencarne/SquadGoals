@@ -196,12 +196,19 @@ class App extends React.Component {
   };
 
   addBill = bill => {
-    return api.addBillToServer(bill);
-    // .then(data => {
-    //   this.setState({
-    //     bills: [...this.state.bills, data]
-    //   });
-    // });
+    return api.addBillToServer(bill).then(data => {
+      this.setState({
+        bills: [...this.state.bills, data]
+      });
+    });
+  };
+
+  updateBillSplitDetails = billSplit => {
+    return api.updateBillSplit(billSplit).then(data => {
+      this.setState({
+        bills: data
+      });
+    });
   };
 
   ////////////////// RENDER /////////////////////
@@ -235,7 +242,8 @@ class App extends React.Component {
       onAddEventClick,
       onDeleteEventClick,
       updateFlat,
-      addBill
+      addBill,
+      updateBillSplitDetails
     } = this;
     return (
       <Router>
@@ -337,6 +345,7 @@ class App extends React.Component {
                   flatmates={flatmates}
                   user={user}
                   addBill={addBill}
+                  updateBillSplitDetails={updateBillSplitDetails}
                 />
               )}
             />

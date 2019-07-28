@@ -25,15 +25,7 @@ class Housemates extends Component {
   };
 
   render() {
-    const {
-      name,
-      address_one,
-      address_two,
-      city,
-      postcode,
-      flatmates,
-      flat_key
-    } = this.props.flat;
+    const { name, flatmates } = this.props.flat;
 
     return (
       <>

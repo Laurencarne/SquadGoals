@@ -85,6 +85,7 @@ class Icon extends React.Component {
             <div>
               {this.state.icons.map(icon => (
                 <img
+                  alt="Icons"
                   onClick={() => this.props.handleAvatarClick(icon)}
                   className="avatarTiles"
                   src={icon}

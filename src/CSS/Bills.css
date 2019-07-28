@@ -10,6 +10,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 2.5px 2.5px rgba(120, 120, 120, 0.7);
+}
+.flatmatePickerInner:hover {
+  background-color: rgba(255, 255, 255, 0.7);
 }
 .flatmatePicker {
   display: flex;
@@ -26,7 +30,14 @@
   margin: 1vh;
   padding: 0.5vh;
   border-radius: 5px;
-  border: 0.5px solid black;
+  border: 0px solid black;
+  box-shadow: 2.5px 2.5px rgba(120, 120, 120, 0.7);
+}
+.billForm .submit:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+.billForm .submit {
+  background-color: #ffde59;
 }
 .billFormDiv {
   display: flex;
@@ -34,6 +45,60 @@
   margin: 5px;
 }
 .billDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 2vh;
   margin: 5px;
-  padding: 5px;
+  padding: 2vh;
+  border-radius: 5px;
+}
+.billDiv:hover {
+  background-color: rgba(92, 225, 230, 0.2);
+}
+.billBackgroundColor {
+  background-color: #5ce1e6;
+  padding: 10px;
+  border-radius: 5px;
+  width: 30vh;
+}
+.settleUp {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #ffde59;
+  padding: 2vh;
+  border-radius: 5px;
+}
+.settleUpTop {
+  justify-content: center;
+  align-content: center;
+}
+.settleUpBottom {
+  align-self: center;
+}
+.settleUpBottom button {
+  margin: 3px;
+  padding: 1vh;
+  border-radius: 5px;
+  border: 0px solid black;
+  box-shadow: 2.5px 2.5px rgba(120, 120, 120, 0.7);
+  background-color: #c9e265;
+}
+.billButton {
+  justify-content: center;
+  display: flex;
+  margin: 3px;
+  padding: 1vh;
+  border-radius: 5px;
+  border: 0px solid black;
+  box-shadow: 2.5px 2.5px rgba(120, 120, 120, 0.7);
+  background-color: #5ce1e6;
+}
+.billOwe {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
 }

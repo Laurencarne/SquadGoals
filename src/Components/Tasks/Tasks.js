@@ -26,7 +26,7 @@ class Tasks extends React.Component {
         <>
           <>
             <button className="taskBackButton" onClick={this.handleClick}>
-              <img src="https://i.imgur.com/sW5hYLx.png" />
+              <img src="https://i.imgur.com/sW5hYLx.png" alt="Task Icon" />
             </button>
             <h1>Remove Exsisting Tasks From Your Apartment</h1>
             <TaskUpdater

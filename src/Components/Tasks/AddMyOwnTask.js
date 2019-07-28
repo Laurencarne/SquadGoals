@@ -8,7 +8,7 @@ class SignupComponent extends React.Component {
   state = {
     clicked: false,
     avatar: false,
-    avatarURL: "",
+    avatarURL: "https://i.imgur.com/JAzqjJT.png",
     name: "",
     description: ""
   };
@@ -123,10 +123,14 @@ class SignupComponent extends React.Component {
                     className="taskBackButton"
                     onClick={this.props.toggleAddMyOwn}
                   >
-                    <img src="https://i.imgur.com/sW5hYLx.png" />
+                    <img
+                      src="https://i.imgur.com/sW5hYLx.png"
+                      alt="Task Logo"
+                    />
                   </button>
                   <p>Task Name: </p>
                   <input
+                    required
                     onChange={this.handleChange}
                     type="name"
                     name="name"
@@ -134,6 +138,7 @@ class SignupComponent extends React.Component {
                   />
                   <p>Description: </p>
                   <input
+                    required
                     onChange={this.handleChange}
                     type="description"
                     name="description"
@@ -141,9 +146,7 @@ class SignupComponent extends React.Component {
                   />
                   {this.renderChooseAvatarButton()}
                   {this.renderSelectedAvatar()}
-                  <button className="taskButton" className="submitButton">
-                    Create
-                  </button>
+                  <button className="taskButton submitButton">Create</button>
                 </form>
               </div>
             </div>

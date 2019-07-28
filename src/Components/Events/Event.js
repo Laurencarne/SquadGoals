@@ -8,7 +8,7 @@ export default class Event extends React.Component {
   };
 
   renderDeleteWindow = id => {
-    const { title, start, end, desc } = this.props.event;
+    const { title, start, desc } = this.props.event;
     if (this.state.clicked) {
       return (
         <div className="popOut">
@@ -44,7 +44,7 @@ export default class Event extends React.Component {
   };
 
   render() {
-    const { id, title, start, end, description } = this.props.event;
+    const { id, title, start, description } = this.props.event;
     return (
       <div className="oneEvent">
         <div onClick={() => this.handleClick(id)}>
