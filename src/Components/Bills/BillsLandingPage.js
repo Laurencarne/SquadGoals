@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import DisplayBill from "./DisplayBill";
+import DisplayYouOweBill from "./DisplayYouOweBill";
+import DisplayOwedBill from "./DisplayOwedBill";
 import CreateBill from "./CreateBill";
 
 class BillsLandingPage extends React.Component {
@@ -19,19 +20,18 @@ class BillsLandingPage extends React.Component {
             {this.props.bills
               .filter(oneBill => oneBill.flatmate_id === user.id)
               .map(bill => (
-                <DisplayBill
+                <DisplayOwedBill
                   key={bill.id}
                   bill={bill}
                   user={user}
                   flatmates={flatmates}
-                  logged_in={logged_in}
                 />
               ))}
             <h4>You Owe</h4>
             {bills
               .filter(oneBill => oneBill.flatmate_id !== user.id)
               .map(bill => (
-                <DisplayBill
+                <DisplayYouOweBill
                   key={bill.id}
                   bill={bill}
                   user={user}

@@ -36,12 +36,12 @@ class CreateBill extends React.Component {
       flatmate_ids.push(
         {
           flatmate_id: flatmate.id,
-          total_owed: this.state.total / flatmateHolder.length + 1,
+          total_owed: this.state.total / (flatmateHolder.length + 1),
           paid: false
         },
         {
           flatmate_id: this.props.user.id,
-          total_owed: this.state.total / flatmateHolder.length + 1,
+          total_owed: this.state.total / (flatmateHolder.length + 1),
           paid: true
         }
       )
