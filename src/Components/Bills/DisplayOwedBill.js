@@ -57,7 +57,7 @@ class DisplayOwedBill extends React.Component {
               />
               <p
                 style={{
-                  color: user.paid ? "#589d3a" : "#ff5757"
+                  color: user.paid ? "#589d3a" : "#D81159"
                 }}
               >
                 {

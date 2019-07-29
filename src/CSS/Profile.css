@@ -1,20 +1,26 @@
 .profileEditButton {
   align-self: center;
   width: 20%;
-  border-radius: 5px;
-  background-color: #ffbc42;
+  border-radius: 2px;
+  background-color: #8f2d56;
+  border: 1px solid #8f2d56;
   margin: 10px;
-  padding: 1.5vh;
+  padding: 1vh;
   text-align: center;
+  box-shadow: 2.5px 2.5px rgba(120, 120, 120, 0.7);
+  font-size: 2vh;
+  color: whitesmoke;
 }
 .profileEditButton:hover {
-  background-color: rgba(255, 222, 89, 0.8);
-  border-radius: 8px;
+  background-color: #a06b9a;
+  border: 1px solid #a06b9a;
+  border-radius: 2px;
 }
 
 .profilePictureContainer {
   position: relative;
   width: 80%;
+  box-shadow: 2.5px 2.5px rgba(120, 120, 120, 0.7);
 }
 
 .profilePictureImage {
@@ -22,6 +28,7 @@
   width: 100%;
   height: auto;
   border-radius: 2px;
+  box-shadow: 2.5px 2.5px rgba(120, 120, 120, 0.7);
 }
 
 .overlay {
@@ -55,7 +62,7 @@
 }
 
 .profile {
-  background-color: #ff914d;
+  background-color: #8f2d56;
   border-radius: 5px;
   padding: 5vh;
 }

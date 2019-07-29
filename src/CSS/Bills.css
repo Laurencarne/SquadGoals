@@ -6,7 +6,7 @@
   border: 1px solid black;
   width: auto;
   padding: 1vh;
-  border-radius: 5%;
+  border-radius: 2px;
   margin: 2px;
   display: flex;
   flex-direction: column;
@@ -42,7 +42,7 @@
   height: 5vh;
   margin: 1vh;
   padding: 0.5vh;
-  border-radius: 5px;
+  border-radius: 2px;
   border: 0px solid black;
   box-shadow: 2.5px 2.5px rgba(120, 120, 120, 0.7);
 }
@@ -50,7 +50,7 @@
   background-color: rgba(255, 255, 255, 0.7);
 }
 .billForm .submit {
-  background-color: #ffde59;
+  background-color: #ffbc42;
 }
 .billFormDiv {
   display: flex;
@@ -63,7 +63,7 @@
   font-size: 2vh;
   margin: 5px;
   padding: 2vh;
-  border-radius: 5px;
+  border-radius: 2px;
 }
 .billDiv:hover {
   background-color: rgba(92, 225, 230, 0.2);
@@ -71,16 +71,16 @@
 .billBackgroundColor {
   background-color: #5ce1e6;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 2px;
   width: 30vh;
 }
 .settleUp {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: #ffde59;
+  background-color: #ffbc42;
   padding: 2vh;
-  border-radius: 5px;
+  border-radius: 2px;
 }
 .settleUpTop {
   justify-content: center;
@@ -92,7 +92,7 @@
 .settleUpBottom button {
   margin: 3px;
   padding: 1vh;
-  border-radius: 5px;
+  border-radius: 2px;
   border: 0px solid black;
   box-shadow: 2.5px 2.5px rgba(120, 120, 120, 0.7);
   background-color: #ffbc42;
@@ -102,7 +102,7 @@
   display: flex;
   margin: 3px;
   padding: 1vh;
-  border-radius: 5px;
+  border-radius: 2px;
   border: 0px solid black;
   box-shadow: 2.5px 2.5px rgba(120, 120, 120, 0.7);
   background-color: #5ce1e6;

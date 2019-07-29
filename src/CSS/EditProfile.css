@@ -1,14 +1,14 @@
 .profileBackButton {
   align-self: flex-end;
   border-radius: 5px;
-  background-color: #ffbc42;
+  background-color: #73d2de;
   padding: 1.5vh;
-  border: 2px solid #ffbc42;
-  box-shadow: 2.5px 2.5px rgba(120, 120, 120, 0.7);
+  border: 0px solid #73d2de;
+  box-shadow: 2.5px 2.5px rgba(215, 215, 215, 0.7);
+  font-size: 20px;
 }
 .profileBackButton:hover {
-  border: 2px solid #ffbc42;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 5px;
 }
 .numberInput {
@@ -46,5 +46,5 @@
 }
 .address .addressSubmit {
   background-color: #5ce1e6;
-  border: 1px solid #5ce1e6;
+  border: 1px solid #ffbc42;
 }
