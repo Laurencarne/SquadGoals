@@ -47,7 +47,6 @@
 .billDiv {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   font-size: 2vh;
   margin: 5px;
   padding: 2vh;
@@ -101,4 +100,13 @@
   display: flex;
   flex-direction: column;
   align-self: center;
+}
+.billsDisplay {
+  display: flex;
+  align-content: space-around;
+  justify-content: space-around;
+}
+.billPage {
+  margin: 1vh 10vh;
+  padding: 1vh 5vh;
 }

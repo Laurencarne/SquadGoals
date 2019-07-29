@@ -7,7 +7,10 @@ import CreateBill from "./CreateBill";
 class BillsLandingPage extends React.Component {
   state = {
     create: false,
-    filter: "All"
+    oweFilter: "All",
+    owedFilter: "All",
+    owedConditionalDisplay: false,
+    owingConditionalDisplay: false
   };
 
   toggleCreateBill = () => {
@@ -16,9 +19,29 @@ class BillsLandingPage extends React.Component {
     });
   };
 
-  handleFilter = e => {
+  handleOweFilter = e => {
     this.setState({
-      filter: e.target.value
+      oweFilter: e.target.value,
+      owingConditionalDisplay: false
+    });
+  };
+
+  handleOwedFilter = e => {
+    this.setState({
+      owedFilter: e.target.value,
+      owedConditionalDisplay: false
+    });
+  };
+
+  owedConditionalDisplay = answer => {
+    this.setState({
+      owedConditionalDisplay: answer
+    });
+  };
+
+  owingConditionalDisplay = answer => {
+    this.setState({
+      owingConditionalDisplay: answer
     });
   };
 
@@ -31,52 +54,76 @@ class BillsLandingPage extends React.Component {
             <Redirect to="/" />
           </div>
         ) : (
-          <div className="page">
-            <h3>Bills Page</h3>
+          <div className="billPage">
             <button className="billButton" onClick={this.toggleCreateBill}>
               Create New
             </button>
-            <div className="pageLeft">
+            <div>
               <h4>Your Owed</h4>
 
-              <select className="billButton" onChange={this.handleFilter}>
+              <select className="billButton" onChange={this.handleOwedFilter}>
                 <option default>All</option>
                 <option>Due</option>
                 <option>Settled</option>
               </select>
 
-              {this.props.bills
-                .filter(oneBill => oneBill.flatmate_id === user.id)
-                .map(bill => (
-                  <DisplayOwedBill
-                    key={bill.id}
-                    bill={bill}
-                    user={user}
-                    filter={this.state.filter}
-                    flatmates={flatmates}
-                  />
-                ))}
+              <div className="billsDisplay">
+                {!this.state.owedConditionalDisplay ? (
+                  <>
+                    {this.props.bills
+                      .filter(oneBill => oneBill.flatmate_id === user.id)
+                      .map(bill => (
+                        <DisplayOwedBill
+                          key={bill.id}
+                          bill={bill}
+                          user={user}
+                          filter={this.state.owedFilter}
+                          flatmates={flatmates}
+                          owedConditionalDisplay={this.owedConditionalDisplay}
+                        />
+                      ))}
+                  </>
+                ) : (
+                  <>
+                    <h3>No Bills to Display</h3>
+                  </>
+                )}
+              </div>
+
               <h4>You Owe</h4>
 
-              <select className="billButton" onChange={this.handleFilter}>
+              <select className="billButton" onChange={this.handleOweFilter}>
                 <option default>All</option>
                 <option>Due</option>
                 <option>Settled</option>
               </select>
 
-              {bills
-                .filter(oneBill => oneBill.flatmate_id !== user.id)
-                .map(bill => (
-                  <DisplayYouOweBill
-                    updateBillSplitDetails={this.props.updateBillSplitDetails}
-                    key={bill.id}
-                    bill={bill}
-                    user={user}
-                    flatmates={flatmates}
-                    logged_in={logged_in}
-                    filter={this.state.filter}
-                  />
-                ))}
+              <div className="billsDisplay">
+                {!this.state.owingConditionalDisplay ? (
+                  <>
+                    {bills
+                      .filter(oneBill => oneBill.flatmate_id !== user.id)
+                      .map(bill => (
+                        <DisplayYouOweBill
+                          updateBillSplitDetails={
+                            this.props.updateBillSplitDetails
+                          }
+                          key={bill.id}
+                          bill={bill}
+                          user={user}
+                          flatmates={flatmates}
+                          filter={this.state.oweFilter}
+                          owingConditionalDisplay={this.owingConditionalDisplay}
+                        />
+                      ))}
+                  </>
+                ) : (
+                  <>
+                    <h3>No Bills to Display</h3>
+                  </>
+                )}
+              </div>
+
               {this.state.create ? (
                 <>
                   <CreateBill

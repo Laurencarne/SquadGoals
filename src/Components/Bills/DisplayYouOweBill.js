@@ -1,4 +1,5 @@
 import React from "react";
+import DisplayEachBill from "./DisplayEachBill";
 
 class DisplayYouOweBill extends React.Component {
   state = {
@@ -47,24 +48,63 @@ class DisplayYouOweBill extends React.Component {
       );
     }
   };
-  render() {
-    const { flatmate_id, desc, name, total, bill_splits } = this.props.bill;
 
-    return (
-      <div className="billDiv">
-        <p>
-          <strong>{name}</strong>
-        </p>
-        {this.state.clicked ? (
-          <>
-            <p>Description: {desc}</p>
-            <p>Total: £{parseFloat(total).toFixed(2)}</p>
-            <p>Flatmates splitting: {bill_splits.length}</p>
-          </>
-        ) : null}
-        {bill_splits
-          .filter(billSplit => billSplit.flatmate_id === this.props.user.id)
-          .map(user => (
+  filterResults = filter => {
+    if (this.props.filter === "Due") {
+      return this.props.bill.bill_splits.filter(
+        bs => bs.flatmate_id === this.props.user.id && bs.paid === false
+      );
+    } else if (this.props.filter === "Settled") {
+      return this.props.bill.bill_splits.filter(
+        bs => bs.paid === true && bs.flatmate_id === this.props.user.id
+      );
+    } else {
+      return this.props.bill.bill_splits.filter(
+        bs => bs.flatmate_id === this.props.user.id
+      );
+    }
+  };
+
+  renderMoreInformation = () => {
+    const { desc, total, bill_splits } = this.props.bill;
+    if (this.state.clicked) {
+      return (
+        <>
+          <p>Description: {desc}</p>
+          <p>Total: £{parseFloat(total).toFixed(2)}</p>
+          <p>Flatmates splitting: {bill_splits.length}</p>
+        </>
+      );
+    }
+  };
+
+  renderButtons = () => {
+    if (this.state.clicked) {
+      return (
+        <button className="billButton" onClick={this.toggleMoreDetails}>
+          Hide Details
+        </button>
+      );
+    } else {
+      return (
+        <button className="billButton" onClick={this.toggleMoreDetails}>
+          See More
+        </button>
+      );
+    }
+  };
+
+  renderPage = () => {
+    const { flatmate_id, name } = this.props.bill;
+
+    if (this.filterResults(this.props.filter).length > 0) {
+      return (
+        <div>
+          <p>
+            <strong>{name}</strong>
+          </p>
+          {this.renderMoreInformation()}
+          {this.filterResults(this.state.filter).map(user => (
             <div className="billOwe" key={user.id}>
               <p
                 style={{
@@ -85,15 +125,7 @@ class DisplayYouOweBill extends React.Component {
                       ).first_name
                     }`}
               </p>
-              {this.state.clicked ? (
-                <button className="billButton" onClick={this.toggleMoreDetails}>
-                  Hide Details
-                </button>
-              ) : (
-                <button className="billButton" onClick={this.toggleMoreDetails}>
-                  See More
-                </button>
-              )}
+              {this.renderButtons()}
               {this.state.clicked && !user.paid ? (
                 <button className="billButton" onClick={this.toggleSettleUp}>
                   Settle Up
@@ -102,7 +134,19 @@ class DisplayYouOweBill extends React.Component {
               {this.renderSettleUp(user)}
             </div>
           ))}
-      </div>
+        </div>
+      );
+    } else {
+      this.props.owingConditionalDisplay(true);
+    }
+  };
+
+  render() {
+    return (
+      <DisplayEachBill
+        renderPage={this.renderPage}
+        filteredArray={this.filterResults(this.props.filter).length}
+      />
     );
   }
 }
