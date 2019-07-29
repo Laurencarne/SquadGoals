@@ -50,13 +50,9 @@ class DisplayYouOweBill extends React.Component {
   };
 
   filterResults = filter => {
-    if (this.props.filter === "Due") {
+    if (this.props.filter === "Outstanding") {
       return this.props.bill.bill_splits.filter(
         bs => bs.flatmate_id === this.props.user.id && bs.paid === false
-      );
-    } else if (this.props.filter === "Settled") {
-      return this.props.bill.bill_splits.filter(
-        bs => bs.paid === true && bs.flatmate_id === this.props.user.id
       );
     } else {
       return this.props.bill.bill_splits.filter(
@@ -106,25 +102,35 @@ class DisplayYouOweBill extends React.Component {
           {this.renderMoreInformation()}
           {this.filterResults(this.state.filter).map(user => (
             <div className="billOwe" key={user.id}>
-              <p
-                style={{
-                  color: user.paid ? "#589d3a" : "#ff5757"
-                }}
-              >
-                {user.paid
-                  ? ` You Paid ${
-                      this.props.flatmates.find(
-                        flatmate => flatmate.id === flatmate_id
-                      ).first_name
-                    } £${parseFloat(user.total_owed).toFixed(2)}`
-                  : ` You need to pay £${parseFloat(user.total_owed).toFixed(
-                      2
-                    )} to ${
-                      this.props.flatmates.find(
-                        flatmate => flatmate.id === flatmate_id
-                      ).first_name
-                    }`}
-              </p>
+              <div className="billBlurb">
+                <img
+                  src={
+                    this.props.flatmates.find(
+                      flatmate => flatmate.id === user.flatmate_id
+                    ).avatar
+                  }
+                  alt="avatar"
+                />
+                <p
+                  style={{
+                    color: user.paid ? "#589d3a" : "#ff5757"
+                  }}
+                >
+                  {user.paid
+                    ? ` You Paid ${
+                        this.props.flatmates.find(
+                          flatmate => flatmate.id === flatmate_id
+                        ).first_name
+                      } £${parseFloat(user.total_owed).toFixed(2)}`
+                    : ` You need to pay £${parseFloat(user.total_owed).toFixed(
+                        2
+                      )} to ${
+                        this.props.flatmates.find(
+                          flatmate => flatmate.id === flatmate_id
+                        ).first_name
+                      }`}
+                </p>
+              </div>
               {this.renderButtons()}
               {this.state.clicked && !user.paid ? (
                 <button className="billButton" onClick={this.toggleSettleUp}>

@@ -13,13 +13,9 @@ class DisplayOwedBill extends React.Component {
   };
 
   filterResults = filter => {
-    if (this.props.filter === "Due") {
+    if (this.props.filter === "Outstanding") {
       return this.props.bill.bill_splits.filter(
         bs => !bs.paid && bs.flatmate_id !== this.props.user.id
-      );
-    } else if (this.props.filter === "Settled") {
-      return this.props.bill.bill_splits.filter(
-        bs => bs.paid && bs.flatmate_id !== this.props.user.id
       );
     } else {
       return this.props.bill.bill_splits.filter(
@@ -50,7 +46,15 @@ class DisplayOwedBill extends React.Component {
           </p>
           {this.renderMoreInformation()}
           {this.filterResults(this.props.filter).map(user => (
-            <div key={user.id}>
+            <div className="billBlurb" key={user.id}>
+              <img
+                src={
+                  this.props.flatmates.find(
+                    flatmate => flatmate.id === user.flatmate_id
+                  ).avatar
+                }
+                alt="avatar"
+              />
               <p
                 style={{
                   color: user.paid ? "#589d3a" : "#ff5757"

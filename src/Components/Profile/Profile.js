@@ -62,7 +62,17 @@ class Profile extends Component {
   };
 
   render() {
-    return <>{this.renderPage()}</>;
+    return (
+      <>
+        <div className="pageBanner">
+          <img
+            src="https://images.unsplash.com/photo-1542474917-0d6c8c8446d0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+            alt="Lady in bedroom"
+          />
+        </div>
+        {this.renderPage()}
+      </>
+    );
   }
 }
 

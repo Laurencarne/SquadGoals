@@ -2,7 +2,7 @@
   align-self: center;
   width: 20%;
   border-radius: 5px;
-  background-color: #c9e265;
+  background-color: #ffbc42;
   margin: 10px;
   padding: 1.5vh;
   text-align: center;
@@ -21,7 +21,7 @@
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 50%;
+  border-radius: 2px;
 }
 
 .overlay {
@@ -33,7 +33,7 @@
   height: 100%;
   width: 100%;
   opacity: 0;
-  border-radius: 50%;
+  border-radius: 2px;
   transition: 2s ease;
   background-color: white;
 }

@@ -49,6 +49,12 @@ class BillsLandingPage extends React.Component {
     const { user, flatmates, logged_in, bills, addBill } = this.props;
     return (
       <>
+        <div className="noCover">
+          <img
+            src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+            alt="Money"
+          />
+        </div>
         {!logged_in && user ? (
           <div>
             <Redirect to="/" />
@@ -61,12 +67,23 @@ class BillsLandingPage extends React.Component {
             <div>
               <h4>Your Owed</h4>
 
-              <select className="billButton" onChange={this.handleOwedFilter}>
-                <option default>All</option>
-                <option>Due</option>
-                <option>Settled</option>
-              </select>
-
+              <form className="billRadioButton" onClick={this.handleOwedFilter}>
+                <input
+                  defaultChecked
+                  type="radio"
+                  value="All"
+                  name="filter"
+                  id="AllOwed"
+                />
+                <label for="AllOwed">All Bills</label>
+                <input
+                  type="radio"
+                  value="Outstanding"
+                  name="filter"
+                  id="OutstandingOwed"
+                />
+                <label for="OutstandingOwed">Outstanding Bills</label>
+              </form>
               <div className="billsDisplay">
                 {!this.state.owedConditionalDisplay ? (
                   <>
@@ -92,11 +109,23 @@ class BillsLandingPage extends React.Component {
 
               <h4>You Owe</h4>
 
-              <select className="billButton" onChange={this.handleOweFilter}>
-                <option default>All</option>
-                <option>Due</option>
-                <option>Settled</option>
-              </select>
+              <form className="billRadioButton" onChange={this.handleOweFilter}>
+                <input
+                  defaultChecked
+                  type="radio"
+                  value="All"
+                  name="filter"
+                  id="AllOwe"
+                />
+                <label for="AllOwe">All Bills</label>
+                <input
+                  type="radio"
+                  value="Outstanding"
+                  name="filter"
+                  id="OutstandingOwe"
+                />
+                <label for="OutstandingOwe">Outstanding Bills</label>
+              </form>
 
               <div className="billsDisplay">
                 {!this.state.owingConditionalDisplay ? (

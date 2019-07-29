@@ -1,6 +1,8 @@
 .homeImage {
   height: 4vh;
   margin: 0px;
+  display: flex;
+  justify-content: flex-start;
 }
 .navButtons {
   padding: 8px;
@@ -11,4 +13,22 @@
 }
 .navButtons p {
   text-decoration: none;
+}
+.navLeft {
+  margin-left: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 6vh;
+  background: #ffbc42;
+  color: black;
+}
+.navRight {
+  margin-right: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 6vh;
+  background: #ffbc42;
+  color: black;
 }

@@ -78,66 +78,74 @@ class NavBar extends Component {
       <>
         {this.props.user && this.props.logged_in ? (
           <nav className="nav">
-            <Link style={navStyle} to="/">
-              <h3>
-                <img
-                  className="homeImage"
-                  src="https://image.flaticon.com/icons/svg/25/25694.svg"
-                  alt="Home Icon"
-                />
-              </h3>
-            </Link>
-            <Link style={navStyle} to="/profile">
-              <p className="navButtons">Profile</p>
-            </Link>
-            {this.props.user.flat_id ? (
-              <>
-                <Link style={navStyle} to="/shopping">
-                  <p className="navButtons">Shopping List</p>
-                </Link>
-                <Link style={navStyle} to="/tasks">
-                  <p className="navButtons">Tasks</p>
-                </Link>
-                <Link style={navStyle} to="/bills">
-                  <p className="navButtons">Bills</p>
-                </Link>
-                <Link style={navStyle} to="/calendar">
-                  <p className="navButtons">Calender</p>
-                </Link>
-              </>
-            ) : (
-              <>
-                <p onClick={this.handleJoinFlat} className="navButtons">
-                  Join Flat
+            <span className="navLeft">
+              <Link style={navStyle} to="/">
+                <h3>
+                  <img
+                    className="homeImage"
+                    src="https://image.flaticon.com/icons/svg/25/25694.svg"
+                    alt="Home Icon"
+                  />
+                </h3>
+              </Link>
+            </span>
+            <span className="navRight">
+              <Link style={navStyle} to="/profile">
+                <p className="navButtons">Profile</p>
+              </Link>
+              {this.props.user.flat_id ? (
+                <>
+                  <Link style={navStyle} to="/shopping">
+                    <p className="navButtons">Shopping List</p>
+                  </Link>
+                  <Link style={navStyle} to="/tasks">
+                    <p className="navButtons">Tasks</p>
+                  </Link>
+                  <Link style={navStyle} to="/bills">
+                    <p className="navButtons">Bills</p>
+                  </Link>
+                  <Link style={navStyle} to="/calendar">
+                    <p className="navButtons">Calender</p>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <p onClick={this.handleJoinFlat} className="navButtons">
+                    Join Flat
+                  </p>
+                  <p onClick={this.handleCreateFlat} className="navButtons">
+                    Create a Flat
+                  </p>
+                </>
+              )}
+              <Link style={navStyle} to="/">
+                <p onClick={this.props.handleLogOut} className="navButtons">
+                  Log Out
                 </p>
-                <p onClick={this.handleCreateFlat} className="navButtons">
-                  Create a Flat
-                </p>
-              </>
-            )}
-            <Link style={navStyle} to="/">
-              <p onClick={this.props.handleLogOut} className="navButtons">
-                Log Out
-              </p>
-            </Link>
+              </Link>
+            </span>
           </nav>
         ) : (
           <nav className="nav">
-            <Link style={navStyle} to="/">
-              <h3>
-                <img
-                  className="homeImage"
-                  src="https://image.flaticon.com/icons/svg/25/25694.svg"
-                  alt="Home Icon"
-                />
-              </h3>
-            </Link>
-            <Link style={navStyle} to="/signup">
-              <p className="navButtons">Sign Up</p>
-            </Link>
-            <Link style={navStyle} to="/login">
-              <p className="navButtons">Log In</p>
-            </Link>
+            <span className="navLeft">
+              <Link style={navStyle} to="/">
+                <h3>
+                  <img
+                    className="homeImage"
+                    src="https://image.flaticon.com/icons/svg/25/25694.svg"
+                    alt="Home Icon"
+                  />
+                </h3>
+              </Link>
+            </span>
+            <span className="navRight">
+              <Link style={navStyle} to="/signup">
+                <p className="navButtons">Sign Up</p>
+              </Link>
+              <Link style={navStyle} to="/login">
+                <p className="navButtons">Log In</p>
+              </Link>
+            </span>
           </nav>
         )}
         <div>{this.renderFlatForms()}</div>

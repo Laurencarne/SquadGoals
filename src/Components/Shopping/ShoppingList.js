@@ -46,44 +46,52 @@ class ShoppingList extends React.Component {
       return <Redirect to="/" />;
     } else if (this.props.logged_in && this.props.user) {
       return (
-        <div className="ShoppingList">
-          <h4>Shopping List</h4>
-          <div className="notebook">
-            <ul className="list">
-              {this.props.items.map(item => (
-                <li
-                  key={item.id}
-                  onClick={() => this.handleClick(item)}
-                  style={{
-                    textDecoration: item.checked ? "line-through" : "none"
-                  }}
-                >
-                  {item.name}
-                </li>
-              ))}
-              <li className="formLi">
-                <form className="shoppingForm" onSubmit={this.handleSubmit}>
-                  <input
-                    className="newItem"
-                    placeholder="Add a New Item"
-                  ></input>
-                  <button className="shoppingButton">
-                    <img
-                      alt="Basket"
-                      className="newItemSubmit"
-                      src="https://i.imgur.com/rEEAC42.png"
-                    />
-                  </button>
-                </form>
-              </li>
-              <li> </li>
-              <li> </li>
-              <li> </li>
-              <li> </li>
-              <li> </li>
-            </ul>
+        <>
+          <div className="noCover">
+            <img
+              src="https://images.unsplash.com/photo-1542223189-67a03fa0f0bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjU2MDh9&auto=format&fit=crop&w=2104&q=80"
+              alt="Lady in bedroom"
+            />
           </div>
-        </div>
+          <div className="ShoppingList">
+            <h4>Shopping List</h4>
+            <div className="notebook">
+              <ul className="list">
+                {this.props.items.map(item => (
+                  <li
+                    key={item.id}
+                    onClick={() => this.handleClick(item)}
+                    style={{
+                      textDecoration: item.checked ? "line-through" : "none"
+                    }}
+                  >
+                    {item.name}
+                  </li>
+                ))}
+                <li className="formLi">
+                  <form className="shoppingForm" onSubmit={this.handleSubmit}>
+                    <input
+                      className="newItem"
+                      placeholder="Add a New Item"
+                    ></input>
+                    <button className="shoppingButton">
+                      <img
+                        alt="Basket"
+                        className="newItemSubmit"
+                        src="https://i.imgur.com/rEEAC42.png"
+                      />
+                    </button>
+                  </form>
+                </li>
+                <li> </li>
+                <li> </li>
+                <li> </li>
+                <li> </li>
+                <li> </li>
+              </ul>
+            </div>
+          </div>
+        </>
       );
     } else {
       return null;

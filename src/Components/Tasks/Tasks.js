@@ -28,7 +28,9 @@ class Tasks extends React.Component {
             <button className="taskBackButton" onClick={this.handleClick}>
               <img src="https://i.imgur.com/sW5hYLx.png" alt="Task Icon" />
             </button>
-            <h1>Remove Exsisting Tasks From Your Apartment</h1>
+            <h1 className="taskHeader">
+              Remove Exsisting Tasks From Your Apartment
+            </h1>
             <TaskUpdater
               tasks={this.props.tasks}
               user={this.props.user}
@@ -39,7 +41,7 @@ class Tasks extends React.Component {
             />
           </>
           <>
-            <h1>Add New Tasks To Your Apartment</h1>
+            <h1 className="taskHeader">Add New Tasks To Your Apartment</h1>
             <TaskSelector
               user={this.props.user}
               flat={this.props.flat}
@@ -72,7 +74,7 @@ class Tasks extends React.Component {
     } else if (this.props.logged_in && this.props.user) {
       return (
         <>
-          <h1>Set Up Your Apartments Weekly Tasks</h1>
+          <h1 className="taskHeader">Set Up Your Apartments Weekly Tasks</h1>
           <TaskSelector
             user={this.props.user}
             flat={this.props.flat}
@@ -86,9 +88,17 @@ class Tasks extends React.Component {
 
   render() {
     return (
-      <div className="page">
-        <div>{this.renderPage()}</div>
-      </div>
+      <>
+        <div className="pageBanner">
+          <img
+            src="https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            alt="Cleaning"
+          />
+        </div>
+        <div className="page">
+          <div>{this.renderPage()}</div>
+        </div>
+      </>
     );
   }
 }

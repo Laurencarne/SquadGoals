@@ -25,7 +25,7 @@ class ProfilePicture extends Component {
       return (
         <Avatar
           handleAvatarClick={this.handleAvatarClick}
-          handleClicked={this.toggleAvatar}
+          toggleAvatarBar={this.toggleAvatar}
         />
       );
     } else {

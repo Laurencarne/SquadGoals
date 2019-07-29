@@ -15,21 +15,34 @@ code {
 }
 .nav {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  min-height: 3vh;
-  background: #c9e265;
+  height: 6vh;
+  background: #ffbc42;
   color: black;
 }
 .App {
   padding-bottom: 10vh;
 }
 /* /////////////////// MAIN /////////////////// */
+.pageBanner img,
+.noCover img {
+  width: 100%;
+  height: 60vh;
+  object-fit: cover;
+}
+.pageBanner {
+  height: 45vh;
+}
+.noCover {
+  height: 60vh;
+}
 .page {
   /* used in dashboard */
   /* used in profile */
   margin: 3%;
 }
+
 .container {
   /* used in dashboard */
   /* used in profile */
@@ -50,6 +63,8 @@ code {
   margin-right: 10px;
 }
 .pageRight {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -139,8 +154,8 @@ h4 {
   border-radius: 5px;
   height: 45px;
   width: 100px;
-  background-color: #c9e265;
-  border: 2px solid #c9e265;
+  background-color: #ffbc42;
+  border: 2px solid #ffbc42;
   box-shadow: 2.5px 2.5px rgba(120, 120, 120, 0.7);
 }
 .form .submitButton:hover {
@@ -163,11 +178,11 @@ h4 {
 }
 .joinFlatButton {
   border-radius: 5px;
-  background-color: #c9e265;
+  background-color: #ffbc42;
   margin: 10px;
   padding: 1.5vh;
   text-align: center;
-  border: 2px solid #c9e265;
+  border: 2px solid #ffbc42;
   box-shadow: 2.5px 2.5px rgba(120, 120, 120, 0.7);
 }
 /* /////////////////// FORMS /////////////////// */

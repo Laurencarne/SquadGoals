@@ -57,31 +57,31 @@ h1 {
 }
 .taskButton {
   border-radius: 5px;
-  background-color: #c9e265;
+  background-color: #ffbc42;
   margin: 10px;
   padding: 1.5vh;
   text-align: center;
-  border: 2px solid #c9e265;
+  border: 2px solid #ffbc42;
   box-shadow: 2.5px 2.5px rgba(120, 120, 120, 0.7);
 }
 .taskButton:hover {
   border-radius: 5px;
   background-color: rgba(255, 222, 89, 1);
-  border: 2px solid #c9e265;
+  border: 2px solid #ffbc42;
 }
 .taskButtonEdit {
   border-radius: 5px;
-  background-color: #c9e265;
+  background-color: #ffbc42;
   margin: 10px;
   padding: 1.5vh;
   text-align: center;
-  border: 2px solid #c9e265;
+  border: 2px solid #ffbc42;
   box-shadow: 2.5px 2.5px rgba(120, 120, 120, 0.7);
 }
 .taskButtonEdit:hover {
   border-radius: 5px;
   background-color: rgba(255, 222, 89, 1);
-  border: 2px solid #c9e265;
+  border: 2px solid #ffbc42;
 }
 .taskBackButton {
   margin: 10px;
@@ -103,4 +103,8 @@ h1 {
 .taskButtonsDiv {
   display: flex;
   justify-content: space-between;
+}
+.taskHeader {
+  margin-bottom: 6vh;
+  margin-top: 6vh;
 }

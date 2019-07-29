@@ -118,7 +118,17 @@ class Dashboard extends Component {
   };
 
   render() {
-    return <>{this.renderPage()}</>;
+    return (
+      <>
+        <div className="pageBanner">
+          <img
+            src="https://images.unsplash.com/photo-1449247613801-ab06418e2861?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80"
+            alt="Lady in apartment"
+          />
+        </div>
+        {this.renderPage()}
+      </>
+    );
   }
 }
 

@@ -7,8 +7,8 @@
 .form .avatarInput {
   height: auto;
   font-weight: lighter;
-  background-color: #c9e265;
-  border: 2px #c9e265 solid;
+  background-color: #ffbc42;
+  border: 2px #ffbc42 solid;
 }
 .form .avatarInput:hover {
   background-color: rgba(255, 255, 255, 0.8);
