@@ -90,10 +90,7 @@ class Tasks extends React.Component {
     return (
       <>
         <div className="pageBanner">
-          <img
-            src="https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-            alt="Cleaning"
-          />
+          <img src="https://i.imgur.com/8RiY85k.jpg?1" alt="Cleaning" />
         </div>
         <div className="page">
           <div>{this.renderPage()}</div>

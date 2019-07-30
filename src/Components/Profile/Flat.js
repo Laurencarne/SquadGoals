@@ -34,7 +34,6 @@ class Flat extends Component {
       id: this.props.flat.id
     };
 
-    console.log(flat);
     this.props.updateFlat(flat);
     e.target.reset();
   };
