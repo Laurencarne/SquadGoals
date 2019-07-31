@@ -2,6 +2,42 @@ import React from "react";
 import "../CSS/Avatar.css";
 
 const avatarList = [
+  "https://i.imgur.com/xVxTBsy.png",
+  "https://i.imgur.com/wRKK3lm.png",
+  "https://i.imgur.com/WKnnx1J.png",
+  "https://i.imgur.com/N4SreXm.png",
+  "https://i.imgur.com/1uVM748.png",
+  "https://i.imgur.com/uzaqlec.png",
+  "https://i.imgur.com/SFJUJ4j.png",
+  "https://i.imgur.com/lM2qdwB.png",
+  "https://i.imgur.com/nwS6w2b.png",
+  "https://i.imgur.com/jMgVYd1.png",
+  "https://i.imgur.com/oZmNoET.png",
+  "https://i.imgur.com/RvQzAT9.png",
+  "https://i.imgur.com/fFC4Y40.png",
+  "https://i.imgur.com/YiGioUa.png",
+  "https://i.imgur.com/n1yILBr.png",
+  "https://i.imgur.com/aKhVh5p.png",
+  "https://i.imgur.com/Zaoarss.png",
+  "https://i.imgur.com/H58jS5s.png",
+  "https://i.imgur.com/mO1bval.png",
+  "https://i.imgur.com/T4Rfn1i.png",
+  "https://i.imgur.com/xUnM3dS.png",
+  "https://i.imgur.com/BvfXrYN.png",
+  "https://i.imgur.com/0JzKKcD.png",
+  "https://i.imgur.com/1cD1AIU.png",
+  "https://i.imgur.com/VP4z7WV.png",
+  "https://i.imgur.com/WgTuWhB.png",
+  "https://i.imgur.com/jzPxsON.png",
+  "https://i.imgur.com/cK5wzDV.png",
+  "https://i.imgur.com/lYv5jto.png",
+  "https://i.imgur.com/pFnVkjV.png",
+  "https://i.imgur.com/wgDZwWw.png",
+  "https://i.imgur.com/FxNEQYD.png",
+  "https://i.imgur.com/4aRLm3s.png"
+];
+
+const oldAvatarList = [
   "https://i.imgur.com/9hk3RQG.png",
   "https://i.imgur.com/frnsu2v.png",
   "https://i.imgur.com/9Dqki2J.png",

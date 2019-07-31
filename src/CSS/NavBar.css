@@ -1,11 +1,13 @@
 .homeImage {
-  height: 4vh;
+  height: 6vh;
   margin: 0px;
   display: flex;
   justify-content: flex-start;
 }
 .navButtons {
   padding: 8px;
+  margin: 0.5vh;
+  font-size: -webkit-xxx-large;
 }
 .navButtons:hover {
   background-color: rgba(255, 255, 255, 0.5);
@@ -15,7 +17,7 @@
   text-decoration: none;
 }
 .navLeft {
-  margin-left: 10px;
+  margin-left: 5vh;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -24,11 +26,16 @@
   color: black;
 }
 .navRight {
-  margin-right: 10px;
+  margin-right: 5vh;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   height: 6vh;
   background: #ffbc42;
   color: black;
+}
+.navSplitters {
+  padding: 8px;
+  margin: 0.5vh;
+  font-size: -webkit-xxx-large;
 }

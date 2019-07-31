@@ -3,6 +3,7 @@ import api from "../../util/api";
 import moment from "moment";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import { Redirect } from "react-router-dom";
 
 const localizer = momentLocalizer(moment);
 moment.locale("en-GB");
@@ -18,8 +19,10 @@ class Dnd extends Component {
     };
   }
   componentDidMount() {
-    api.getEvents().then(events => this.setState({ events }));
-    this.getNewData();
+    if (this.props.logged_in && this.props.user) {
+      api.getEvents().then(events => this.setState({ events }));
+      this.getNewData();
+    }
   }
 
   getNewData = () => {
@@ -34,20 +37,27 @@ class Dnd extends Component {
     }));
   };
 
+  renderPage = () => {
+    if (!this.props.logged_in && this.props.user) {
+      return <Redirect to="/" />;
+    } else if (this.props.logged_in && this.props.user) {
+      return (
+        <div>
+          <Calendar
+            localizer={localizer}
+            events={eventsArray}
+            startAccessor="start"
+            endAccessor="end"
+            views={["month", "week", "agenda"]}
+            style={{ height: "100vh" }}
+          />
+        </div>
+      );
+    }
+  };
+
   render() {
-    return (
-      <div>
-        {this.getNewData()}
-        <Calendar
-          localizer={localizer}
-          events={eventsArray}
-          startAccessor="start"
-          endAccessor="end"
-          views={["month", "week", "agenda"]}
-          style={{ height: "100vh" }}
-        />
-      </div>
-    );
+    return <>{this.renderPage()}</>;
   }
 }
 export default Dnd;

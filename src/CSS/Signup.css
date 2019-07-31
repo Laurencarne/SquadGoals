@@ -7,10 +7,11 @@
 .form .avatarInput {
   height: auto;
   font-weight: lighter;
-  background-color: #ffbc42;
-  border: 2px #ffbc42 solid;
+  background-color: #73d2de;
+  border: 0px #ffbc42 solid;
+  width: auto;
 }
 .form .avatarInput:hover {
   background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
+  border-radius: 2px;
 }

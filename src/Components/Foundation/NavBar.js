@@ -93,29 +93,50 @@ class NavBar extends Component {
               <Link style={navStyle} to="/profile">
                 <p className="navButtons">Profile</p>
               </Link>
+              <span className="navRight">
+                <p className="navSplitters">|</p>
+              </span>
               {this.props.user.flat_id ? (
                 <>
                   <Link style={navStyle} to="/shopping">
                     <p className="navButtons">Shopping List</p>
                   </Link>
+                  <span className="navRight">
+                    <p className="navSplitters">|</p>
+                  </span>
                   <Link style={navStyle} to="/tasks">
                     <p className="navButtons">Tasks</p>
                   </Link>
+                  <span className="navRight">
+                    <p className="navSplitters">|</p>
+                  </span>
                   <Link style={navStyle} to="/bills">
                     <p className="navButtons">Bills</p>
                   </Link>
+                  <span className="navRight">
+                    <p className="navSplitters">|</p>
+                  </span>
                   <Link style={navStyle} to="/calendar">
                     <p className="navButtons">Calender</p>
                   </Link>
+                  <span className="navRight">
+                    <p className="navSplitters">|</p>
+                  </span>
                 </>
               ) : (
                 <>
                   <p onClick={this.handleJoinFlat} className="navButtons">
                     Join Flat
                   </p>
+                  <span className="navRight">
+                    <p className="navSplitters">|</p>
+                  </span>
                   <p onClick={this.handleCreateFlat} className="navButtons">
                     Create a Flat
                   </p>
+                  <span className="navRight">
+                    <p className="navSplitters">|</p>
+                  </span>
                 </>
               )}
               <Link style={navStyle} to="/">
@@ -142,6 +163,9 @@ class NavBar extends Component {
               <Link style={navStyle} to="/signup">
                 <p className="navButtons">Sign Up</p>
               </Link>
+              <span className="navRight">
+                <p className="navSplitters">|</p>
+              </span>
               <Link style={navStyle} to="/login">
                 <p className="navButtons">Log In</p>
               </Link>

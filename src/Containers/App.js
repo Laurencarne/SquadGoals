@@ -46,18 +46,29 @@ class App extends React.Component {
         notes,
         ...user
       } = flatmate;
-      this.setState({
-        logged_in: true,
-        user,
-        flat,
-        events,
-        notes,
-        tasks,
-        items,
-        bills,
-        flatmates: flat.flatmates,
-        bill_splits
-      });
+
+      if (flatmate.flat) {
+        this.setState({
+          logged_in: true,
+          user,
+          events,
+          notes,
+          items,
+          flat,
+          tasks,
+          bills,
+          flatmates: flat.flatmates,
+          bill_splits
+        });
+      } else {
+        this.setState({
+          logged_in: true,
+          user,
+          events,
+          notes,
+          items
+        });
+      }
     });
   };
   //////////////////// NOTES /////////////////////
@@ -349,7 +360,11 @@ class App extends React.Component {
                 />
               )}
             />
-            <Route path="/calendar" exact render={() => <Dnd />} />
+            <Route
+              path="/calendar"
+              exact
+              render={() => <Dnd logged_in={logged_in} user={user} />}
+            />
           </Switch>
           <Footer />
         </div>

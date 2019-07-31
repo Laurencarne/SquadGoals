@@ -106,7 +106,7 @@ class DisplayYouOweBill extends React.Component {
                 <img
                   src={
                     this.props.flatmates.find(
-                      flatmate => flatmate.id === user.flatmate_id
+                      flatmate => flatmate.id === flatmate_id
                     ).avatar
                   }
                   alt="avatar"

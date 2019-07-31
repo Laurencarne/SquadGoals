@@ -33,14 +33,14 @@ input {
 .pageBanner img,
 .noCover img {
   width: 100%;
-  height: 60vh;
+  height: 45vh;
   object-fit: cover;
 }
 .pageBanner {
-  height: 45vh;
+  height: 25vh;
 }
 .noCover {
-  height: 60vh;
+  height: 45;
 }
 .page {
   /* used in dashboard */
@@ -111,7 +111,7 @@ h4 {
   /* used in login */
   /* used in signup */
   background-color: #218380;
-  width: auto;
+  width: 100%;
   border-radius: 5px;
   padding: 4%;
   display: flex;
@@ -122,22 +122,20 @@ h4 {
 }
 
 .LoginSignup {
-  .editProfile {
-    background-color: #218380;
-    width: 35%;
-    border-radius: 5px;
-    padding: 4%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-  }
+  background-color: #218380;
+  width: 35%;
+  border-radius: 5px;
+  padding: 4%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 .form input {
   /* used in editProfile */
   /* used in login */
   /* used in signup */
-  width: 75%;
+  width: 30vh;
   height: 20px;
   padding: 10px;
   font-size: 2.2vh;

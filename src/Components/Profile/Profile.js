@@ -19,11 +19,17 @@ class Profile extends Component {
       user,
       updateFlat
     } = this.props;
-    if (!logged_in && user) {
+    if (!this.props.logged_in && this.props.user) {
       return <Redirect to="/" />;
     } else if (this.state.clicked && user.username) {
       return (
         <>
+          <div className="pageBanner">
+            <img
+              src="https://i.imgur.com/boveooO.jpg?1"
+              alt="Lady in bedroom"
+            />
+          </div>
           <EditProfile
             handleChange={handleChange}
             updateProfile={updateProfile}
@@ -35,6 +41,12 @@ class Profile extends Component {
     } else if (logged_in && user) {
       return (
         <>
+          <div className="pageBanner">
+            <img
+              src="https://i.imgur.com/boveooO.jpg?1"
+              alt="Lady in bedroom"
+            />
+          </div>
           <div className="page">
             <div className="container">
               <div className="pageLeft">
@@ -62,14 +74,7 @@ class Profile extends Component {
   };
 
   render() {
-    return (
-      <>
-        <div className="pageBanner">
-          <img src="https://i.imgur.com/boveooO.jpg?1" alt="Lady in bedroom" />
-        </div>
-        {this.renderPage()}
-      </>
-    );
+    return <>{this.renderPage()}</>;
   }
 }
 
