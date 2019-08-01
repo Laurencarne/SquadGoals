@@ -68,7 +68,7 @@ class BillsLandingPage extends React.Component {
                 Create New
               </button>
               <div>
-                <h4>Your Owed</h4>
+                <h4>Bills You Are Owed</h4>
 
                 <form
                   className="billRadioButton"
@@ -113,7 +113,7 @@ class BillsLandingPage extends React.Component {
                   )}
                 </div>
 
-                <h4>You Owe</h4>
+                <h4>Bills You Owe Others...</h4>
 
                 <form
                   className="billRadioButton"

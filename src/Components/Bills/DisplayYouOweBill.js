@@ -62,14 +62,24 @@ class DisplayYouOweBill extends React.Component {
   };
 
   renderMoreInformation = () => {
-    const { desc, total, bill_splits } = this.props.bill;
+    const { desc, name, total, bill_splits } = this.props.bill;
     if (this.state.clicked) {
       return (
-        <>
-          <p>Description: {desc}</p>
-          <p>Total: £{parseFloat(total).toFixed(2)}</p>
-          <p>Flatmates splitting: {bill_splits.length}</p>
-        </>
+        <div className="billExtraInfo">
+          <p>
+            <strong>{name}</strong>
+          </p>
+          <p>
+            <span>Description: </span>
+            {desc}
+          </p>
+          <p>
+            <span>Total:</span> £{parseFloat(total).toFixed(2)}
+          </p>
+          <p>
+            <span>Flatmates splitting:</span> {bill_splits.length}
+          </p>
+        </div>
       );
     }
   };
@@ -96,9 +106,6 @@ class DisplayYouOweBill extends React.Component {
     if (this.filterResults(this.props.filter).length > 0) {
       return (
         <div>
-          <p>
-            <strong>{name}</strong>
-          </p>
           {this.renderMoreInformation()}
           {this.filterResults(this.state.filter).map(user => (
             <div className="billOwe" key={user.id}>

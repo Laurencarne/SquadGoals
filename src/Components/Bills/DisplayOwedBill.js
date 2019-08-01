@@ -28,10 +28,19 @@ class DisplayOwedBill extends React.Component {
     const { desc, total, bill_splits } = this.props.bill;
     if (this.state.clicked) {
       return (
-        <div>
-          <p>Description: {desc}</p>
-          <p>Total: £{parseFloat(total).toFixed(2)}</p>
-          <p>Flatmates spliting: {bill_splits.length}</p>
+        <div className="billExtraInfo">
+          <p>
+            <span>{this.props.bill.name}</span>
+          </p>
+          <p>
+            <span>Description:</span> {desc}
+          </p>
+          <p>
+            <span>Total:</span> £{parseFloat(total).toFixed(2)}
+          </p>
+          <p>
+            <span>Flatmates spliting:</span> {bill_splits.length}
+          </p>
         </div>
       );
     }
@@ -41,9 +50,6 @@ class DisplayOwedBill extends React.Component {
     if (this.filterResults(this.props.filter).length > 0) {
       return (
         <div onClick={this.handleClick}>
-          <p>
-            <strong>{this.props.bill.name}</strong>
-          </p>
           {this.renderMoreInformation()}
           {this.filterResults(this.props.filter).map(user => (
             <div className="billBlurb" key={user.id}>

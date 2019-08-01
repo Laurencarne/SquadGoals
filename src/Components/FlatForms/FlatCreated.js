@@ -2,6 +2,14 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 
 class FlatCreated extends React.Component {
+  copyToClipboard = e => {
+    e.preventDefault();
+    console.log(e.target[0].value);
+    let copy = e.target[0];
+    copy.select();
+    document.execCommand("copy");
+  };
+
   render() {
     return (
       <>
@@ -26,11 +34,14 @@ class FlatCreated extends React.Component {
                   house mates so they can move in with you!
                 </p>
                 <p>Flat Key:</p>
-                <input
-                  type="flat_key"
-                  name="flat_key"
-                  value={this.props.flat.flat_key}
-                />
+                <form onSubmit={this.copyToClipboard}>
+                  <input
+                    type="flat_key"
+                    name="flat_key"
+                    value={this.props.flat.flat_key}
+                  />
+                  <button className="joinFlatButton">Copy</button>
+                </form>
               </div>
             </div>
           </div>

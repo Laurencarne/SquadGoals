@@ -3,6 +3,7 @@ import "../../CSS/Signup.css";
 import DatePage from "../../util/DatePage";
 import Avatar from "../../util/Avatar";
 import { Redirect } from "react-router-dom";
+import swal from "sweetalert2";
 
 class SignupComponent extends React.Component {
   state = {
@@ -123,7 +124,12 @@ class SignupComponent extends React.Component {
     if (username && first_name && last_name && password && birthday && email) {
       this.props.signUpUserToServer(flatmate);
     } else {
-      alert("Please fill in your details to Sign Up");
+      swal.fire({
+        title: "Opps...",
+        text: "Please fill in your details to Sign Up",
+        type: "error",
+        confirmButtonText: "Try Again"
+      });
     }
   };
 

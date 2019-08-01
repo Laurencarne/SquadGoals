@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import swal from "sweetalert2";
 
 class LoginComponent extends React.Component {
   state = {
@@ -26,7 +27,12 @@ class LoginComponent extends React.Component {
         password: ""
       });
     } else {
-      alert("Please enter your username and password.");
+      swal.fire({
+        title: "Opps...",
+        text: "Please enter your username and password",
+        type: "error",
+        confirmButtonText: "Try Again"
+      });
     }
   };
 

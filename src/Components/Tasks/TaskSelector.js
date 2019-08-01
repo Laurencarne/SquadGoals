@@ -46,7 +46,6 @@ class TaskSelector extends React.Component {
       let flatId = { flat_id: this.props.user.flat_id };
       let flatmate_id = this.getRandomFlatmate(counter);
       this.props.addTasksToFlat({ ...task, ...flatId, flatmate_id, week });
-      // console.log({ ...task, ...flatId, flatmate_id, week });
       counter++;
     });
     taskHolder = [];

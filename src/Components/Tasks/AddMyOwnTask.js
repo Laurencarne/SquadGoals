@@ -124,7 +124,7 @@ class SignupComponent extends React.Component {
                     onClick={this.props.toggleAddMyOwn}
                   >
                     <img
-                      src="https://i.imgur.com/sW5hYLx.png"
+                      src="https://i.imgur.com/WhNIfmi.png"
                       alt="Task Logo"
                     />
                   </button>

@@ -24,7 +24,18 @@ class CreateBill extends React.Component {
     } else if (flatmateHolder.includes(flatmate)) {
       flatmateHolder = flatmateHolder.filter(t => t.id !== flatmate.id);
     }
-    console.log(flatmateHolder);
+    this.renderStyle(flatmate.avatar);
+  };
+
+  renderStyle = avatar => {
+    this.setState({
+      flatmates: this.props.flatmates.map(flatmate => {
+        if (flatmate.avatar === avatar) {
+          flatmate.checked = !flatmate.checked;
+        }
+        return flatmate;
+      })
+    });
   };
 
   validateSubmit = e => {
@@ -97,7 +108,7 @@ class CreateBill extends React.Component {
                 className="taskBackButton"
                 onClick={this.props.toggleCreateBill}
               >
-                <img src="https://i.imgur.com/sW5hYLx.png" alt="Task Logo" />
+                <img src="https://i.imgur.com/WhNIfmi.png" alt="Task Logo" />
               </button>
               <input
                 required
@@ -135,6 +146,12 @@ class CreateBill extends React.Component {
               .filter(flatmate => flatmate.id !== this.props.user.id)
               .map(flatmate => (
                 <div
+                  style={{
+                    backgroundColor:
+                      flatmate.checked && flatmateHolder.includes(flatmate)
+                        ? "#8F2D56"
+                        : null
+                  }}
                   key={flatmate.id}
                   className="flatmatePickerInner"
                   onClick={e => this.handleAvatarClick(flatmate)}

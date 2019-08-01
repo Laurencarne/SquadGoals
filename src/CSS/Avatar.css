@@ -2,7 +2,9 @@
   align-self: center;
   border-radius: 2px;
   background-color: #218380;
-  padding: 10px;
+  font-size: 4vh;
+  font-weight: bold;
+  padding: 1vh;
   border: 2px solid #218380;
   box-shadow: 2.5px 2.5px rgba(120, 120, 120, 0.7);
 }
@@ -31,8 +33,10 @@
   width: 17%;
   margin-top: 2%;
   border-radius: 2px;
-  margin: 1.5%;
+  margin: 1%;
   transition: transform 0.2s;
+  padding: 0.5%;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .avatarTiles:hover {
   transform: scale(1.2);
@@ -42,6 +46,9 @@
   border-radius: 2px;
   background-color: rgba(255, 255, 255, 0.3);
   border: 2px solid rgba(255, 255, 255, 0);
+  font-size: 2vh;
+  font-weight: bold;
+  padding: 1vh;
 }
 .buttonPopOutBack:hover {
   background-color: rgba(255, 255, 255, 0.7);

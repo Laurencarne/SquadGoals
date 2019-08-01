@@ -11,6 +11,7 @@ import Tasks from "../Components/Tasks/Tasks";
 import ShoppingList from "../Components/Shopping/ShoppingList";
 import Dnd from "../Components/Calendar/Dnd";
 import BillsLandingPage from "../Components/Bills/BillsLandingPage";
+import swal from "sweetalert2";
 
 const token = () => localStorage.getItem("token");
 
@@ -107,7 +108,12 @@ class App extends React.Component {
   onLoginClicked = user => {
     api.login(user.username, user.password).then(data => {
       if (data.error) {
-        alert("Something is wrong with your credentials");
+        swal.fire({
+          title: "Opps...",
+          text: "Those details do not seem quite right...",
+          type: "error",
+          confirmButtonText: "Try Again"
+        });
       } else {
         localStorage.setItem("token", data.jwt);
         this.getUser();
@@ -118,7 +124,12 @@ class App extends React.Component {
   signUpUserToServer = flatmate => {
     api.signup(flatmate).then(data => {
       if (data.error) {
-        alert(data.error);
+        swal.fire({
+          title: "Opps...",
+          text: "Those details do not seem quite right...",
+          type: "error",
+          confirmButtonText: "Try Again"
+        });
       } else {
         localStorage.setItem("token", data.jwt);
         this.getUser();
@@ -155,7 +166,12 @@ class App extends React.Component {
       if (!user.error) {
         this.getUser();
       } else {
-        alert("Sorry those details don't seem quite right...");
+        swal.fire({
+          title: "Opps...",
+          text: "Those details do not seem quite right...",
+          type: "error",
+          confirmButtonText: "Try Again"
+        });
       }
     });
   };
