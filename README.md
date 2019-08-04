@@ -24,3 +24,14 @@ It is an app for flat sharers. You can join as a solo user and keep track of you
 
 * The tasks section is where yo set your household taks as a group then the will be randomally assigned each week to each housemate. Once the task is completed you can click on it and it will be randomally assigned to another housemate for the following week. No more worries abot being stuck cleaning the toilets every week! You can also update the tasks as household needs change.
 
+![Squad-Goals-Gif](https://media.giphy.com/media/ighmXVqJecqBp4Ltfc/giphy.gif)
+
+* Use the bill split function to keep track of house hold bills. Who paid for the take out on Friday? Make sure your not left out of pocket.
+
+![Squad-Goals-Gif](https://media.giphy.com/media/Ve5eUr5jIHEkLzbLPA/giphy.gif)
+
+* The communal calendar keeps track of all housemates events and plans. Make sure you know when the parties are happening or when you have the place to yourself.
+
+![Squad-Goals-Gif](https://media.giphy.com/media/fwPfUa1DgsqF9uOfHn/giphy.gif)
+
+* The next steps are to make a React Native app.
