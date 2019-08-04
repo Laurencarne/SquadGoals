@@ -101,7 +101,7 @@ class DisplayYouOweBill extends React.Component {
   };
 
   renderPage = () => {
-    const { flatmate_id, name } = this.props.bill;
+    const { flatmate_id } = this.props.bill;
 
     if (this.filterResults(this.props.filter).length > 0) {
       return (

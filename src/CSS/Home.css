@@ -4,8 +4,8 @@
   justify-content: center;
 }
 .landPageDivs {
-  height: 40vh;
-  width: 220px;
+  height: auto;
+  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -20,8 +20,13 @@
 .landingPageBottom {
   margin: 10px;
   padding: 10px;
-  width: 1000px;
+  width: 80%;
   border: 1px solid #ffbc42;
   background-color: #ffbc42;
   border-radius: 5px;
+}
+.video {
+  margin: 10vh;
+  width: 150vh;
+  height: 75vh;
 }

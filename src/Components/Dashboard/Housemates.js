@@ -1,5 +1,11 @@
 import React, { Component } from "react";
 import FlatKey from "./FlatKey";
+import { Link } from "react-router-dom";
+
+const navStyle = {
+  color: "black",
+  textDecoration: "none"
+};
 
 class Housemates extends Component {
   state = {
@@ -40,10 +46,12 @@ class Housemates extends Component {
                 <img src={flatmate.avatar} alt="flatmates avatar" />
               </span>
             ))}
-          <span className="flatmate">
-            <p>Me</p>
-            <img src={this.props.user.avatar} alt="User Profile" />
-          </span>
+          <Link style={navStyle} to="/profile">
+            <span className="flatmate">
+              <p>Me</p>
+              <img src={this.props.user.avatar} alt="User Profile" />
+            </span>
+          </Link>
         </div>
         <button onClick={this.handleClick} className="flatKeyButton">
           Generate Flat Key

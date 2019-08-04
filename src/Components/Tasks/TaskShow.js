@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import swal from "sweetalert2";
 
 class TaskShow extends React.Component {
   handleClick = task => {
@@ -9,6 +10,12 @@ class TaskShow extends React.Component {
       id: task.id
     };
     this.props.updateTaskOnServer(task);
+    swal.fire({
+      title: "Nice Work",
+      text: `Great that task has been reassigned for next week.`,
+      type: "success",
+      confirmButtonText: "Continue"
+    });
   };
 
   getNextFlatmate = () => {

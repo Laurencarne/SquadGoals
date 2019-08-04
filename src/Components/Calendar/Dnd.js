@@ -11,18 +11,18 @@ moment.locale("en-GB");
 let eventsArray = [];
 
 class Dnd extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       events: [],
-      arrayEvents: []
+      eventsArray: null,
+      key: this.props.key
     };
   }
   componentDidMount() {
-    if (this.props.logged_in && this.props.user) {
-      api.getEvents().then(events => this.setState({ events }));
-      this.getNewData();
-    }
+    api.getEvents().then(events => {
+      this.setState({ events }, () => this.getNewData());
+    });
   }
 
   getNewData = () => {
@@ -35,6 +35,7 @@ class Dnd extends Component {
       allDay: true,
       flatmateId: event.flatmate_id
     }));
+    return eventsArray;
   };
 
   renderPage = () => {
@@ -45,7 +46,7 @@ class Dnd extends Component {
         <div>
           <Calendar
             localizer={localizer}
-            events={eventsArray}
+            events={this.getNewData()}
             startAccessor="start"
             endAccessor="end"
             views={["month", "week", "agenda"]}

@@ -379,7 +379,15 @@ class App extends React.Component {
             <Route
               path="/calendar"
               exact
-              render={() => <Dnd logged_in={logged_in} user={user} />}
+              render={props => (
+                <Dnd
+                  logged_in={logged_in}
+                  user={user}
+                  // key={Math.floor(Math.random() * 20)}
+                  key={props.location.key}
+                  {...props}
+                />
+              )}
             />
           </Switch>
           <Footer />

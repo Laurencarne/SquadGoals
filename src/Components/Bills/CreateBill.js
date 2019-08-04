@@ -40,7 +40,7 @@ class CreateBill extends React.Component {
 
   validateSubmit = e => {
     e.preventDefault();
-    console.log(flatmateHolder);
+    // console.log(flatmateHolder);
 
     if (!flatmateHolder.length > 0) {
       this.setState({

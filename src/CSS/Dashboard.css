@@ -1,9 +1,13 @@
 .flatmate img {
   width: 80px;
   border-radius: 2px;
+  margin: 1vh;
 }
 .flatmate {
   align-self: center;
+}
+.flatmate p {
+  font-size: 2vh;
 }
 .address {
   position: absolute;

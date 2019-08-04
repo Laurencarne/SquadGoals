@@ -64,6 +64,7 @@ class CreateFlat extends React.Component {
                 </button>
                 <p>Flat Name: </p>
                 <input
+                  required
                   type="name"
                   name="name"
                   value={this.state.name}
