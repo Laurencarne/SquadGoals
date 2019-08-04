@@ -19,23 +19,22 @@ class Home extends Component {
           ></iframe>
         </div>
         <div className="landingPageBottom">
-          <h1> Testimonials </h1>
-          <h3>Person One</h3>
+          <h1> Squad Goals </h1>
+          <h3>What is it?</h3>
+          <p>Welcome to Squad Goals!</p>
           <p>
-            Etiam luctus, lectus sit amet aliquet placerat, nunc augue luctus
-            odio, sed mattis mi sapien id mi. Nunc eu justo arcu. Proin molestie
-            iaculis gravida. Pellentesque laoreet bibendum varius. Cras pulvinar
-            arcu vitae molestie dapibus. Donec eget vehicula sem. Sed egestas
-            nisi sed massa pretium, suscipit gravida erat semper. Aenean
-            eleifend mollis venenatis. Donec ut sollicitudin leo, sit amet
-            venenatis metus. Etiam luctus, lectus sit amet aliquet placerat,
-            nunc augue luctus odio, sed mattis mi sapien id mi. Nunc eu justo
-            arcu. Proin molestie iaculis gravida. Pellentesque laoreet bibendum
-            varius. Cras pulvinar arcu vitae molestie dapibus. Donec eget
-            vehicula sem. Sed egestas nisi sed massa pretium, suscipit gravida
-            erat semper. Aenean eleifend mollis venenatis. Donec ut sollicitudin
-            leo, sit amet venenatis metus.
+            This is an app to keep your flat details in one place. Log when your
+            bills are due and details about your place.
           </p>
+          <p>
+            You can create of join a flat with your flatmates and keep track of
+            your communal shopping list, household events and weekly tasks.
+          </p>
+          <p>
+            Sign up and start creating your own flat and invite your house mates
+            to join you or take a look around a premade user:
+          </p>
+          <p>Username: lauren Password: 12345</p>
         </div>
       </div>
     );
